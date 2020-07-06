@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-const UniversityListScreen = () => {
+const UniversityListScreen = props => {
     return (
-        <View>
+        <View style={style.screen}>
             <Text>
                 This is University List Screen!!
             </Text>
+            <Button title="Go to University Details" onPress={() => { props.navigation.navigate("UniversityDetail") }} />
         </View>
     );
 };

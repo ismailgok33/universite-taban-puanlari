@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const UniversityDetailScreen = () => {
     return (
-        <View>
+        <View style={style.screen}>
             <Text>
                 This is University Detail Screen!!
             </Text>
