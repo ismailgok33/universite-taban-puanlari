@@ -18,7 +18,9 @@ const UniversityListScreen = (props) => {
       <TouchableOpacity
         style={styles.gridItem}
         onPress={() => {
-          props.navigation.navigate("UniversityDetail");
+          props.navigation.navigate("UniversityDetail", {
+            universityId: itemData.item.id,
+          });
         }}
       >
         <View>
@@ -38,7 +40,7 @@ const UniversityListScreen = (props) => {
   );
 };
 
-UniversityListScreen.navigationOption = {
+UniversityListScreen.navigationOptions = {
   title: "Üniversite Listesi",
   headerStyle: {
     backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "",
