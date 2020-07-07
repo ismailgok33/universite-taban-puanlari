@@ -1,5 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Platform } from "react-native";
+
+import Colors from "../constants/Colors";
 
 import { UNIVERSITIES } from "../data/university-data";
 
@@ -27,6 +29,10 @@ UniversityDetailScreen.navigationOptions = ({ navigation }) => {
 
   return {
     title: selectedUniversity.name,
+    headerStyle: {
+      backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "",
+    },
+    headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor,
   };
 };
 
