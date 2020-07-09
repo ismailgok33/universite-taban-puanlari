@@ -9,27 +9,23 @@ import {
 } from "react-native";
 
 import { UNIVERSITIES } from "../data/university-data";
+import UniversityGridTile from '../components/UniversityGridTile';
 
 import Colors from "../constants/Colors";
 
-const UniversityListScreen = (props) => {
-  const renderGridItem = (itemData) => {
+const UniversityListScreen = props => {
+  const renderGridItem = itemData => {
     return (
-      <TouchableOpacity
-        style={styles.gridItem}
-        onPress={() => {
+      <UniversityGridTile
+        name={itemData.item.name}
+        department={itemData.item.department}
+        score={itemData.item.score}
+        placement={itemData.item.placement}
+        onSelect={() => {
           props.navigation.navigate("UniversityDetail", {
             universityId: itemData.item.id,
           });
-        }}
-      >
-        <View>
-          <Text> {itemData.item.name} </Text>
-          <Text> {itemData.item.department} </Text>
-          <Text> {itemData.item.score} </Text>
-          <Text> {itemData.item.placement} </Text>
-        </View>
-      </TouchableOpacity>
+        }} />
     );
   };
 
@@ -42,10 +38,6 @@ const UniversityListScreen = (props) => {
 
 UniversityListScreen.navigationOptions = {
   title: "Üniversite Listesi",
-  headerStyle: {
-    backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "",
-  },
-  headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor,
 };
 
 const styles = StyleSheet.create({
@@ -53,12 +45,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  gridItem: {
-    flex: 1,
-    margin: 15,
-    height: 150,
-  },
+  }
 });
 
 export default UniversityListScreen;
