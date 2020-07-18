@@ -1,18 +1,20 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
-import UniversityList from "../components/UniversityList";
-import { UNIVERSITIES } from "../data/university-data";
 import HeaderButton from "../components/HeaderButton";
 
-const UniversityListScreen = (props) => {
-  return <UniversityList data={UNIVERSITIES} navigation={props.navigation} />;
+const FiltersScreen = (props) => {
+  return (
+    <View styles={styles.screen}>
+      <Text>The Filters Screen!</Text>
+    </View>
+  );
 };
 
-UniversityListScreen.navigationOptions = (navData) => {
+FiltersScreen.navigationOptions = (navData) => {
   return {
-    title: "Üniversite Listesi",
+    title: "Filtrele",
     headerLeft: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
@@ -27,4 +29,12 @@ UniversityListScreen.navigationOptions = (navData) => {
   };
 };
 
-export default UniversityListScreen;
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
+
+export default FiltersScreen;
