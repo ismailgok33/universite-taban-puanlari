@@ -1,17 +1,32 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { useSelector } from "react-redux";
 
-import { UNIVERSITIES } from "../data/university-data";
+// import { UNIVERSITIES } from "../data/university-data";
 import UniversityList from "../components/UniversityList";
 import HeaderButton from "../components/HeaderButton";
+import DefaultText from "../components/DefaultText";
 
 const FavoritesScreen = (props) => {
-  const favs = UNIVERSITIES.filter(
-    (uni) => uni.id === "uni_1" || uni.id === "uni_2"
+  const avaibleUniversities = useSelector(
+    (state) => state.universitiesReducer.favoriteUniversities
   );
 
-  return <UniversityList data={favs} navigation={props.navigation} />;
+  console.log("avaibleUniversities:");
+  console.log(avaibleUniversities);
+
+  if (avaibleUniversities.length === 0 || !avaibleUniversities) {
+    return (
+      <View style={styles.content}>
+        <DefaultText>Favori üniversite bulunamadı.</DefaultText>
+      </View>
+    );
+  }
+
+  return (
+    <UniversityList data={avaibleUniversities} navigation={props.navigation} />
+  );
 };
 
 FavoritesScreen.navigationOptions = (navData) => {
@@ -33,6 +48,11 @@ FavoritesScreen.navigationOptions = (navData) => {
 
 const styles = StyleSheet.create({
   screen: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  content: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",

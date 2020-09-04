@@ -7,8 +7,11 @@ import {
   Platform,
   TouchableNativeFeedback,
 } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { useSelector } from "react-redux";
 
 import DefaultText from "../components/DefaultText";
+import FavoriteButton from "../components/FavoriteButton";
 
 const UniversityGridTile = (props) => {
   let TouchableComponent = TouchableOpacity;
@@ -17,14 +20,33 @@ const UniversityGridTile = (props) => {
     TouchableComponent = TouchableNativeFeedback;
   }
 
+  const currentUniversityIsFavorite = useSelector((state) =>
+    state.universitiesReducer.favoriteUniversities.some(
+      (uni) => uni.id === props.uniId
+    )
+  );
+
   return (
     <View style={styles.gridItem}>
       <TouchableComponent style={styles.touchable} onPress={props.onSelect}>
         <View style={styles.container}>
-          <DefaultText style={styles.text}> {props.name} </DefaultText>
-          <DefaultText style={styles.text}> {props.department} </DefaultText>
-          <DefaultText style={styles.text}> {props.score} </DefaultText>
-          <DefaultText style={styles.text}> {props.placement} </DefaultText>
+          <View style={styles.leftContainer}>
+            <DefaultText style={styles.text}> {props.name} </DefaultText>
+            <DefaultText style={styles.text}> {props.department} </DefaultText>
+            <DefaultText style={styles.text}> {props.score} </DefaultText>
+            <DefaultText style={styles.text}> {props.placement} </DefaultText>
+          </View>
+          <View style={styles.rigthContainer}>
+            <HeaderButtons HeaderButtonComponent={FavoriteButton}>
+              <Item
+                title="Favorite"
+                iconName={
+                  currentUniversityIsFavorite ? "ios-star" : "ios-star-outline"
+                }
+                onPress={props.press}
+              />
+            </HeaderButtons>
+          </View>
         </View>
       </TouchableComponent>
     </View>
@@ -54,6 +76,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f4f6ff",
+    flexDirection: "row",
+  },
+  leftContainer: {
+    width: "80%",
+  },
+  rigthContainer: {
+    width: "20%",
   },
   text: {
     fontFamily: "open-sans",

@@ -32,6 +32,7 @@ const UniversityNavigator = createStackNavigator(
   {
     UniversityList: UniversityListScreen,
     UniversityDetail: UniversityDetailScreen,
+    Filter: FiltersScreen,
   },
   screenStackConfig
 );
