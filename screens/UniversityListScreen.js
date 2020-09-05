@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Picker } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector } from "react-redux";
 
@@ -12,6 +12,9 @@ const UniversityListScreen = (props) => {
   const avaibleUniversities = useSelector(
     (state) => state.universitiesReducer.filteredUniversities
   );
+
+  console.log("avaibleUniversities:");
+  console.log(avaibleUniversities);
 
   if (avaibleUniversities.length === 0) {
     return (
@@ -42,17 +45,17 @@ UniversityListScreen.navigationOptions = (navData) => {
         />
       </HeaderButtons>
     ),
-    headerRight: (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item
-          title="Filtre"
-          // iconName="filter"
-          onPress={() => {
-            navData.navigation.navigate("Filter");
-          }}
-        />
-      </HeaderButtons>
-    ),
+    // headerRight: (
+    //   <HeaderButtons HeaderButtonComponent={HeaderButton}>
+    //     <Item
+    //       title="Filtre"
+    //       // iconName="filter"
+    //       onPress={() => {
+    //         navData.navigation.navigate("Filter");
+    //       }}
+    //     />
+    //   </HeaderButtons>
+    // ),
   };
 };
 

@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // import { UNIVERSITIES } from "../data/university-data";
 import UniversityList from "../components/UniversityList";
 import HeaderButton from "../components/HeaderButton";
 import DefaultText from "../components/DefaultText";
+import { loadFavorites } from "../store/actions/universities";
 
 const FavoritesScreen = (props) => {
   const avaibleUniversities = useSelector(
     (state) => state.universitiesReducer.favoriteUniversities
   );
 
-  console.log("avaibleUniversities:");
-  console.log(avaibleUniversities);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadFavorites());
+  }, [dispatch]);
 
   if (avaibleUniversities.length === 0 || !avaibleUniversities) {
     return (

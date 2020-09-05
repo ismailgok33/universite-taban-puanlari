@@ -1,5 +1,11 @@
 import { UNIVERSITIES } from "../../data/university-data";
-import { TOGGLE_FAVORITE, SET_FILTERS } from "../actions/universities";
+import {
+  TOGGLE_FAVORITE,
+  SET_FILTERS,
+  LOAD_FAVORITES,
+  loadFavorites,
+} from "../actions/universities";
+import University from "../../models/university";
 
 const initialState = {
   universities: UNIVERSITIES,
@@ -27,43 +33,57 @@ const universitiesReducer = (state = initialState, action) => {
           favoriteUniversities: state.favoriteUniversities.concat(university),
         };
       }
+    case LOAD_FAVORITES:
+      const loadedUniversities = action.favUniversities;
+      const uploadedFavories = loadedUniversities.map((uni) => {
+        let university = UNIVERSITIES.find((u) => u.id === uni.uniId);
+        return new University(
+          university.id,
+          university.name,
+          university.department,
+          university.score,
+          university.placement,
+          university.isState,
+          university.city,
+          university.universityYear
+        );
+      });
+      return { ...state, favoriteUniversities: uploadedFavories };
     case SET_FILTERS:
       const appliedFilters = action.filters;
+      console.log("appliedFilters.filteredCities:");
+      console.log(appliedFilters.filteredCities);
+      console.log("appliedFilters.filteredDepartments:");
+      console.log(appliedFilters.filteredDepartments);
       const show4Years = appliedFilters.show4Years;
       const show2Years = appliedFilters.show2Years;
       const updatedFilteredUniversities = state.universities.filter((uni) => {
         if (appliedFilters.isState && !uni.isState) {
           return false;
         }
-        console.log(
-          "show4Years: " +
-            appliedFilters.show4Years +
-            " show2Years: " +
-            appliedFilters.show2Years +
-            " uni.universityYear: " +
-            uni.universityYear
-        );
         if (show4Years && !show2Years) {
           if (uni.universityYear !== 4) {
-            console.log("girdi1");
             return false;
           }
         }
         if (!show4Years && show2Years) {
           if (uni.universityYear !== 2) {
-            console.log("girdi2");
             return false;
           }
         }
         if (!show4Years && !show2Years) {
           if (uni.universityYear === 2 || uni.universityYear === 4) {
-            console.log("girdi3");
             return false;
           }
         }
-        //console.log("filteredCities: " + appliedFilters.filteredCities);
         if (!appliedFilters.filteredCities.some((city) => city === uni.city)) {
-          console.log("girdi4");
+          return false;
+        }
+        if (
+          !appliedFilters.filteredDepartments.some((department) =>
+            uni.department.includes(department)
+          )
+        ) {
           return false;
         }
         return true;

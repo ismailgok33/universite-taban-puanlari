@@ -1,41 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, FlatList, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import * as SQLite from "expo-sqlite";
 
 import UniversityGridTile from "../components/UniversityGridTile";
-import { toggleFavorites } from "../store/actions/universities";
+import { toggleFavorites, loadFavorites } from "../store/actions/universities";
 import { insertFavorite, fetchFavorite } from "../helpers/db";
 
-const db = SQLite.openDatabase("favorites3.db");
+// const db = SQLite.openDatabase("favorites4.db");
 
 const UniversityList = (props) => {
   const dispatch = useDispatch();
 
+  // dispatch(loadFavorites());
+  useEffect(() => {
+    dispatch(loadFavorites());
+  }, [dispatch]);
+
   const toggleFavoriteHandler = (id) => {
-    // const dbResult = insertFavorite(id)
-    //   .then(() => {
-    //     console.log("id: " + id);
-    //     console.log("dbResult: " + dbResult);
-    //     console.log(dbResult);
-    //   })
-    //   .catch((err) => {
-    //     console.log("err: " + err);
-    //   });
-    db.transaction((tx) => {
-      tx.executeSql(
-        "INSERT INTO favorites3 (uniId) VALUES (?);",
-        [id],
-        (_, result) => {
-          console.log("result:");
-          console.log(result);
-        },
-        (_, err) => {
-          console.log("err:");
-          console.log(err);
-        }
-      );
-    });
     dispatch(toggleFavorites(id));
   };
 

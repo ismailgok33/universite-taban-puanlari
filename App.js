@@ -4,8 +4,9 @@ import { StyleSheet, Text, View } from "react-native";
 import { enableScreens } from "react-native-screens";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import ReduxThunk from "redux-thunk";
 
 import UniversityNavigator from "./navigation/UniversityNavigator";
 import universitiesReducer from "./store/reducers/universities";
@@ -13,21 +14,13 @@ import { init } from "./helpers/db";
 
 enableScreens();
 
-const dbResult = init()
-  .then(() => {
-    console.log("initialized database");
-    console.log(dbResult);
-  })
-  .catch((err) => {
-    console.log("initializing database failed");
-    console.log(err);
-  });
+init();
 
 const rootReducer = combineReducers({
   universitiesReducer: universitiesReducer,
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 const fetchFonst = () => {
   return Font.loadAsync({
