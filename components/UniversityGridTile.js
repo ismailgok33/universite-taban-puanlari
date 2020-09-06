@@ -30,24 +30,39 @@ const UniversityGridTile = (props) => {
     <View style={styles.gridItem}>
       <TouchableComponent style={styles.touchable} onPress={props.onSelect}>
         <View style={styles.container}>
-          <View style={styles.leftContainer}>
-            <DefaultText style={styles.text}>
+          <View style={styles.upperContainer}>
+            <DefaultText style={styles.textName}>
               {props.name.toLocaleUpperCase()}
             </DefaultText>
-            <DefaultText style={styles.text}> {props.department} </DefaultText>
-            <DefaultText style={styles.text}> {props.score} </DefaultText>
-            <DefaultText style={styles.text}> {props.placement} </DefaultText>
+            <DefaultText style={styles.textDepartment}>
+              {props.department}
+            </DefaultText>
           </View>
-          <View style={styles.rigthContainer}>
-            <HeaderButtons HeaderButtonComponent={FavoriteButton}>
-              <Item
-                title="Favorite"
-                iconName={
-                  currentUniversityIsFavorite ? "ios-star" : "ios-star-outline"
-                }
-                onPress={props.press}
-              />
-            </HeaderButtons>
+          <View style={styles.lowerContainer}>
+            <View style={styles.leftContainer}>
+              <DefaultText style={styles.text}>
+                Taban puanı: {props.score}
+              </DefaultText>
+              <DefaultText style={styles.text}>
+                Tavan puanı: {props.upperScore}
+              </DefaultText>
+              <DefaultText style={styles.text}>
+                Sıralaması: {props.placement}
+              </DefaultText>
+            </View>
+            <View style={styles.rigthContainer}>
+              <HeaderButtons HeaderButtonComponent={FavoriteButton}>
+                <Item
+                  title="Favorite"
+                  iconName={
+                    currentUniversityIsFavorite
+                      ? "ios-star"
+                      : "ios-star-outline"
+                  }
+                  onPress={props.press}
+                />
+              </HeaderButtons>
+            </View>
           </View>
         </View>
       </TouchableComponent>
@@ -78,17 +93,42 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f4f6ff",
+    flexDirection: "column",
+  },
+  upperContainer: {
+    height: "10%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: 10,
+  },
+  lowerContainer: {
     flexDirection: "row",
+    paddingTop: 10,
   },
   leftContainer: {
+    paddingTop: 10,
     width: "80%",
+    justifyContent: "center",
+    alignItems: "flex-start",
   },
   rigthContainer: {
     width: "20%",
   },
   text: {
     fontFamily: "open-sans",
+    fontSize: 12,
+    padding: 1,
+  },
+  textName: {
+    fontFamily: "open-sans",
     fontSize: 16,
+    textAlign: "center",
+  },
+  textDepartment: {
+    fontFamily: "open-sans-bold",
+    fontSize: 14,
+    textAlign: "center",
   },
 });
 

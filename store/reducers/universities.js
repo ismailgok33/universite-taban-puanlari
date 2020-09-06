@@ -42,6 +42,7 @@ const universitiesReducer = (state = initialState, action) => {
           university.name,
           university.department,
           university.score,
+          university.upperScore,
           university.placement,
           university.isState,
           university.city,

@@ -6,13 +6,13 @@ const FloatingButton = (props) => {
   const actions = [
     {
       text: "Alfabetik",
-      icon: require("../assets/favicon.png"),
+      icon: require("../assets/a-z.png"),
       name: "bt_name",
       position: 1,
     },
     {
       text: "Puana Göre",
-      icon: require("../assets/favicon.png"),
+      icon: require("../assets/score-desc.jpg"),
       name: "bt_score",
       position: 2,
     },

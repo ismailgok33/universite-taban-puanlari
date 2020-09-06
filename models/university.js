@@ -4,6 +4,7 @@ class University {
     name,
     department,
     score,
+    upperScore,
     placement,
     isState,
     city,
@@ -13,6 +14,7 @@ class University {
     this.name = name;
     this.department = department;
     this.score = score;
+    this.upperScore = upperScore;
     this.placement = placement;
     this.isState = isState;
     this.city = city;

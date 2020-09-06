@@ -27,6 +27,7 @@ const UniversityList = (props) => {
         name={itemData.item.name}
         department={itemData.item.department}
         score={itemData.item.score}
+        upperScore={itemData.item.upperScore}
         placement={itemData.item.placement}
         press={() => {
           toggleFavoriteHandler(itemData.item.id);

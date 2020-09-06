@@ -82,6 +82,10 @@ const UniversityListScreen = (props) => {
 UniversityListScreen.navigationOptions = (navData) => {
   return {
     title: `Üniversite Listesi (${navData.navigation.getParam("orderInfo")})`,
+    headerTitleStyle: {
+      fontFamily: "open-sans",
+      fontWeight: "bold",
+    },
     headerLeft: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item

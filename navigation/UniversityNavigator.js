@@ -20,6 +20,7 @@ const screenStackConfig = {
     },
     headerTitleStyle: {
       fontFamily: "open-sans-bold",
+      fontWeight: "100",
     },
     headerBackTitleStyle: {
       fontFamily: "open-sans",
