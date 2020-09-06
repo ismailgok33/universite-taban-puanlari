@@ -74,7 +74,7 @@ const screenTabConfig = {
       tabBarColor: Colors.accentColor,
       tabBarLabel:
         Platform.OS === "android" ? (
-          <Text style={{ fontFamily: "open-sans-bold" }}> Üniversiteler </Text>
+          <Text style={{ fontFamily: "open-sans-bold" }}> Favoriler </Text>
         ) : (
           "Favoriler"
         ),

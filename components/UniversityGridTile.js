@@ -31,7 +31,9 @@ const UniversityGridTile = (props) => {
       <TouchableComponent style={styles.touchable} onPress={props.onSelect}>
         <View style={styles.container}>
           <View style={styles.leftContainer}>
-            <DefaultText style={styles.text}> {props.name} </DefaultText>
+            <DefaultText style={styles.text}>
+              {props.name.toLocaleUpperCase()}
+            </DefaultText>
             <DefaultText style={styles.text}> {props.department} </DefaultText>
             <DefaultText style={styles.text}> {props.score} </DefaultText>
             <DefaultText style={styles.text}> {props.placement} </DefaultText>
@@ -56,7 +58,7 @@ const UniversityGridTile = (props) => {
 const styles = StyleSheet.create({
   gridItem: {
     flex: 1,
-    margin: 15,
+    margin: 5,
     height: 150,
     borderRadius: 10,
     overflow: "hidden",

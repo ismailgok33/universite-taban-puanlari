@@ -11,7 +11,7 @@ const CustomFavoriteButton = (props) => {
       {...props}
       IconComponent={Ionicons}
       iconSize={40}
-      color={Colors.primaryColor}
+      color={Colors.accentColor}
     />
   );
 };

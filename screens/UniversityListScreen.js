@@ -1,20 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { StyleSheet, View, Picker } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import UniversityList from "../components/UniversityList";
 // import { UNIVERSITIES } from "../data/university-data";
 import HeaderButton from "../components/HeaderButton";
 import DefaultText from "../components/DefaultText";
+import { setOrder } from "../store/actions/universities";
+import FloatingActions from "../components/FloatingActions";
 
 const UniversityListScreen = (props) => {
-  const avaibleUniversities = useSelector(
+  const [orderState, setOrderState] = useState("name");
+
+  const dispatch = useDispatch();
+
+  const orderFilter = useCallback(() => {
+    // const appliedOrder = {
+    //   order: orderState,
+    // };
+
+    dispatch(setOrder(orderState));
+  }, [orderState, dispatch]);
+
+  // useEffect(() => {
+  //   orderFilter();
+  // }, [orderFilter]);
+
+  orderFilter();
+
+  let avaibleUniversities = useSelector(
     (state) => state.universitiesReducer.filteredUniversities
   );
 
   console.log("avaibleUniversities:");
   console.log(avaibleUniversities);
+
+  useEffect(() => {
+    props.navigation.setParams({ orderInfo: "Alfabetik Sıralı" });
+  }, []);
+
+  const orderHandler = (name) => {
+    if (name === "bt_score") {
+      setOrderState("score");
+      props.navigation.setParams({ orderInfo: "Puana Göre Sıralı" });
+    } else {
+      setOrderState("name");
+      props.navigation.setParams({ orderInfo: "Alfabetik Sıralı" });
+    }
+  };
 
   if (avaibleUniversities.length === 0) {
     return (
@@ -22,18 +56,32 @@ const UniversityListScreen = (props) => {
         <DefaultText>
           Üniversite bulunamadı. Filtreleri kontrol ediniz.
         </DefaultText>
+        <FloatingActions
+          style={styles.floatingButton}
+          press={(name) => orderHandler(name)}
+        />
       </View>
     );
   }
 
   return (
-    <UniversityList data={avaibleUniversities} navigation={props.navigation} />
+    <View style={styles.container}>
+      <UniversityList
+        style={styles.universityList}
+        data={avaibleUniversities}
+        navigation={props.navigation}
+      />
+      <FloatingActions
+        style={styles.floatingButton}
+        press={(name) => orderHandler(name)}
+      />
+    </View>
   );
 };
 
 UniversityListScreen.navigationOptions = (navData) => {
   return {
-    title: "Üniversite Listesi",
+    title: `Üniversite Listesi (${navData.navigation.getParam("orderInfo")})`,
     headerLeft: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
@@ -60,10 +108,23 @@ UniversityListScreen.navigationOptions = (navData) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   content: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  universityList: {
+    flex: 1,
+  },
+  floatingButton: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
   },
 });
 
