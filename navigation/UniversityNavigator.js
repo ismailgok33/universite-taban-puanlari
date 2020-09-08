@@ -12,6 +12,7 @@ import UniversityDetailScreen from "../screens/UniversityDetailScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import FiltersScreen from "../screens/FiltersScreen";
 import Colors from "../constants/Colors";
+import AboutScreen from "../screens/AboutScreen";
 
 const screenStackConfig = {
   defaultNavigationOptions: {
@@ -109,6 +110,13 @@ const FiltersStackNavigator = createStackNavigator(
   screenStackConfig
 );
 
+const AboutStackNavigator = createStackNavigator(
+  {
+    About: AboutScreen,
+  },
+  screenStackConfig
+);
+
 const DrawerNavigator = createDrawerNavigator(
   {
     UniversityFavs: {
@@ -121,6 +129,12 @@ const DrawerNavigator = createDrawerNavigator(
       screen: FiltersStackNavigator,
       navigationOptions: {
         drawerLabel: "Filtrele",
+      },
+    },
+    About: {
+      screen: AboutStackNavigator,
+      navigationOptions: {
+        drawerLabel: "Hakkında",
       },
     },
   },

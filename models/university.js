@@ -4,21 +4,23 @@ class University {
     name,
     department,
     score,
-    upperScore,
     placement,
+    quota,
     isState,
     city,
-    universityYear
+    universityYear,
+    scoreType
   ) {
     this.id = id;
     this.name = name;
     this.department = department;
     this.score = score;
-    this.upperScore = upperScore;
     this.placement = placement;
+    this.quota = quota;
     this.isState = isState;
     this.city = city;
     this.universityYear = universityYear;
+    this.scoreType = scoreType;
   }
 }
 

@@ -42,11 +42,12 @@ const universitiesReducer = (state = initialState, action) => {
           university.name,
           university.department,
           university.score,
-          university.upperScore,
           university.placement,
+          university.quota,
           university.isState,
           university.city,
-          university.universityYear
+          university.universityYear,
+          university.scoreType
         );
       });
       return { ...state, favoriteUniversities: uploadedFavories };
@@ -99,7 +100,7 @@ const universitiesReducer = (state = initialState, action) => {
           (a, b) => {
             return a.score < b.score ? 1 : b.score < a.score ? -1 : 0;
           }
-        ); // Çalışmıyor nedense??????????
+        );
         console.log("updatedFilteredUniversities:");
         console.log(updatedFilteredUniversities);
         return {

@@ -31,9 +31,7 @@ const UniversityGridTile = (props) => {
       <TouchableComponent style={styles.touchable} onPress={props.onSelect}>
         <View style={styles.container}>
           <View style={styles.upperContainer}>
-            <DefaultText style={styles.textName}>
-              {props.name.toLocaleUpperCase()}
-            </DefaultText>
+            <DefaultText style={styles.textName}>{props.name}</DefaultText>
             <DefaultText style={styles.textDepartment}>
               {props.department}
             </DefaultText>
@@ -42,9 +40,6 @@ const UniversityGridTile = (props) => {
             <View style={styles.leftContainer}>
               <DefaultText style={styles.text}>
                 Taban puanı: {props.score}
-              </DefaultText>
-              <DefaultText style={styles.text}>
-                Tavan puanı: {props.upperScore}
               </DefaultText>
               <DefaultText style={styles.text}>
                 Sıralaması: {props.placement}
