@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, FlatList, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import * as SQLite from "expo-sqlite";
-import { SearchBar } from 'react-native-elements'
+import { SearchBar } from "react-native-elements";
 
 import UniversityGridTile from "../components/UniversityGridTile";
 import { toggleFavorites, loadFavorites } from "../store/actions/universities";
@@ -22,19 +22,6 @@ const UniversityList = (props) => {
     dispatch(toggleFavorites(id));
   };
 
-  const renderHeader = () => {
-    return (
-      <SearchBar
-        placeholder="Type Here..."
-        lightTheme
-        round
-        onChangeText={text => props.searchFilter(text)}
-        autoCorrect={false}
-        value={props.searchValue}
-      />
-    );
-  }
-
   const renderGridItem = (itemData) => {
     return (
       <UniversityGridTile
@@ -43,6 +30,7 @@ const UniversityList = (props) => {
         score={itemData.item.score}
         upperScore={itemData.item.upperScore}
         placement={itemData.item.placement}
+        scoreType={itemData.item.scoreType}
         press={() => {
           toggleFavoriteHandler(itemData.item.id);
         }}
@@ -59,7 +47,11 @@ const UniversityList = (props) => {
 
   return (
     <View style={styles.list}>
-      <FlatList data={props.data} renderItem={renderGridItem} ListHeaderComponent={renderHeader} keyExtractor={item => item.id} />
+      <FlatList
+        data={props.data}
+        renderItem={renderGridItem}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 };

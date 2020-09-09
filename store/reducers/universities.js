@@ -4,13 +4,14 @@ import {
   SET_FILTERS,
   LOAD_FAVORITES,
   SET_ORDER,
-  SEARCH
+  SEARCH,
 } from "../actions/universities";
 import University from "../../models/university";
 
 const initialState = {
   universities: UNIVERSITIES,
   filteredUniversities: UNIVERSITIES,
+  filteredUniversitiesNoSearch: UNIVERSITIES,
   favoriteUniversities: [],
 };
 
@@ -91,14 +92,29 @@ const universitiesReducer = (state = initialState, action) => {
         }
         return true;
       });
-      return { ...state, filteredUniversities: updatedFilteredUniversities };
+      return {
+        ...state,
+        filteredUniversities: updatedFilteredUniversities,
+        filteredUniversitiesNoSearch: updatedFilteredUniversities,
+      };
     case SEARCH:
-      const searchedUniversities = state.filteredUniversities.filter(item => {
-        const itemData = `${item.name.toUpperCase()} ${item.department.toUpperCase()}`;
-        const textData = action.searchText.toUpperCase();
-        // console.log(itemData.indexOf(textData) > -1);
-        return itemData.indexOf(textData) > -1;
-      });
+      const searchedUniversities = state.filteredUniversitiesNoSearch.filter(
+        (item) => {
+          const itemData = `${item.name.toLocaleUpperCase()} ${item.department.toLocaleUpperCase()}`;
+          const textData = action.searchText.toLocaleUpperCase();
+          if (
+            textData == undefined ||
+            textData == "" ||
+            textData.replace(/ /g, "") == ""
+          ) {
+            return {
+              ...state,
+              filteredUniversities: state.filteredUniversitiesNoSearch,
+            };
+          }
+          return itemData.indexOf(textData) > -1;
+        }
+      );
       return { ...state, filteredUniversities: searchedUniversities };
     case SET_ORDER:
       // console.log("set_order girdi action.order:");

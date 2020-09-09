@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { StyleSheet, View, Picker } from "react-native";
+import { StyleSheet, View, Platform } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
+import { searchBar, SearchBar } from "react-native-elements";
 
 import UniversityList from "../components/UniversityList";
 // import { UNIVERSITIES } from "../data/university-data";
@@ -9,7 +10,6 @@ import HeaderButton from "../components/HeaderButton";
 import DefaultText from "../components/DefaultText";
 import { setOrder, search } from "../store/actions/universities";
 import FloatingActions from "../components/FloatingActions";
-import University from '../models/university'
 
 const UniversityListScreen = (props) => {
   const [orderState, setOrderState] = useState("name");
@@ -42,38 +42,10 @@ const UniversityListScreen = (props) => {
     props.navigation.setParams({ orderInfo: "Alfabetik Sıralı" });
   }, []);
 
-  // avaibleUniversities = [
-  //   new University(
-  //     "uni_6902",
-  //     "GİRESUN ÜNİVERSİTESİ ",
-  //     "Acil Durum ve Afet Yönetimi",
-  //     "255,13222",
-  //     "873601",
-  //     "40",
-  //     false,
-  //     "36",
-  //     2,
-  //     "TYT"
-  //   ),
-
-  //   new University(
-  //     "uni_6903",
-  //     "GİRESUN ÜNİVERSİTESİ ",
-  //     "Alternatif Enerji Kaynakları Teknolojisi",
-  //     "180,22457",
-  //     "1721936",
-  //     "30",
-  //     false,
-  //     "36",
-  //     2,
-  //     "TYT"
-  //   ),
-  // ]
-
-  const searchFilterHandler = text => {
+  const searchFilterHandler = (text) => {
     setSearchValue(text);
     dispatch(search(text));
-  }
+  };
 
   const orderHandler = (name) => {
     if (name === "bt_score") {
@@ -88,31 +60,40 @@ const UniversityListScreen = (props) => {
   if (avaibleUniversities.length === 0) {
     return (
       <View style={styles.container}>
-        <UniversityList
-          style={styles.universityList}
-          data={avaibleUniversities}
-          navigation={props.navigation}
-          searchFilter={text => searchFilterHandler(text)}
-          searchValue={searchValue}
+        <SearchBar
+          style={styles.searchBar}
+          placeholder="Anahtar kelime ara..."
+          onChangeText={(text) => searchFilterHandler(text)}
+          value={searchValue}
+          platform={Platform.OS}
         />
-        <DefaultText style={styles.content}>
-          Üniversite bulunamadı. Filtreleri kontrol ediniz.
-        </DefaultText>
-        <FloatingActions
-          style={styles.floatingButton}
-          press={(name) => orderHandler(name)}
-        />
+        <View style={styles.bottomContainer}>
+          <DefaultText style={styles.content}>
+            Üniversite bulunamadı. Filtreleri kontrol ediniz.
+          </DefaultText>
+          <FloatingActions
+            style={styles.floatingButton}
+            press={(name) => orderHandler(name)}
+          />
+        </View>
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
+      <SearchBar
+        style={styles.searchBar}
+        placeholder="Anahtar kelime ara..."
+        onChangeText={(text) => searchFilterHandler(text)}
+        value={searchValue}
+        platform={Platform.OS}
+      />
       <UniversityList
         style={styles.universityList}
         data={avaibleUniversities}
         navigation={props.navigation}
-        searchFilter={text => searchFilterHandler(text)}
+        searchFilter={(text) => searchFilterHandler(text)}
         searchValue={searchValue}
       />
       <FloatingActions
@@ -158,21 +139,32 @@ UniversityListScreen.navigationOptions = (navData) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // justifyContent: "center",
+    // alignItems: "center",
+  },
+  bottomContainer: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   content: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   universityList: {
     flex: 1,
   },
+  noUniversity: {
+    width: "100%",
+    height: "20%",
+  },
   floatingButton: {
-    flex: 1,
     justifyContent: "flex-end",
     alignItems: "flex-end",
+  },
+  searchBar: {
+    width: "100%",
+    height: "20%",
   },
 });
 
