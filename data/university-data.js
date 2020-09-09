@@ -89555,239 +89555,239 @@ export const UNIVERSITIES = [
     "TYT"
   ),
 
-  new University(
-    "uni_6884",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Mühendislik Fakültesi",
-    "85",
-    "85",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Bilgisayar Mühendisliği (İngilizce)"
-  ),
+  // new University(
+  //   "uni_6884",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Mühendislik Fakültesi",
+  //   "85",
+  //   "85",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Bilgisayar Mühendisliği (İngilizce)"
+  // ),
 
-  new University(
-    "uni_6885",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Mühendislik Fakültesi",
-    "40",
-    "40",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Endüstri Mühendisliği (İngilizce)"
-  ),
+  // new University(
+  //   "uni_6885",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Mühendislik Fakültesi",
+  //   "40",
+  //   "40",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Endüstri Mühendisliği (İngilizce)"
+  // ),
 
-  new University(
-    "uni_6886",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Mühendislik Fakültesi",
-    "80",
-    "80",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Makine Mühendisliği (İngilizce)"
-  ),
+  // new University(
+  //   "uni_6886",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Mühendislik Fakültesi",
+  //   "80",
+  //   "80",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Makine Mühendisliği (İngilizce)"
+  // ),
 
-  new University(
-    "uni_6887",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Mühendislik Fakültesi",
-    "80",
-    "80",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Elektronik Mühendisliği"
-  ),
+  // new University(
+  //   "uni_6887",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Mühendislik Fakültesi",
+  //   "80",
+  //   "80",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Elektronik Mühendisliği"
+  // ),
 
-  new University(
-    "uni_6888",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Temel Bilimler Fakültesi",
-    "70",
-    "70",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Moleküler Biyoloji ve Genetik (İngilizce)"
-  ),
+  // new University(
+  //   "uni_6888",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Temel Bilimler Fakültesi",
+  //   "70",
+  //   "70",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Moleküler Biyoloji ve Genetik (İngilizce)"
+  // ),
 
-  new University(
-    "uni_6889",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Mimarlık Fakültesi",
-    "100",
-    "100",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Mimarlık"
-  ),
+  // new University(
+  //   "uni_6889",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Mimarlık Fakültesi",
+  //   "100",
+  //   "100",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Mimarlık"
+  // ),
 
-  new University(
-    "uni_6890",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Mühendislik Fakültesi",
-    "60",
-    "60",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Kimya Mühendisliği (İngilizce)"
-  ),
+  // new University(
+  //   "uni_6890",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Mühendislik Fakültesi",
+  //   "60",
+  //   "60",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Kimya Mühendisliği (İngilizce)"
+  // ),
 
-  new University(
-    "uni_6891",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Mühendislik Fakültesi",
-    "50",
-    "50",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Biyomühendislik (İngilizce)"
-  ),
+  // new University(
+  //   "uni_6891",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Mühendislik Fakültesi",
+  //   "50",
+  //   "50",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Biyomühendislik (İngilizce)"
+  // ),
 
-  new University(
-    "uni_6892",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Mühendislik Fakültesi",
-    "70",
-    "72",
-    "SAY",
-    false,
-    "0",
-    4,
-    "İnşaat Mühendisliği (İngilizce)"
-  ),
+  // new University(
+  //   "uni_6892",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Mühendislik Fakültesi",
+  //   "70",
+  //   "72",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "İnşaat Mühendisliği (İngilizce)"
+  // ),
 
-  new University(
-    "uni_6893",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Mühendislik Fakültesi",
-    "70",
-    "71",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Malzeme Bilimi ve Mühendisliği"
-  ),
+  // new University(
+  //   "uni_6893",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Mühendislik Fakültesi",
+  //   "70",
+  //   "71",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Malzeme Bilimi ve Mühendisliği"
+  // ),
 
-  new University(
-    "uni_6894",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Temel Bilimler Fakültesi",
-    "25",
-    "25",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Kimya (İngilizce)"
-  ),
+  // new University(
+  //   "uni_6894",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Temel Bilimler Fakültesi",
+  //   "25",
+  //   "25",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Kimya (İngilizce)"
+  // ),
 
-  new University(
-    "uni_6895",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Temel Bilimler Fakültesi",
-    "50",
-    "51",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Matematik (İngilizce)"
-  ),
+  // new University(
+  //   "uni_6895",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Temel Bilimler Fakültesi",
+  //   "50",
+  //   "51",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Matematik (İngilizce)"
+  // ),
 
-  new University(
-    "uni_6896",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Mühendislik Fakültesi",
-    "60",
-    "62",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Çevre Mühendisliği (İngilizce)"
-  ),
+  // new University(
+  //   "uni_6896",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Mühendislik Fakültesi",
+  //   "60",
+  //   "62",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Çevre Mühendisliği (İngilizce)"
+  // ),
 
-  new University(
-    "uni_6897",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Temel Bilimler Fakültesi",
-    "20",
-    "20",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Fizik (İngilizce)"
-  ),
+  // new University(
+  //   "uni_6897",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Temel Bilimler Fakültesi",
+  //   "20",
+  //   "20",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Fizik (İngilizce)"
+  // ),
 
-  new University(
-    "uni_6898",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "İşletme Fakültesi",
-    "60",
-    "62",
-    "EA",
-    false,
-    "0",
-    4,
-    "İşletme"
-  ),
+  // new University(
+  //   "uni_6898",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "İşletme Fakültesi",
+  //   "60",
+  //   "62",
+  //   "EA",
+  //   false,
+  //   "0",
+  //   4,
+  //   "İşletme"
+  // ),
 
-  new University(
-    "uni_6899",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "İşletme Fakültesi",
-    "60",
-    "62",
-    "EA",
-    false,
-    "0",
-    4,
-    "İktisat"
-  ),
+  // new University(
+  //   "uni_6899",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "İşletme Fakültesi",
+  //   "60",
+  //   "62",
+  //   "EA",
+  //   false,
+  //   "0",
+  //   4,
+  //   "İktisat"
+  // ),
 
-  new University(
-    "uni_6900",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Mühendislik Fakültesi",
-    "60",
-    "62",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Harita Mühendisliği"
-  ),
+  // new University(
+  //   "uni_6900",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Mühendislik Fakültesi",
+  //   "60",
+  //   "62",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Harita Mühendisliği"
+  // ),
 
-  new University(
-    "uni_6901",
-    "GEBZE TEKNİK ÜNİVERSİTESİ ",
-    "Mimarlık Fakültesi",
-    "70",
-    "72",
-    "SAY",
-    false,
-    "0",
-    4,
-    "Şehir ve Bölge Planlama"
-  ),
+  // new University(
+  //   "uni_6901",
+  //   "GEBZE TEKNİK ÜNİVERSİTESİ ",
+  //   "Mimarlık Fakültesi",
+  //   "70",
+  //   "72",
+  //   "SAY",
+  //   false,
+  //   "0",
+  //   4,
+  //   "Şehir ve Bölge Planlama"
+  // ),
 
   new University(
     "uni_6902",
@@ -263221,4 +263221,22 @@ export const UNIVERSITIES = [
     2,
     "TYT"
   ),
+  new University("uni_20243", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Bilgisayar Mühendisliği (İngilizce)", "492,08857", "-", "85", true, "52", 4, "SAY"),
+  new University("uni_20244", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Endüstri Mühendisliği (İngilizce)", "464,76992", "-", "40", true, "52", 4, "SAY"),
+  new University("uni_20245", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Makine Mühendisliği (İngilizce)", "457,13129", "-", "80", true, "52", 4, "SAY"),
+  new University("uni_20246", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Elektronik Mühendisliği", "454,42223", "-", "80", true, "52", 4, "SAY"),
+  new University("uni_20247", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Moleküler Biyoloji ve Genetik (İngilizce)", "417,42547", "-", "70", true, "52", 4, "SAY"),
+  new University("uni_20248", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Mimarlık", "410,35893", "-", "100", true, "52", 4, "SAY"),
+  new University("uni_20249", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Kimya Mühendisliği (İngilizce)", "405,50123", "-", "60", true, "52", 4, "SAY"),
+  new University("uni_20250", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Biyomühendislik (İngilizce)", "395,34657", "-", "50", true, "52", 4, "SAY"),
+  new University("uni_20251", "GEBZE TEKNİK ÜNİVERSİTESİ ", "İnşaat Mühendisliği (İngilizce)", "368,94295", "-", "70", true, "52", 4, "SAY"),
+  new University("uni_20252", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Malzeme Bilimi ve Mühendisliği", "361,97673", "-", "70", true, "52", 4, "SAY"),
+  new University("uni_20253", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Kimya (İngilizce)", "332,94128", "-", "25", true, "52", 4, "SAY"),
+  new University("uni_20254", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Matematik (İngilizce)", "321,82481", "-", "50", true, "52", 4, "SAY"),
+  new University("uni_20255", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Çevre Mühendisliği (İngilizce)", "317,27793", "-", "60", true, "52", 4, "SAY"),
+  new University("uni_20256", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Fizik (İngilizce)", "305,62752", "-", "20", true, "52", 4, "SAY"),
+  new University("uni_20257", "GEBZE TEKNİK ÜNİVERSİTESİ ", "İşletme", "299,97159", "-", "60", true, "52", 4, "EA"),
+  new University("uni_20258", "GEBZE TEKNİK ÜNİVERSİTESİ ", "İktisat", "290,31566", "-", "60", true, "52", 4, "EA"),
+  new University("uni_20259", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Harita Mühendisliği", "288,30937", "-", "60", true, "52", 4, "SAY"),
+  new University("uni_20260", "GEBZE TEKNİK ÜNİVERSİTESİ ", "Şehir ve Bölge Planlama", "276,70938", "-", "70", true, "52", 4, "SAY"),
 ];

@@ -4,6 +4,7 @@ import {
   SET_FILTERS,
   LOAD_FAVORITES,
   SET_ORDER,
+  SEARCH
 } from "../actions/universities";
 import University from "../../models/university";
 
@@ -91,6 +92,14 @@ const universitiesReducer = (state = initialState, action) => {
         return true;
       });
       return { ...state, filteredUniversities: updatedFilteredUniversities };
+    case SEARCH:
+      const searchedUniversities = state.filteredUniversities.filter(item => {
+        const itemData = `${item.name.toUpperCase()} ${item.department.toUpperCase()}`;
+        const textData = action.searchText.toUpperCase();
+        // console.log(itemData.indexOf(textData) > -1);
+        return itemData.indexOf(textData) > -1;
+      });
+      return { ...state, filteredUniversities: searchedUniversities };
     case SET_ORDER:
       // console.log("set_order girdi action.order:");
       // console.log(action.order);

@@ -7,11 +7,13 @@ import UniversityList from "../components/UniversityList";
 // import { UNIVERSITIES } from "../data/university-data";
 import HeaderButton from "../components/HeaderButton";
 import DefaultText from "../components/DefaultText";
-import { setOrder } from "../store/actions/universities";
+import { setOrder, search } from "../store/actions/universities";
 import FloatingActions from "../components/FloatingActions";
+import University from '../models/university'
 
 const UniversityListScreen = (props) => {
   const [orderState, setOrderState] = useState("name");
+  const [searchValue, setSearchValue] = useState("");
 
   const dispatch = useDispatch();
 
@@ -40,6 +42,39 @@ const UniversityListScreen = (props) => {
     props.navigation.setParams({ orderInfo: "Alfabetik Sıralı" });
   }, []);
 
+  // avaibleUniversities = [
+  //   new University(
+  //     "uni_6902",
+  //     "GİRESUN ÜNİVERSİTESİ ",
+  //     "Acil Durum ve Afet Yönetimi",
+  //     "255,13222",
+  //     "873601",
+  //     "40",
+  //     false,
+  //     "36",
+  //     2,
+  //     "TYT"
+  //   ),
+
+  //   new University(
+  //     "uni_6903",
+  //     "GİRESUN ÜNİVERSİTESİ ",
+  //     "Alternatif Enerji Kaynakları Teknolojisi",
+  //     "180,22457",
+  //     "1721936",
+  //     "30",
+  //     false,
+  //     "36",
+  //     2,
+  //     "TYT"
+  //   ),
+  // ]
+
+  const searchFilterHandler = text => {
+    setSearchValue(text);
+    dispatch(search(text));
+  }
+
   const orderHandler = (name) => {
     if (name === "bt_score") {
       setOrderState("score");
@@ -52,8 +87,15 @@ const UniversityListScreen = (props) => {
 
   if (avaibleUniversities.length === 0) {
     return (
-      <View style={styles.content}>
-        <DefaultText>
+      <View style={styles.container}>
+        <UniversityList
+          style={styles.universityList}
+          data={avaibleUniversities}
+          navigation={props.navigation}
+          searchFilter={text => searchFilterHandler(text)}
+          searchValue={searchValue}
+        />
+        <DefaultText style={styles.content}>
           Üniversite bulunamadı. Filtreleri kontrol ediniz.
         </DefaultText>
         <FloatingActions
@@ -70,6 +112,8 @@ const UniversityListScreen = (props) => {
         style={styles.universityList}
         data={avaibleUniversities}
         navigation={props.navigation}
+        searchFilter={text => searchFilterHandler(text)}
+        searchValue={searchValue}
       />
       <FloatingActions
         style={styles.floatingButton}

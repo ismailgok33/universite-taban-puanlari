@@ -4,6 +4,7 @@ export const TOGGLE_FAVORITE = "TOGGLE_FAVORITE";
 export const LOAD_FAVORITES = "LOAD_FAVORITES";
 export const SET_FILTERS = "SET_FILTERS";
 export const SET_ORDER = "SET_ORDER";
+export const SEARCH = "SEARCH";
 
 export const toggleFavorites = (id) => {
   return async (dispatch) => {
@@ -40,5 +41,12 @@ export const setOrder = (orderSettings) => {
   return {
     type: SET_ORDER,
     order: orderSettings,
+  };
+};
+
+export const search = (text) => {
+  return {
+    type: SEARCH,
+    searchText: text,
   };
 };
