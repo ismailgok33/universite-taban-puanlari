@@ -7,6 +7,7 @@ import {
   Platform,
   FlatList,
   SafeAreaView,
+  Button,
 } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { Checkbox } from "react-native-paper";
@@ -34,17 +35,27 @@ const FiltersScreen = (props) => {
       isState: isStateOnly,
       show4Years: showFourYearUniversity,
       show2Years: showTwoYearUniversity,
-      filteredCities: filteredCityList,
-      filteredDepartments: filteredDepartmentList,
+      // filteredCities: filteredCityList,
+      filteredCities: props.navigation.getParam("savedCities"),
+      // filteredDepartments: filteredDepartmentList,
+      filteredDepartments: props.navigation.getParam("savedDepartments"),
     };
+
+    console.log("savedCities:");
+    console.log(props.navigation.getParam("savedCities"));
+
+    console.log("savedDepartments:");
+    console.log(props.navigation.getParam("savedDepartments"));
 
     dispatch(setFilters(appliedFilters));
   }, [
     isStateOnly,
     showFourYearUniversity,
     showTwoYearUniversity,
-    filteredCityList,
-    filteredDepartmentList,
+    // filteredCityList,
+    props.navigation.getParam("savedCities"),
+    // filteredDepartmentList,
+    props.navigation.getParam("savedDepartments"),
     dispatch,
   ]);
 
@@ -120,14 +131,43 @@ const FiltersScreen = (props) => {
           onValueChange={(newValue) => setShowTwoYearUniversity(newValue)}
         />
       </View>
-      <Text style={styles.text}>Şehir seçiniz</Text>
-      <View style={styles.cityList}>
-        <FlatList data={CITIES} renderItem={renderGridCityItem} />
+      {/* <Text style={styles.text}>Şehir seçiniz</Text> */}
+      <View style={styles.filterButtonContainer}>
+        <Button
+          onPress={() =>
+            props.navigation.navigate("CityFilter", {
+              selectedCities: props.navigation.getParam("savedCities"),
+            })
+          }
+          title="Şehir filtrele"
+          color="#a2a6ba"
+          accessibilityLabel="Şehir filtrelemek için tıklayınız"
+          style={styles.button}
+        />
       </View>
-      <Text style={styles.text}>Bölüm seçiniz</Text>
+      <View style={styles.filterButtonContainer}>
+        <Button
+          onPress={() =>
+            props.navigation.navigate("DepartmentFilter", {
+              selectedDepartments: props.navigation.getParam(
+                "savedDepartments"
+              ),
+            })
+          }
+          title="Bölüm filtrele"
+          color="#a2a6ba"
+          accessibilityLabel="Bölüm filtrelemek için tıklayınız"
+          style={styles.button}
+        />
+      </View>
+
+      {/* <View style={styles.cityList}>
+        <FlatList data={CITIES} renderItem={renderGridCityItem} />
+      </View> */}
+      {/* <Text style={styles.text}>Bölüm seçiniz</Text>
       <View style={styles.deparmentList}>
         <FlatList data={DEPARTMENTS} renderItem={renderGridDepartmentItem} />
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };
@@ -151,7 +191,9 @@ FiltersScreen.navigationOptions = (navData) => {
         <Item
           title="Save"
           iconName="ios-save"
-          onPress={navData.navigation.getParam("save")}
+          onPress={() => {
+            navData.navigation.getParam("save");
+          }}
         />
       </HeaderButtons>
     ),
@@ -178,6 +220,11 @@ const styles = StyleSheet.create({
   },
   text: {
     paddingTop: 20,
+  },
+  filterButtonContainer: {
+    flex: 1,
+    width: "80%",
+    height: "20%",
   },
   cityList: {
     flex: 1,

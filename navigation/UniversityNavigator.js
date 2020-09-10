@@ -13,6 +13,9 @@ import FavoritesScreen from "../screens/FavoritesScreen";
 import FiltersScreen from "../screens/FiltersScreen";
 import Colors from "../constants/Colors";
 import AboutScreen from "../screens/AboutScreen";
+import CitiesFilterScreen from "../screens/CitiesFilterScreen";
+import DepartmentFilterScreen from "../screens/DepartmentFilterScreen";
+import CountDownScreen from "../screens/CountDownScreen";
 
 const screenStackConfig = {
   defaultNavigationOptions: {
@@ -106,6 +109,8 @@ const UniversityFavTabNavigator =
 const FiltersStackNavigator = createStackNavigator(
   {
     Filters: FiltersScreen,
+    CityFilter: CitiesFilterScreen,
+    DepartmentFilter: DepartmentFilterScreen,
   },
   screenStackConfig
 );
@@ -113,6 +118,13 @@ const FiltersStackNavigator = createStackNavigator(
 const AboutStackNavigator = createStackNavigator(
   {
     About: AboutScreen,
+  },
+  screenStackConfig
+);
+
+const CountDownStackNavigator = createStackNavigator(
+  {
+    CountDown: CountDownScreen,
   },
   screenStackConfig
 );
@@ -135,6 +147,12 @@ const DrawerNavigator = createDrawerNavigator(
       screen: AboutStackNavigator,
       navigationOptions: {
         drawerLabel: "Hakkında",
+      },
+    },
+    CountDown: {
+      screen: CountDownStackNavigator,
+      navigationOptions: {
+        drawerLabel: "Geri Sayım",
       },
     },
   },
