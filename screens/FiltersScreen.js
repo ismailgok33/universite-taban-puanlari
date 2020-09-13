@@ -8,6 +8,7 @@ import {
   FlatList,
   SafeAreaView,
   Button,
+  TouchableOpacity,
 } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { Checkbox } from "react-native-paper";
@@ -28,6 +29,9 @@ const FiltersScreen = (props) => {
   const [filteredCityList, setFilteredCityList] = useState([]);
   const [filteredDepartmentList, setfilteredDepartmentList] = useState([]);
 
+  let savedCityList = props.navigation.getParam("savedCities");
+  let savedDepartmentList = props.navigation.getParam("savedDepartments");
+
   const dispatch = useDispatch();
 
   const saveFilters = useCallback(() => {
@@ -36,16 +40,16 @@ const FiltersScreen = (props) => {
       show4Years: showFourYearUniversity,
       show2Years: showTwoYearUniversity,
       // filteredCities: filteredCityList,
-      filteredCities: props.navigation.getParam("savedCities"),
+      filteredCities: savedCityList,
       // filteredDepartments: filteredDepartmentList,
-      filteredDepartments: props.navigation.getParam("savedDepartments"),
+      filteredDepartments: savedDepartmentList,
     };
 
     console.log("savedCities:");
-    console.log(props.navigation.getParam("savedCities"));
+    console.log(savedCityList);
 
     console.log("savedDepartments:");
-    console.log(props.navigation.getParam("savedDepartments"));
+    console.log(savedDepartmentList);
 
     dispatch(setFilters(appliedFilters));
   }, [
@@ -53,53 +57,15 @@ const FiltersScreen = (props) => {
     showFourYearUniversity,
     showTwoYearUniversity,
     // filteredCityList,
-    props.navigation.getParam("savedCities"),
+    savedCityList,
     // filteredDepartmentList,
-    props.navigation.getParam("savedDepartments"),
+    savedDepartmentList,
     dispatch,
   ]);
 
   useEffect(() => {
     props.navigation.setParams({ save: saveFilters });
   }, [saveFilters]);
-
-  const renderGridCityItem = (itemData) => {
-    const handleCheckFilters = (id, status) => {
-      let index = filteredCityList.indexOf(id);
-      if (index == -1) {
-        setFilteredCityList([...filteredCityList, id]);
-      } else {
-        filteredCityList.splice(index, 1);
-        setFilteredCityList(filteredCityList);
-      }
-    };
-    return (
-      <CityGridTile
-        name={itemData.item.name}
-        id={itemData.item.id}
-        handleCheckFilters={(name, status) => handleCheckFilters(name, status)}
-      />
-    );
-  };
-
-  const renderGridDepartmentItem = (itemData) => {
-    const handleCheckFilters = (name, status) => {
-      let index = filteredDepartmentList.indexOf(name);
-      if (index == -1) {
-        setfilteredDepartmentList([...filteredDepartmentList, name]);
-      } else {
-        filteredDepartmentList.splice(index, 1);
-        setfilteredDepartmentList(filteredDepartmentList);
-      }
-    };
-    return (
-      <DepartmentGridTile
-        name={itemData.item.name}
-        id={itemData.item.id}
-        handleCheckFilters={(name, status) => handleCheckFilters(name, status)}
-      />
-    );
-  };
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -133,20 +99,32 @@ const FiltersScreen = (props) => {
       </View>
       {/* <Text style={styles.text}>Şehir seçiniz</Text> */}
       <View style={styles.filterButtonContainer}>
-        <Button
+        {/* <Button
           onPress={() =>
             props.navigation.navigate("CityFilter", {
               selectedCities: props.navigation.getParam("savedCities"),
             })
           }
-          title="Şehir filtrele"
+          title={"Şehir filtrele: " + savedCityList ? savedCityList : "Tümü"}
           color="#a2a6ba"
           accessibilityLabel="Şehir filtrelemek için tıklayınız"
           style={styles.button}
-        />
+        /> */}
+        <TouchableOpacity
+          onPress={() =>
+            props.navigation.navigate("CityFilter", {
+              selectedCities: savedCityList,
+            })
+          }
+          style={(styles.button, { backgroundColor: "#a2a6ba" })}
+        >
+          <Text>
+            {"Şehir filtrele: " + (savedCityList ? savedCityList : "Tümü")}
+          </Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.filterButtonContainer}>
-        <Button
+        {/* <Button
           onPress={() =>
             props.navigation.navigate("DepartmentFilter", {
               selectedDepartments: props.navigation.getParam(
@@ -154,20 +132,31 @@ const FiltersScreen = (props) => {
               ),
             })
           }
-          title="Bölüm filtrele"
+          title={
+            "Bölüm filtrele: " + savedDepartmentList
+              ? savedDepartmentList
+              : "Tümü"
+          }
           color="#a2a6ba"
           accessibilityLabel="Bölüm filtrelemek için tıklayınız"
           style={styles.button}
-        />
+        /> */}
+        <TouchableOpacity
+          onPress={() =>
+            props.navigation.navigate("DepartmentFilter", {
+              selectedDepartments: props.navigation.getParam(
+                "savedDepartments"
+              ),
+            })
+          }
+          style={(styles.button, { backgroundColor: "#a2a6ba" })}
+        >
+          <Text>
+            {"Bölüm filtrele: " +
+              (savedDepartmentList ? savedDepartmentList : "Tümü")}
+          </Text>
+        </TouchableOpacity>
       </View>
-
-      {/* <View style={styles.cityList}>
-        <FlatList data={CITIES} renderItem={renderGridCityItem} />
-      </View> */}
-      {/* <Text style={styles.text}>Bölüm seçiniz</Text>
-      <View style={styles.deparmentList}>
-        <FlatList data={DEPARTMENTS} renderItem={renderGridDepartmentItem} />
-      </View> */}
     </SafeAreaView>
   );
 };
@@ -191,9 +180,7 @@ FiltersScreen.navigationOptions = (navData) => {
         <Item
           title="Save"
           iconName="ios-save"
-          onPress={() => {
-            navData.navigation.getParam("save");
-          }}
+          onPress={navData.navigation.getParam("save")}
         />
       </HeaderButtons>
     ),

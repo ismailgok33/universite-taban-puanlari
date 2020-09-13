@@ -7,10 +7,12 @@ import { CITIES } from "../data/city-data";
 import HeaderButton from "../components/HeaderButton";
 
 const CitiesFilterScreen = (props) => {
+  let selectedCityList = props.navigation.getParam("selectedCities")
+    ? props.navigation.getParam("selectedCities")
+    : [];
+
   const [filteredCityList, setFilteredCityList] = useState(
-    props.navigation.getParam("selectedCities") == undefined
-      ? []
-      : props.navigation.getParam("selectedCities")
+    selectedCityList == undefined ? [] : selectedCityList
   );
 
   console.log("filteredCityList:");
@@ -20,17 +22,24 @@ const CitiesFilterScreen = (props) => {
     props.navigation.setParams({ savedCities: filteredCityList });
   }, [filteredCityList]);
 
+  const setCheckedCities = (id) => {
+    if (selectedCityList) {
+      return selectedCityList.indexOf(id) == -1 ? false : true;
+    }
+    return false;
+  };
+
   const renderGridCityItem = (itemData) => {
-    let isChecked = false;
+    let isChecked = true;
     const handleCheckFilters = (id, status) => {
       let index = filteredCityList.indexOf(id);
       if (index == -1) {
         setFilteredCityList([...filteredCityList, id]);
-        isChecked = false;
+        // isChecked = true;
       } else {
         filteredCityList.splice(index, 1);
         setFilteredCityList(filteredCityList);
-        isChecked = true;
+        // isChecked = false;
       }
       console.log("isChecked:");
       console.log(isChecked);
@@ -40,7 +49,7 @@ const CitiesFilterScreen = (props) => {
         name={itemData.item.name}
         id={itemData.item.id}
         handleCheckFilters={(id, status) => handleCheckFilters(id, status)}
-        isChecked={isChecked}
+        isChecked={(id) => setCheckedCities(id)}
       />
     );
   };

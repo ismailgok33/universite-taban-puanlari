@@ -11,7 +11,7 @@ import { Checkbox } from "react-native-paper";
 import DefaultText from "./DefaultText";
 
 const DepartmentGridTile = (props) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(props.isChecked(props.name));
 
   return (
     <View style={styles.container}>

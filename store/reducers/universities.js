@@ -55,10 +55,10 @@ const universitiesReducer = (state = initialState, action) => {
       return { ...state, favoriteUniversities: uploadedFavories };
     case SET_FILTERS:
       const appliedFilters = action.filters;
-      // console.log("appliedFilters.filteredCities:");
-      // console.log(appliedFilters.filteredCities);
-      // console.log("appliedFilters.filteredDepartments:");
-      // console.log(appliedFilters.filteredDepartments);
+      console.log("appliedFilters.filteredCities:");
+      console.log(appliedFilters.filteredCities);
+      console.log("appliedFilters.filteredDepartments:");
+      console.log(appliedFilters.filteredDepartments);
       const show4Years = appliedFilters.show4Years;
       const show2Years = appliedFilters.show2Years;
       const updatedFilteredUniversities = state.universities.filter((uni) => {

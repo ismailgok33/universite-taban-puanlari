@@ -7,15 +7,24 @@ import { DEPARTMENTS } from "../data/department-data";
 import HeaderButton from "../components/HeaderButton";
 
 const DepartmentFilterScreen = (props) => {
+  let selectedDepartmentList = props.navigation.getParam("selectedDepartments")
+    ? props.navigation.getParam("selectedDepartments")
+    : [];
+
   const [filteredDepartmentList, setfilteredDepartmentList] = useState(
-    props.navigation.getParam("selectedDepartments") == undefined
-      ? []
-      : props.navigation.getParam("selectedDepartments")
+    selectedDepartmentList == undefined ? [] : selectedDepartmentList
   );
 
   useEffect(() => {
     props.navigation.setParams({ savedDepartments: filteredDepartmentList });
   }, [filteredDepartmentList]);
+
+  const setCheckedDepartments = (name) => {
+    if (selectedDepartmentList) {
+      return selectedDepartmentList.indexOf(name) == -1 ? false : true;
+    }
+    return false;
+  };
 
   const renderGridDepartmentItem = (itemData) => {
     const handleCheckFilters = (name, status) => {
@@ -32,6 +41,7 @@ const DepartmentFilterScreen = (props) => {
         name={itemData.item.name}
         id={itemData.item.id}
         handleCheckFilters={(name, status) => handleCheckFilters(name, status)}
+        isChecked={(name) => setCheckedDepartments(name)}
       />
     );
   };
