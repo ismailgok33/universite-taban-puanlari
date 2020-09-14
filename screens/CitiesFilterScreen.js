@@ -12,7 +12,7 @@ const CitiesFilterScreen = (props) => {
     : [];
 
   const [filteredCityList, setFilteredCityList] = useState(
-    selectedCityList == undefined ? [] : selectedCityList
+    selectedCityList == undefined ? CITIES : selectedCityList
   );
 
   console.log("filteredCityList:");

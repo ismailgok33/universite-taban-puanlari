@@ -11,23 +11,21 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { Checkbox } from "react-native-paper";
 import { useDispatch } from "react-redux";
 
 import HeaderButton from "../components/HeaderButton";
 import Colors from "../constants/Colors";
 import { CITIES } from "../data/city-data";
 import { DEPARTMENTS } from "../data/department-data";
-import CityGridTile from "../components/CityGridTile";
-import DepartmentGridTile from "../components/DepartmentGridTile";
 import { setFilters } from "../store/actions/universities";
 
 const FiltersScreen = (props) => {
-  const [isStateOnly, setIsStateOnly] = useState(false);
-  const [showFourYearUniversity, setShowFourYearUniversity] = useState(false);
-  const [showTwoYearUniversity, setShowTwoYearUniversity] = useState(false);
-  const [filteredCityList, setFilteredCityList] = useState([]);
-  const [filteredDepartmentList, setfilteredDepartmentList] = useState([]);
+  const [noStateFilter, setNoStateFilter] = useState(false);
+  const [noPrivateFilter, setNoPrivateFilter] = useState(false);
+  const [noFourYearUniversity, setNoFourYearUniversity] = useState(false);
+  const [noTwoYearUniversity, setNoTwoYearUniversity] = useState(false);
+  const [noEnglishDepartments, setNoEnglishDepartments] = useState(false);
+  const [noTurkishDepartments, setNoTurkishDepartments] = useState(false);
 
   let savedCityList = props.navigation.getParam("savedCities");
   let savedDepartmentList = props.navigation.getParam("savedDepartments");
@@ -36,9 +34,12 @@ const FiltersScreen = (props) => {
 
   const saveFilters = useCallback(() => {
     const appliedFilters = {
-      isState: isStateOnly,
-      show4Years: showFourYearUniversity,
-      show2Years: showTwoYearUniversity,
+      noState: noStateFilter,
+      noPrivate: noPrivateFilter,
+      no4Years: noFourYearUniversity,
+      no2Years: noTwoYearUniversity,
+      noEnglish: noEnglishDepartments,
+      noTurkish: noTurkishDepartments,
       // filteredCities: filteredCityList,
       filteredCities: savedCityList,
       // filteredDepartments: filteredDepartmentList,
@@ -53,9 +54,12 @@ const FiltersScreen = (props) => {
 
     dispatch(setFilters(appliedFilters));
   }, [
-    isStateOnly,
-    showFourYearUniversity,
-    showTwoYearUniversity,
+    noStateFilter,
+    noPrivateFilter,
+    noFourYearUniversity,
+    noTwoYearUniversity,
+    noEnglishDepartments,
+    noTurkishDepartments,
     // filteredCityList,
     savedCityList,
     // filteredDepartmentList,
@@ -63,84 +67,144 @@ const FiltersScreen = (props) => {
     dispatch,
   ]);
 
+  console.log("savedDepartmentList:");
+  console.log(savedDepartmentList);
+
   useEffect(() => {
     props.navigation.setParams({ save: saveFilters });
   }, [saveFilters]);
 
+  const mapCityIdtoName = (idList) => {
+    let cityNameList = [];
+    idList.forEach((id) => {
+      CITIES.forEach((city) => {
+        if (city.id === id) {
+          cityNameList.push(city.name);
+        }
+      });
+    });
+    return cityNameList;
+  };
+
+  const showCityTags = () => {
+    if (
+      !savedCityList ||
+      savedCityList.length === CITIES.length ||
+      savedCityList.length === 0
+    ) {
+      return "Tümü";
+    } else {
+      return mapCityIdtoName(savedCityList);
+    }
+  };
+
+  const showDepartmentTags = () => {
+    if (
+      !savedDepartmentList ||
+      savedDepartmentList.length === DEPARTMENTS.length ||
+      savedDepartmentList.length === 0
+    ) {
+      return "Tümü";
+    } else {
+      return savedDepartmentList;
+    }
+  };
+
+  const deleteCityFilterHandler = () => {
+    props.navigation.setParams({ savedCities: undefined });
+    savedCityList = [];
+  };
+
+  const deleteDepartmentFilterHandler = () => {
+    props.navigation.setParams({
+      savedDepartments: undefined,
+    });
+    savedDepartmentList = [];
+  };
+
   return (
     <SafeAreaView style={styles.screen}>
       <Text style={styles.title}>Filtre Seçenekleri</Text>
+
       <View style={styles.filterContainer}>
-        <Text>Yalnızca devlet üniversitelerini göster</Text>
+        <Text>Devlet üniversitelerini gösterme</Text>
         <Switch
           trackColor={{ true: Colors.primaryColor }} // Color of switch
           thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-          value={isStateOnly}
-          onValueChange={(newValue) => setIsStateOnly(newValue)}
+          value={noStateFilter}
+          onValueChange={(newValue) => setNoStateFilter(newValue)}
         />
       </View>
       <View style={styles.filterContainer}>
-        <Text>Lisans bölümlerini göster</Text>
+        <Text>Özel/Vakıf üniversiteleri gösterme</Text>
         <Switch
           trackColor={{ true: Colors.primaryColor }} // Color of switch
           thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-          value={showFourYearUniversity}
-          onValueChange={(newValue) => setShowFourYearUniversity(newValue)}
+          value={noPrivateFilter}
+          onValueChange={(newValue) => setNoPrivateFilter(newValue)}
         />
       </View>
+
       <View style={styles.filterContainer}>
-        <Text>Önlisans bölümlerini göster</Text>
+        <Text>Lisans bölümlerini gösterme</Text>
         <Switch
           trackColor={{ true: Colors.primaryColor }} // Color of switch
           thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-          value={showTwoYearUniversity}
-          onValueChange={(newValue) => setShowTwoYearUniversity(newValue)}
+          value={noFourYearUniversity}
+          onValueChange={(newValue) => setNoFourYearUniversity(newValue)}
         />
       </View>
-      {/* <Text style={styles.text}>Şehir seçiniz</Text> */}
+
+      <View style={styles.filterContainer}>
+        <Text>Önlisans bölümlerini gösterme</Text>
+        <Switch
+          trackColor={{ true: Colors.primaryColor }} // Color of switch
+          thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+          value={noTwoYearUniversity}
+          onValueChange={(newValue) => setNoTwoYearUniversity(newValue)}
+        />
+      </View>
+
+      <View style={styles.filterContainer}>
+        <Text>İngilizce bölümlerini gösterme</Text>
+        <Switch
+          trackColor={{ true: Colors.primaryColor }} // Color of switch
+          thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+          value={noEnglishDepartments}
+          onValueChange={(newValue) => setNoEnglishDepartments(newValue)}
+        />
+      </View>
+
+      <View style={styles.filterContainer}>
+        <Text>Türkçe bölümlerini gösterme</Text>
+        <Switch
+          trackColor={{ true: Colors.primaryColor }} // Color of switch
+          thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+          value={noTurkishDepartments}
+          onValueChange={(newValue) => setNoTurkishDepartments(newValue)}
+        />
+      </View>
+
       <View style={styles.filterButtonContainer}>
-        {/* <Button
-          onPress={() =>
-            props.navigation.navigate("CityFilter", {
-              selectedCities: props.navigation.getParam("savedCities"),
-            })
-          }
-          title={"Şehir filtrele: " + savedCityList ? savedCityList : "Tümü"}
-          color="#a2a6ba"
-          accessibilityLabel="Şehir filtrelemek için tıklayınız"
-          style={styles.button}
-        /> */}
         <TouchableOpacity
           onPress={() =>
             props.navigation.navigate("CityFilter", {
               selectedCities: savedCityList,
             })
           }
-          style={(styles.button, { backgroundColor: "#a2a6ba" })}
+          style={styles.filterButton}
         >
-          <Text>
-            {"Şehir filtrele: " + (savedCityList ? savedCityList : "Tümü")}
-          </Text>
+          <Text>{"Şehir: " + showCityTags()}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={deleteCityFilterHandler}
+          style={styles.deleteFilterButton}
+        >
+          <Text> Temizle </Text>
         </TouchableOpacity>
       </View>
+
       <View style={styles.filterButtonContainer}>
-        {/* <Button
-          onPress={() =>
-            props.navigation.navigate("DepartmentFilter", {
-              selectedDepartments: props.navigation.getParam(
-                "savedDepartments"
-              ),
-            })
-          }
-          title={
-            "Bölüm filtrele: " + savedDepartmentList
-              ? savedDepartmentList
-              : "Tümü"
-          }
-          color="#a2a6ba"
-          accessibilityLabel="Bölüm filtrelemek için tıklayınız"
-          style={styles.button}
-        /> */}
         <TouchableOpacity
           onPress={() =>
             props.navigation.navigate("DepartmentFilter", {
@@ -149,12 +213,15 @@ const FiltersScreen = (props) => {
               ),
             })
           }
-          style={(styles.button, { backgroundColor: "#a2a6ba" })}
+          style={styles.filterButton}
         >
-          <Text>
-            {"Bölüm filtrele: " +
-              (savedDepartmentList ? savedDepartmentList : "Tümü")}
-          </Text>
+          <Text>{"Bölüm: " + showDepartmentTags()}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={deleteDepartmentFilterHandler}
+          style={styles.deleteFilterButton}
+        >
+          <Text> Temizle </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -162,6 +229,11 @@ const FiltersScreen = (props) => {
 };
 
 FiltersScreen.navigationOptions = (navData) => {
+  const saveAndListUniversities = () => {
+    navData.navigation.getParam("save");
+    navData.navigation.navigate("UniversityFavs");
+  };
+
   return {
     title: "Filtrele",
     headerLeft: (
@@ -212,9 +284,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "80%",
     height: "20%",
-  },
-  cityList: {
-    flex: 1,
     borderRadius: 10,
     shadowColor: "black",
     shadowOpacity: 0.26,
@@ -222,36 +291,19 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 3,
     padding: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f4f6ff",
-    width: "80%",
-    height: "50%",
     maxHeight: "50%",
     margin: 10,
   },
-  deparmentList: {
+  filterButton: {
     flex: 1,
-    borderRadius: 10,
-    shadowColor: "black",
-    shadowOpacity: 0.26,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 10,
-    elevation: 3,
-    padding: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f4f6ff",
     width: "80%",
-    height: "50%",
-    maxHeight: "50%",
-    margin: 10,
+    alignSelf: "flex-start",
   },
-  cityGridItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "80%",
+  deleteFilterButton: {
+    flex: 1,
+    width: "20%",
+    backgroundColor: "red",
+    alignSelf: "flex-end",
   },
 });
 

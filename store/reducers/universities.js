@@ -59,37 +59,56 @@ const universitiesReducer = (state = initialState, action) => {
       console.log(appliedFilters.filteredCities);
       console.log("appliedFilters.filteredDepartments:");
       console.log(appliedFilters.filteredDepartments);
-      const show4Years = appliedFilters.show4Years;
-      const show2Years = appliedFilters.show2Years;
+      const no4Years = appliedFilters.no4Years;
+      const no2Years = appliedFilters.no2Years;
       const updatedFilteredUniversities = state.universities.filter((uni) => {
-        if (appliedFilters.isState && !uni.isState) {
+        if (appliedFilters.noState && uni.isState) {
           return false;
         }
-        if (show4Years && !show2Years) {
-          if (uni.universityYear !== 4) {
-            return false;
-          }
+        if (appliedFilters.noPrivate && !uni.isState) {
+          return false;
         }
-        if (!show4Years && show2Years) {
+        if (no4Years && !no2Years) {
           if (uni.universityYear !== 2) {
             return false;
           }
         }
-        if (!show4Years && !show2Years) {
+        if (!no4Years && no2Years) {
+          if (uni.universityYear !== 4) {
+            return false;
+          }
+        }
+        if (no4Years && no2Years) {
           if (uni.universityYear === 2 || uni.universityYear === 4) {
             return false;
           }
         }
-        if (!appliedFilters.filteredCities.some((city) => city === uni.city)) {
+        if (appliedFilters.noEnglish && appliedFilters.noTurkish) {
           return false;
         }
-        if (
-          !appliedFilters.filteredDepartments.some((department) =>
-            uni.department.includes(department)
-          )
-        ) {
+        if (appliedFilters.noEnglish && uni.department.includes("İngilizce")) {
           return false;
         }
+        if (appliedFilters.noTurkish && !uni.department.includes("İngilizce")) {
+          return false;
+        }
+        if (appliedFilters.filteredCities) {
+          if (
+            !appliedFilters.filteredCities.some((city) => city === uni.city)
+          ) {
+            return false;
+          }
+        }
+        if (appliedFilters.filteredDepartments) {
+          if (
+            !appliedFilters.filteredDepartments.some((department) =>
+              uni.department.includes(department)
+            )
+          ) {
+            return false;
+          }
+        }
+
         return true;
       });
       return {

@@ -12,7 +12,7 @@ const DepartmentFilterScreen = (props) => {
     : [];
 
   const [filteredDepartmentList, setfilteredDepartmentList] = useState(
-    selectedDepartmentList == undefined ? [] : selectedDepartmentList
+    selectedDepartmentList == undefined ? DEPARTMENTS : selectedDepartmentList
   );
 
   useEffect(() => {
