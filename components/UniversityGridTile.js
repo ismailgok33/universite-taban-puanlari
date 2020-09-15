@@ -32,24 +32,24 @@ const UniversityGridTile = (props) => {
     <View style={styles.gridItem}>
       <TouchableComponent style={styles.touchable} onPress={props.onSelect}>
         <View style={styles.container}>
-
           <View style={styles.leftContainer}>
             <View style={styles.upperContainer}>
-              <DefaultText style={styles.textName}>{props.name} ({props.city})</DefaultText>
+              <DefaultText style={styles.textName}>
+                {props.name} ({props.city})
+              </DefaultText>
               <DefaultText style={styles.textDepartment}>
                 {props.department}
               </DefaultText>
             </View>
             <View style={styles.lowerContainer}>
-              <DefaultText
-                style={styles.text}>
-                Taban puanı {'\n'} {props.score}
+              <DefaultText style={styles.text}>
+                Taban puanı {"\n"} {props.score}
               </DefaultText>
               <DefaultText style={styles.text}>
-                Sıralaması {'\n'} {props.placement}
+                Sıralaması {"\n"} {props.placement}
               </DefaultText>
               <DefaultText style={styles.text}>
-                Kontenjan {'\n'} {props.quota}
+                Kontenjan {"\n"} {props.quota}
               </DefaultText>
             </View>
           </View>
@@ -74,9 +74,7 @@ const UniversityGridTile = (props) => {
                 {""}
               </DefaultText>
             </View>
-
           </View>
-
 
           {/* <View style={styles.upperContainer}>
             <DefaultText style={styles.textName}>{props.name} ({props.city})</DefaultText>
@@ -135,47 +133,46 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    // borderRadius: 10,
+    borderRadius: 3,
     // shadowColor: "black",
-    // shadowOpacity: 0.26,
+    shadowOpacity: 0.26,
     // shadowOffset: { width: 0, height: 2 },
     // shadowRadius: 10,
     // elevation: 3,
-    shadowColor: "#000",
+    shadowColor: "black",
     shadowOffset: {
       width: 0,
       height: 1,
     },
-    shadowOpacity: 0.20,
-    shadowRadius: 1.41,
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
 
-    elevation: 2,
-    padding: 15,
+    elevation: 3,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f4f6ff",
     flexDirection: "row",
-    backgroundColor: Colors.accentColor
+    backgroundColor: Colors.accentColor,
   },
   leftContainer: {
     // paddingTop: 10,
-    flexDirection: 'column',
+    flexDirection: "column",
     width: "80%",
     // justifyContent: "center",
     // alignItems: "flex-end",
   },
   rigthContainer: {
     // width: "20%",
-    flexDirection: 'column',
+    flexDirection: "column",
   },
   favoriteStarContainer: {
-    height: '50%',
-    justifyContent: 'center',
+    height: "50%",
+    justifyContent: "center",
     // alignItems: 'center'
   },
   scoreTagContainer: {
-    height: '50%',
-    justifyContent: 'center',
+    height: "50%",
+    justifyContent: "center",
     // alignItems: 'center'
   },
   upperContainer: {
@@ -183,36 +180,36 @@ const styles = StyleSheet.create({
     // width: "100%",
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    textAlign: "left"
+    textAlign: "left",
     // paddingBottom: 10,
   },
   lowerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
     paddingTop: 10,
-    marginHorizontal: 5
+    marginHorizontal: 5,
   },
   scoreTypeTag: {
     fontFamily: "open-sans",
     fontSize: 14,
     backgroundColor: "#18c47f",
     color: "white",
-    borderRadius: 15,
+    // borderRadius: 15,
     // marginTop: 30,
     marginHorizontal: 5,
-    textAlign: 'center',
+    textAlign: "center",
   },
   text: {
     fontFamily: "open-sans",
     fontSize: 14,
     padding: 1,
-    textAlign: 'center',
+    textAlign: "center",
   },
   textName: {
     fontFamily: "open-sans",
     fontSize: 16,
-    paddingBottom: 2
+    paddingBottom: 2,
     // textAlign: "left",
   },
   textDepartment: {
