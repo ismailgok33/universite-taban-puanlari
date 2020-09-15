@@ -65,8 +65,8 @@ const screenTabConfig = {
         Platform.OS === "android" ? (
           <Text style={{ fontFamily: "open-sans-bold" }}> Üniversiteler </Text>
         ) : (
-          "Üniversiteler"
-        ),
+            "Üniversiteler"
+          ),
     },
   },
   Favorites: {
@@ -81,8 +81,8 @@ const screenTabConfig = {
         Platform.OS === "android" ? (
           <Text style={{ fontFamily: "open-sans-bold" }}> Favoriler </Text>
         ) : (
-          "Favoriler"
-        ),
+            "Favoriler"
+          ),
     },
   },
 };
@@ -90,21 +90,21 @@ const screenTabConfig = {
 const UniversityFavTabNavigator =
   Platform.OS === "android"
     ? createMaterialBottomTabNavigator(screenTabConfig, {
-        activeColor: "white",
-        shifting: true,
-        barStyle: {
-          backgroundColor: Colors.primaryColor,
-        },
-      })
+      activeColor: "white",
+      shifting: true,
+      barStyle: {
+        backgroundColor: Colors.primaryColor,
+      },
+    })
     : createBottomTabNavigator(screenTabConfig, {
-        tabBarOptions: {
-          labelStyle: {
-            fontFamily: "open-sans-bold",
-          },
-          activeTintColor: Colors.accentColor,
-          //   inactiveTintColor: "",
+      tabBarOptions: {
+        labelStyle: {
+          fontFamily: "open-sans-bold",
         },
-      });
+        activeTintColor: Colors.accentColor,
+        //   inactiveTintColor: "",
+      },
+    });
 
 const FiltersStackNavigator = createStackNavigator(
   {

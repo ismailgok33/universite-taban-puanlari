@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import UniversityGridTile from "../components/UniversityGridTile";
 import { toggleFavorites, loadFavorites } from "../store/actions/universities";
 import { CITIES } from '../data/city-data';
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 // const db = SQLite.openDatabase("favorites4.db");
 
