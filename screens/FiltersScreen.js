@@ -126,64 +126,80 @@ const FiltersScreen = (props) => {
     <SafeAreaView style={styles.screen}>
       <Text style={styles.title}>Filtre Seçenekleri</Text>
 
-      <View style={styles.filterContainer}>
-        <Text>Devlet üniversitelerini gösterme</Text>
-        <Switch
-          trackColor={{ true: Colors.primaryColor }} // Color of switch
-          thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-          value={noStateFilter}
-          onValueChange={(newValue) => setNoStateFilter(newValue)}
-        />
-      </View>
-      <View style={styles.filterContainer}>
-        <Text>Özel/Vakıf üniversiteleri gösterme</Text>
-        <Switch
-          trackColor={{ true: Colors.primaryColor }} // Color of switch
-          thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-          value={noPrivateFilter}
-          onValueChange={(newValue) => setNoPrivateFilter(newValue)}
-        />
-      </View>
-
-      <View style={styles.filterContainer}>
-        <Text>Lisans bölümlerini gösterme</Text>
-        <Switch
-          trackColor={{ true: Colors.primaryColor }} // Color of switch
-          thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-          value={noFourYearUniversity}
-          onValueChange={(newValue) => setNoFourYearUniversity(newValue)}
-        />
+      <View style={styles.filterCouple}>
+        <View style={styles.filterContainer}>
+          <Text>Devlet üniversitelerini gösterme</Text>
+          <Switch
+            trackColor={{ true: Colors.primaryColor }} // Color of switch
+            thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+            value={noStateFilter}
+            onValueChange={(newValue) => setNoStateFilter(newValue)}
+          />
+        </View>
+        <View style={styles.filterContainer}>
+          <Text>Özel/Vakıf üniversiteleri gösterme</Text>
+          <Switch
+            trackColor={{ true: Colors.primaryColor }} // Color of switch
+            thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+            value={noPrivateFilter}
+            onValueChange={(newValue) => setNoPrivateFilter(newValue)}
+          />
+        </View>
       </View>
 
-      <View style={styles.filterContainer}>
-        <Text>Önlisans bölümlerini gösterme</Text>
-        <Switch
-          trackColor={{ true: Colors.primaryColor }} // Color of switch
-          thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-          value={noTwoYearUniversity}
-          onValueChange={(newValue) => setNoTwoYearUniversity(newValue)}
-        />
+
+      <View style={styles.seperatorLine}></View>
+
+      <View style={styles.filterCouple}>
+
+        <View style={styles.filterContainer}>
+          <Text>Lisans bölümlerini gösterme</Text>
+          <Switch
+            trackColor={{ true: Colors.primaryColor }} // Color of switch
+            thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+            value={noFourYearUniversity}
+            onValueChange={(newValue) => setNoFourYearUniversity(newValue)}
+          />
+        </View>
+
+        <View style={styles.filterContainer}>
+          <Text>Önlisans bölümlerini gösterme</Text>
+          <Switch
+            trackColor={{ true: Colors.primaryColor }} // Color of switch
+            thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+            value={noTwoYearUniversity}
+            onValueChange={(newValue) => setNoTwoYearUniversity(newValue)}
+          />
+        </View>
       </View>
 
-      <View style={styles.filterContainer}>
-        <Text>İngilizce bölümlerini gösterme</Text>
-        <Switch
-          trackColor={{ true: Colors.primaryColor }} // Color of switch
-          thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-          value={noEnglishDepartments}
-          onValueChange={(newValue) => setNoEnglishDepartments(newValue)}
-        />
+      <View style={styles.seperatorLine}></View>
+
+      <View style={styles.filterCouple}>
+
+        <View style={styles.filterContainer}>
+          <Text>İngilizce bölümlerini gösterme</Text>
+          <Switch
+            trackColor={{ true: Colors.primaryColor }} // Color of switch
+            thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+            value={noEnglishDepartments}
+            onValueChange={(newValue) => setNoEnglishDepartments(newValue)}
+          />
+        </View>
+
+        <View style={styles.filterContainer}>
+          <Text>Türkçe bölümlerini gösterme</Text>
+          <Switch
+            trackColor={{ true: Colors.primaryColor }} // Color of switch
+            thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+            value={noTurkishDepartments}
+            onValueChange={(newValue) => setNoTurkishDepartments(newValue)}
+          />
+        </View>
       </View>
 
-      <View style={styles.filterContainer}>
-        <Text>Türkçe bölümlerini gösterme</Text>
-        <Switch
-          trackColor={{ true: Colors.primaryColor }} // Color of switch
-          thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-          value={noTurkishDepartments}
-          onValueChange={(newValue) => setNoTurkishDepartments(newValue)}
-        />
-      </View>
+
+      <View style={styles.seperatorLine}></View>
 
       <View style={styles.filterButtonContainer}>
         <TouchableOpacity
@@ -271,11 +287,23 @@ const styles = StyleSheet.create({
     margin: 20,
     textAlign: "center",
   },
+  filterCouple: {
+    width: '90%',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
+  },
   filterContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "80%",
+    width: "100%",
+    margin: 10
   },
   text: {
     paddingTop: 20,
@@ -305,6 +333,13 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     alignSelf: "flex-end",
   },
+  seperatorLine: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    margin: 10,
+    width: '100%'
+
+  }
 });
 
 export default FiltersScreen;

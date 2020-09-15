@@ -21,7 +21,6 @@ CountDownScreen.navigationOptions = (navData) => {
         <Item
           title="Menü"
           iconName="ios-menu"
-          style={{ position: "absolute", bottom: 0 }}
           onPress={() => {
             navData.navigation.toggleDrawer();
           }}

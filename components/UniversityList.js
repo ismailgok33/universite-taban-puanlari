@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import { StyleSheet, FlatList, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import * as SQLite from "expo-sqlite";
-import { SearchBar } from "react-native-elements";
 
 import UniversityGridTile from "../components/UniversityGridTile";
 import { toggleFavorites, loadFavorites } from "../store/actions/universities";
-import { insertFavorite, fetchFavorite } from "../helpers/db";
+import { CITIES } from '../data/city-data';
 
 // const db = SQLite.openDatabase("favorites4.db");
 
@@ -22,15 +20,21 @@ const UniversityList = (props) => {
     dispatch(toggleFavorites(id));
   };
 
+  const mapCityIdToName = id => {
+    return CITIES.find(city => city.id === id).name;
+  };
+
   const renderGridItem = (itemData) => {
     return (
       <UniversityGridTile
         name={itemData.item.name}
         department={itemData.item.department}
+        city={mapCityIdToName(itemData.item.city)}
         score={itemData.item.score}
         upperScore={itemData.item.upperScore}
         placement={itemData.item.placement}
         scoreType={itemData.item.scoreType}
+        quota={itemData.item.quota}
         press={() => {
           toggleFavoriteHandler(itemData.item.id);
         }}

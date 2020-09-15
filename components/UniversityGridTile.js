@@ -31,23 +31,27 @@ const UniversityGridTile = (props) => {
       <TouchableComponent style={styles.touchable} onPress={props.onSelect}>
         <View style={styles.container}>
           <View style={styles.upperContainer}>
-            <DefaultText style={styles.textName}>{props.name}</DefaultText>
+            <DefaultText style={styles.textName}>{props.name} ({props.city})</DefaultText>
             <DefaultText style={styles.textDepartment}>
               {props.department}
             </DefaultText>
           </View>
           <View style={styles.lowerContainer}>
             <View style={styles.leftContainer}>
-              <DefaultText style={styles.scoreTypeTag}>
+              {/* <DefaultText style={styles.scoreTypeTag}>
                 {"  "}
                 {props.scoreType}
                 {"  "}
+              </DefaultText> */}
+              <DefaultText
+                style={styles.text}>
+                Taban puanı {'\n'} {props.score}
               </DefaultText>
               <DefaultText style={styles.text}>
-                Taban puanı: {props.score}
+                Sıralaması {'\n'} {props.placement}
               </DefaultText>
               <DefaultText style={styles.text}>
-                Sıralaması: {props.placement}
+                Kontenjan {'\n'} {props.quota}
               </DefaultText>
             </View>
             <View style={styles.rigthContainer}>
@@ -62,6 +66,11 @@ const UniversityGridTile = (props) => {
                   onPress={props.press}
                 />
               </HeaderButtons>
+              <DefaultText style={styles.scoreTypeTag}>
+                {"   "}
+                {props.scoreType}
+                {"   "}
+              </DefaultText>
             </View>
           </View>
         </View>
@@ -108,12 +117,16 @@ const styles = StyleSheet.create({
   },
   leftContainer: {
     paddingTop: 10,
+    flexDirection: 'row',
     width: "80%",
     justifyContent: "center",
-    alignItems: "flex-start",
+    alignItems: "flex-end",
   },
   rigthContainer: {
-    width: "20%",
+    // width: "20%",
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   scoreTypeTag: {
     fontFamily: "open-sans",
@@ -121,11 +134,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#18c47f",
     color: "white",
     borderRadius: 15,
+    marginVertical: 10
   },
   text: {
     fontFamily: "open-sans",
-    fontSize: 12,
+    fontSize: 14,
     padding: 1,
+    textAlign: 'center'
   },
   textName: {
     fontFamily: "open-sans",
@@ -135,7 +150,7 @@ const styles = StyleSheet.create({
   textDepartment: {
     fontFamily: "open-sans-bold",
     fontSize: 14,
-    textAlign: "center",
+    textAlign: "left",
   },
 });
 
