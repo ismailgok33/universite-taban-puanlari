@@ -69,8 +69,8 @@ CitiesFilterScreen.navigationOptions = (navData) => {
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
-          title="Save"
-          iconName="ios-save"
+          title="UYGULA"
+          // iconName="ios-save"
           onPress={() => {
             navData.navigation.navigate("Filters", {
               savedCities: navData.navigation.getParam("savedCities"),

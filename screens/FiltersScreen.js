@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useDispatch } from "react-redux";
+import DefaultText from "../components/DefaultText";
 
 import HeaderButton from "../components/HeaderButton";
 import Colors from "../constants/Colors";
@@ -124,7 +125,52 @@ const FiltersScreen = (props) => {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <Text style={styles.title}>Filtre Seçenekleri</Text>
+
+      <View style={styles.filterButtonContainer}>
+        <TouchableOpacity
+          onPress={() =>
+            props.navigation.navigate("CityFilter", {
+              selectedCities: savedCityList,
+            })
+          }
+          style={styles.filterButton}
+        >
+          <DefaultText style={styles.textHeader}>Şehir seçiniz.</DefaultText>
+          <DefaultText style={styles.textDetail}>{'"' + showCityTags() + '" '}</DefaultText>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={deleteCityFilterHandler}
+          style={styles.deleteFilterButton}
+        >
+          <DefaultText style={styles.deleteText}> Temizle </DefaultText>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.filterButtonContainer}>
+        <TouchableOpacity
+          onPress={() =>
+            props.navigation.navigate("DepartmentFilter", {
+              selectedDepartments: props.navigation.getParam(
+                "savedDepartments"
+              ),
+            })
+          }
+          style={styles.filterButton}
+        >
+          <DefaultText style={styles.textHeader}>Bölüm seçiniz.</DefaultText>
+          <DefaultText style={styles.textDetail}>{'"' + showDepartmentTags() + '" '}</DefaultText>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={deleteDepartmentFilterHandler}
+          style={styles.deleteFilterButton}
+        >
+          <DefaultText style={styles.deleteText}> Temizle </DefaultText>
+        </TouchableOpacity>
+      </View>
+
+      {/* <View style={styles.seperatorLine}></View> */}
+
+      <DefaultText style={styles.filterCoupleHeader}> Ücret Ayarları </DefaultText>
 
       <View style={styles.filterCouple}>
         <View style={styles.filterContainer}>
@@ -145,10 +191,57 @@ const FiltersScreen = (props) => {
             onValueChange={(newValue) => setNoPrivateFilter(newValue)}
           />
         </View>
+        <View style={styles.filterContainer}>
+          <Text>Tam burslu bölümleri gösterme</Text>
+          <Switch
+            trackColor={{ true: Colors.primaryColor }} // Color of switch
+            thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+            value={noPrivateFilter}
+            onValueChange={(newValue) => setNoPrivateFilter(newValue)}
+          />
+        </View>
+        <View style={styles.filterContainer}>
+          <Text>%75 burslu bölümleri gösterme</Text>
+          <Switch
+            trackColor={{ true: Colors.primaryColor }} // Color of switch
+            thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+            value={noPrivateFilter}
+            onValueChange={(newValue) => setNoPrivateFilter(newValue)}
+          />
+        </View>
+        <View style={styles.filterContainer}>
+          <Text>%50 burslu bölümleri gösterme</Text>
+          <Switch
+            trackColor={{ true: Colors.primaryColor }} // Color of switch
+            thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+            value={noPrivateFilter}
+            onValueChange={(newValue) => setNoPrivateFilter(newValue)}
+          />
+        </View>
+        <View style={styles.filterContainer}>
+          <Text>%25 burslu bölümleri gösterme</Text>
+          <Switch
+            trackColor={{ true: Colors.primaryColor }} // Color of switch
+            thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+            value={noPrivateFilter}
+            onValueChange={(newValue) => setNoPrivateFilter(newValue)}
+          />
+        </View>
+        <View style={styles.filterContainer}>
+          <Text>Burssuz/Ücretli bölümleri gösterme</Text>
+          <Switch
+            trackColor={{ true: Colors.primaryColor }} // Color of switch
+            thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
+            value={noPrivateFilter}
+            onValueChange={(newValue) => setNoPrivateFilter(newValue)}
+          />
+        </View>
       </View>
 
 
-      <View style={styles.seperatorLine}></View>
+      {/* <View style={styles.seperatorLine}></View> */}
+
+      <DefaultText style={styles.filterCoupleHeader}> Öğretim Yılı Ayarları </DefaultText>
 
       <View style={styles.filterCouple}>
 
@@ -173,7 +266,9 @@ const FiltersScreen = (props) => {
         </View>
       </View>
 
-      <View style={styles.seperatorLine}></View>
+      {/* <View style={styles.seperatorLine}></View> */}
+
+      <DefaultText style={styles.filterCoupleHeader}> Öğretim Dili Ayarları </DefaultText>
 
       <View style={styles.filterCouple}>
 
@@ -198,48 +293,6 @@ const FiltersScreen = (props) => {
         </View>
       </View>
 
-
-      <View style={styles.seperatorLine}></View>
-
-      <View style={styles.filterButtonContainer}>
-        <TouchableOpacity
-          onPress={() =>
-            props.navigation.navigate("CityFilter", {
-              selectedCities: savedCityList,
-            })
-          }
-          style={styles.filterButton}
-        >
-          <Text>{"Şehir: " + showCityTags()}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={deleteCityFilterHandler}
-          style={styles.deleteFilterButton}
-        >
-          <Text> Temizle </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.filterButtonContainer}>
-        <TouchableOpacity
-          onPress={() =>
-            props.navigation.navigate("DepartmentFilter", {
-              selectedDepartments: props.navigation.getParam(
-                "savedDepartments"
-              ),
-            })
-          }
-          style={styles.filterButton}
-        >
-          <Text>{"Bölüm: " + showDepartmentTags()}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={deleteDepartmentFilterHandler}
-          style={styles.deleteFilterButton}
-        >
-          <Text> Temizle </Text>
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 };
@@ -266,8 +319,8 @@ FiltersScreen.navigationOptions = (navData) => {
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
-          title="Save"
-          iconName="ios-save"
+          title="UYGULA"
+          // iconName="ios-save"
           onPress={navData.navigation.getParam("save")}
         />
       </HeaderButtons>
@@ -280,12 +333,19 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: "center",
     alignItems: "center",
+    justifyContent: 'space-between',
+    paddingVertical: 10
   },
   title: {
     fontFamily: "open-sans-bold",
     fontSize: 22,
     margin: 20,
     textAlign: "center",
+  },
+  filterCoupleHeader: {
+    fontFamily: 'open-sans-bold',
+    fontSize: 14,
+    textDecorationLine: 'underline'
   },
   filterCouple: {
     width: '90%',
@@ -297,41 +357,58 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
     elevation: 4,
+    justifyContent: 'space-between',
   },
   filterContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    margin: 10
+    margin: 2
   },
   text: {
     paddingTop: 20,
   },
   filterButtonContainer: {
-    flex: 1,
-    width: "80%",
-    height: "20%",
-    borderRadius: 10,
-    shadowColor: "black",
-    shadowOpacity: 0.26,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 10,
-    elevation: 3,
-    padding: 15,
-    maxHeight: "50%",
-    margin: 10,
+    flexDirection: "row",
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '10%',
+    borderColor: 'gray',
+    borderWidth: 1,
   },
   filterButton: {
-    flex: 1,
+    // flex: 1,
     width: "80%",
-    alignSelf: "flex-start",
+    // borderColor: 'gray',
+    // borderWidth: 1,
+    paddingVertical: 10,
   },
   deleteFilterButton: {
-    flex: 1,
+    // flex: 1,
     width: "20%",
-    backgroundColor: "red",
-    alignSelf: "flex-end",
+    // backgroundColor: "red",
+    paddingVertical: 10
+  },
+  textHeader: {
+    fontFamily: 'open-sans',
+    fontSize: 16,
+    paddingHorizontal: 10
+  },
+  textDetail: {
+    paddingTop: 5,
+    paddingHorizontal: 10,
+    fontFamily: 'open-sans',
+    fontSize: 12,
+    fontStyle: 'italic'
+  },
+  deleteText: {
+    fontFamily: 'open-sans-bold',
+    // color: Colors.accentColor,
+    color: 'darkblue',
+    fontSize: 14,
+    textAlign: 'center',
+    // textDecorationLine: 'underline'
   },
   seperatorLine: {
     borderBottomColor: 'black',

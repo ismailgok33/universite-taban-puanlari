@@ -28,6 +28,23 @@ const UniversityGridTile = (props) => {
     )
   );
 
+  const tagBackgroundColorHandler = tag => {
+    switch (tag) {
+      case 'SAY':
+        return styles.sayTagBC;
+      case 'SÖZ':
+        return styles.sozTagBC;
+      case 'EA':
+        return styles.eaTagBC;
+      case 'DİL':
+        return styles.dilTagBC;
+      case 'TYT':
+        return styles.tytTagBC;
+      default:
+        return styles.sayTagBC;
+    }
+  }
+
   return (
     <View style={styles.gridItem}>
       <TouchableComponent style={styles.touchable} onPress={props.onSelect}>
@@ -60,60 +77,21 @@ const UniversityGridTile = (props) => {
                   title="Favorite"
                   iconName={
                     currentUniversityIsFavorite
-                      ? "ios-star"
-                      : "ios-star-outline"
+                      ? "ios-heart"
+                      : "ios-heart-empty"
                   }
                   onPress={props.press}
                 />
               </HeaderButtons>
             </View>
             <View style={styles.scoreTagContainer}>
-              <DefaultText style={styles.scoreTypeTag}>
+              <DefaultText style={[styles.scoreTypeTag, tagBackgroundColorHandler(props.scoreType)]}>
                 {""}
                 {props.scoreType}
                 {""}
               </DefaultText>
             </View>
           </View>
-
-          {/* <View style={styles.upperContainer}>
-            <DefaultText style={styles.textName}>{props.name} ({props.city})</DefaultText>
-            <DefaultText style={styles.textDepartment}>
-              {props.department}
-            </DefaultText>
-          </View>
-          <View style={styles.lowerContainer}>
-            <View style={styles.leftContainer}>
-              <DefaultText
-                style={styles.text}>
-                Taban puanı {'\n'} {props.score}
-              </DefaultText>
-              <DefaultText style={styles.text}>
-                Sıralaması {'\n'} {props.placement}
-              </DefaultText>
-              <DefaultText style={styles.text}>
-                Kontenjan {'\n'} {props.quota}
-              </DefaultText>
-            </View>
-            <View style={styles.rigthContainer}>
-              <HeaderButtons HeaderButtonComponent={FavoriteButton}>
-                <Item
-                  title="Favorite"
-                  iconName={
-                    currentUniversityIsFavorite
-                      ? "ios-star"
-                      : "ios-star-outline"
-                  }
-                  onPress={props.press}
-                />
-              </HeaderButtons>
-              <DefaultText style={styles.scoreTypeTag}>
-                {"   "}
-                {props.scoreType}
-                {"   "}
-              </DefaultText>
-            </View>
-          </View> */}
         </View>
       </TouchableComponent>
     </View>
@@ -152,7 +130,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#f4f6ff",
     flexDirection: "row",
-    backgroundColor: Colors.accentColor,
+    backgroundColor: 'white',
+    // backgroundColor: Colors.accentColor,
   },
   leftContainer: {
     // paddingTop: 10,
@@ -193,12 +172,26 @@ const styles = StyleSheet.create({
   scoreTypeTag: {
     fontFamily: "open-sans",
     fontSize: 14,
-    backgroundColor: "#18c47f",
     color: "white",
     // borderRadius: 15,
     // marginTop: 30,
     marginHorizontal: 5,
     textAlign: "center",
+  },
+  sayTagBC: {
+    backgroundColor: "#18c47f",
+  },
+  sozTagBC: {
+    backgroundColor: "red",
+  },
+  eaTagBC: {
+    backgroundColor: "blue",
+  },
+  dilTagBC: {
+    backgroundColor: "gray",
+  },
+  tytTagBC: {
+    backgroundColor: "yellow",
   },
   text: {
     fontFamily: "open-sans",

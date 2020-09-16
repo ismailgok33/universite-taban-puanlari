@@ -74,7 +74,7 @@ const screenTabConfig = {
     navigationOptions: {
       tabBarLabel: "Favoriler",
       tabBarIcon: (tabInfo) => {
-        return <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />;
+        return <Ionicons name="ios-heart" size={25} color={tabInfo.tintColor} />;
       },
       tabBarColor: Colors.accentColor,
       tabBarLabel:
@@ -162,6 +162,7 @@ const DrawerNavigator = createDrawerNavigator(
       labelStyle: {
         fontFamily: "open-sans-bold",
       },
+      backgroundColor: 'red'
     },
   }
 );
