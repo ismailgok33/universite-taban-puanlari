@@ -92,4 +92,5 @@ export const CITIES = [
   new City("89", "", "KOMRAT-MOLDOVA"),
   new City("90", "", "KKTC-LEFKE"),
   new City("91", "", "ÜSKÜP-MAKEDONYA"),
+  new City("92", "", "SARAYBOSNA – BOSNA – HERSEK"),
 ];

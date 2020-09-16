@@ -23,6 +23,11 @@ import { setFilters } from "../store/actions/universities";
 const FiltersScreen = (props) => {
   const [noStateFilter, setNoStateFilter] = useState(false);
   const [noPrivateFilter, setNoPrivateFilter] = useState(false);
+  const [noFullScholarship, setNoFullScholarship] = useState(false);
+  const [no75Scholarship, setNo75Scholarship] = useState(false);
+  const [no50Scholarship, setNo50Scholarship] = useState(false);
+  const [no25Scholarship, setNo25Scholarship] = useState(false);
+  const [noFullyPaid, setNoFullyPaid] = useState(false);
   const [noFourYearUniversity, setNoFourYearUniversity] = useState(false);
   const [noTwoYearUniversity, setNoTwoYearUniversity] = useState(false);
   const [noEnglishDepartments, setNoEnglishDepartments] = useState(false);
@@ -37,6 +42,11 @@ const FiltersScreen = (props) => {
     const appliedFilters = {
       noState: noStateFilter,
       noPrivate: noPrivateFilter,
+      noFullScholarship: noFullScholarship,
+      no75Scholarship: no75Scholarship,
+      no50Scholarship: no50Scholarship,
+      no25Scholarship: no25Scholarship,
+      noFullyPaid: noFullyPaid,
       no4Years: noFourYearUniversity,
       no2Years: noTwoYearUniversity,
       noEnglish: noEnglishDepartments,
@@ -57,6 +67,11 @@ const FiltersScreen = (props) => {
   }, [
     noStateFilter,
     noPrivateFilter,
+    noFullScholarship,
+    no75Scholarship,
+    no50Scholarship,
+    no25Scholarship,
+    noFullyPaid,
     noFourYearUniversity,
     noTwoYearUniversity,
     noEnglishDepartments,
@@ -196,8 +211,8 @@ const FiltersScreen = (props) => {
           <Switch
             trackColor={{ true: Colors.primaryColor }} // Color of switch
             thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-            value={noPrivateFilter}
-            onValueChange={(newValue) => setNoPrivateFilter(newValue)}
+            value={noFullScholarship}
+            onValueChange={(newValue) => setNoFullScholarship(newValue)}
           />
         </View>
         <View style={styles.filterContainer}>
@@ -205,8 +220,8 @@ const FiltersScreen = (props) => {
           <Switch
             trackColor={{ true: Colors.primaryColor }} // Color of switch
             thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-            value={noPrivateFilter}
-            onValueChange={(newValue) => setNoPrivateFilter(newValue)}
+            value={no75Scholarship}
+            onValueChange={(newValue) => setNo75Scholarship(newValue)}
           />
         </View>
         <View style={styles.filterContainer}>
@@ -214,8 +229,8 @@ const FiltersScreen = (props) => {
           <Switch
             trackColor={{ true: Colors.primaryColor }} // Color of switch
             thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-            value={noPrivateFilter}
-            onValueChange={(newValue) => setNoPrivateFilter(newValue)}
+            value={no50Scholarship}
+            onValueChange={(newValue) => setNo50Scholarship(newValue)}
           />
         </View>
         <View style={styles.filterContainer}>
@@ -223,8 +238,8 @@ const FiltersScreen = (props) => {
           <Switch
             trackColor={{ true: Colors.primaryColor }} // Color of switch
             thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-            value={noPrivateFilter}
-            onValueChange={(newValue) => setNoPrivateFilter(newValue)}
+            value={no25Scholarship}
+            onValueChange={(newValue) => setNo25Scholarship(newValue)}
           />
         </View>
         <View style={styles.filterContainer}>
@@ -232,8 +247,8 @@ const FiltersScreen = (props) => {
           <Switch
             trackColor={{ true: Colors.primaryColor }} // Color of switch
             thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""} // Colors of head of the switch
-            value={noPrivateFilter}
-            onValueChange={(newValue) => setNoPrivateFilter(newValue)}
+            value={noFullyPaid}
+            onValueChange={(newValue) => setNoFullyPaid(newValue)}
           />
         </View>
       </View>
@@ -348,15 +363,17 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline'
   },
   filterCouple: {
-    width: '90%',
+    width: '100%',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 1,
     },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
+    shadowOpacity: 0.20,
+    shadowRadius: 1.41,
+    elevation: 2,
+    backgroundColor: 'white',
+    padding: 5,
     justifyContent: 'space-between',
   },
   filterContainer: {
@@ -376,6 +393,15 @@ const styles = StyleSheet.create({
     height: '10%',
     borderColor: 'gray',
     borderWidth: 1,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 1.41,
+    elevation: 2,
+    backgroundColor: 'white',
   },
   filterButton: {
     // flex: 1,

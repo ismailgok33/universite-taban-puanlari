@@ -63238,7 +63238,7 @@ export const UNIVERSITIES = [
     "00000",
     "52",
     false,
-    "0",
+    "2",
     4,
     "EA"
   ),
@@ -246135,7 +246135,7 @@ export const UNIVERSITIES = [
     "00000",
     "5",
     false,
-    "0",
+    "92",
     4,
     "SÖZ"
   ),
@@ -246148,7 +246148,7 @@ export const UNIVERSITIES = [
     "820768",
     "5",
     false,
-    "0",
+    "92",
     4,
     "SÖZ"
   ),
@@ -246161,7 +246161,7 @@ export const UNIVERSITIES = [
     "00000",
     "10",
     false,
-    "0",
+    "92",
     4,
     "SÖZ"
   ),
@@ -246174,7 +246174,7 @@ export const UNIVERSITIES = [
     "00000",
     "5",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246187,7 +246187,7 @@ export const UNIVERSITIES = [
     "00000",
     "5",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246200,7 +246200,7 @@ export const UNIVERSITIES = [
     "00000",
     "10",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246213,7 +246213,7 @@ export const UNIVERSITIES = [
     "00000",
     "5",
     false,
-    "0",
+    "92",
     4,
     "DİL"
   ),
@@ -246226,7 +246226,7 @@ export const UNIVERSITIES = [
     "54173",
     "5",
     false,
-    "0",
+    "92",
     4,
     "DİL"
   ),
@@ -246239,7 +246239,7 @@ export const UNIVERSITIES = [
     "00000",
     "10",
     false,
-    "0",
+    "92",
     4,
     "DİL"
   ),
@@ -246252,7 +246252,7 @@ export const UNIVERSITIES = [
     "72421",
     "5",
     false,
-    "0",
+    "92",
     4,
     "DİL"
   ),
@@ -246265,7 +246265,7 @@ export const UNIVERSITIES = [
     "37558",
     "5",
     false,
-    "0",
+    "92",
     4,
     "DİL"
   ),
@@ -246278,7 +246278,7 @@ export const UNIVERSITIES = [
     "00000",
     "10",
     false,
-    "0",
+    "92",
     4,
     "DİL"
   ),
@@ -246291,7 +246291,7 @@ export const UNIVERSITIES = [
     "00000",
     "5",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246304,7 +246304,7 @@ export const UNIVERSITIES = [
     "00000",
     "5",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246317,7 +246317,7 @@ export const UNIVERSITIES = [
     "00000",
     "10",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246330,7 +246330,7 @@ export const UNIVERSITIES = [
     "00000",
     "5",
     false,
-    "0",
+    "92",
     4,
     "SAY"
   ),
@@ -246343,7 +246343,7 @@ export const UNIVERSITIES = [
     "137034",
     "5",
     false,
-    "0",
+    "92",
     4,
     "SAY"
   ),
@@ -246356,7 +246356,7 @@ export const UNIVERSITIES = [
     "00000",
     "10",
     false,
-    "0",
+    "92",
     4,
     "SAY"
   ),
@@ -246369,7 +246369,7 @@ export const UNIVERSITIES = [
     "835185",
     "5",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246382,7 +246382,7 @@ export const UNIVERSITIES = [
     "532857",
     "5",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246395,7 +246395,7 @@ export const UNIVERSITIES = [
     "00000",
     "15",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246408,7 +246408,7 @@ export const UNIVERSITIES = [
     "00000",
     "5",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246421,7 +246421,7 @@ export const UNIVERSITIES = [
     "895577",
     "5",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246434,7 +246434,7 @@ export const UNIVERSITIES = [
     "986105",
     "10",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246447,7 +246447,7 @@ export const UNIVERSITIES = [
     "00000",
     "5",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246460,7 +246460,7 @@ export const UNIVERSITIES = [
     "535621",
     "5",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246473,7 +246473,7 @@ export const UNIVERSITIES = [
     "00000",
     "10",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246486,7 +246486,7 @@ export const UNIVERSITIES = [
     "959569",
     "5",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246499,7 +246499,7 @@ export const UNIVERSITIES = [
     "836809",
     "5",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),
@@ -246512,7 +246512,7 @@ export const UNIVERSITIES = [
     "00000",
     "10",
     false,
-    "0",
+    "92",
     4,
     "EA"
   ),

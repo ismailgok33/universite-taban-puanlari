@@ -68,6 +68,21 @@ const universitiesReducer = (state = initialState, action) => {
         if (appliedFilters.noPrivate && !uni.isState) {
           return false;
         }
+        if (appliedFilters.noFullScholarship && uni.department.includes("Burslu")) {
+          return false;
+        }
+        if (appliedFilters.no75Scholarship && uni.department.includes("%75")) {
+          return false;
+        }
+        if (appliedFilters.no50Scholarship && uni.department.includes("%50")) {
+          return false;
+        }
+        if (appliedFilters.no25Scholarship && uni.department.includes("%25")) {
+          return false;
+        }
+        if (appliedFilters.noFullyPaid && !uni.isState && !uni.department.includes("İndirimli")) {
+          return false;
+        }
         if (no4Years && !no2Years) {
           if (uni.universityYear !== 2) {
             return false;
