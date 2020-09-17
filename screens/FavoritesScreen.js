@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
+import * as StoreReview from 'expo-store-review';
 
 // import { UNIVERSITIES } from "../data/university-data";
 import UniversityList from "../components/UniversityList";
@@ -15,6 +16,7 @@ const FavoritesScreen = (props) => {
   );
 
   const dispatch = useDispatch();
+  StoreReview.requestReview(); // store review'i detaylı incele
 
   useEffect(() => {
     dispatch(loadFavorites());

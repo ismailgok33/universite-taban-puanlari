@@ -1,6 +1,7 @@
 import React from "react";
-import { View, StyleSheet, SafeAreaView } from "react-native";
+import { View, StyleSheet, SafeAreaView, Button } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import * as Linking from 'expo-linking';
 
 import DefaultText from "../components/DefaultText";
 import HeaderButton from "../components/HeaderButton";
@@ -8,15 +9,29 @@ import HeaderButton from "../components/HeaderButton";
 const AboutScreen = (props) => {
   return (
     <SafeAreaView style={styles.screen}>
-      <DefaultText style={styles.iconContainer}>
-        Burada ikon olabilir
+      <View style={styles.aboutTextContainer}>
+        <DefaultText style={styles.iconContainer}>
+          Burada ikon olabilir
       </DefaultText>
-      <DefaultText style={styles.content}>
-        XXXXX 2021, 2020 yılı YKS-TYT puan ve sıralamarı içeren üniversite ve
-        bölüm seçmenizde size yardımcı olacak resmi olmayan bir uygulamadır.
-        Üniversite taban puanları ÖSYM'nin güncel yayınladığı verilerden
-        alınmıştır. Hedefinize ulaşmanız dileğiyle... Başarılar.
+        <DefaultText style={styles.content}>
+          XXXXX 2021, 2020 yılı YKS-TYT puan ve sıralamarı içeren üniversite ve
+          bölüm seçmenizde size yardımcı olacak resmi olmayan bir uygulamadır.
+          Üniversite taban puanları ÖSYM'nin güncel yayınladığı verilerden
+          alınmıştır. Hedefinize ulaşmanız dileğiyle... Başarılar.
       </DefaultText>
+      </View>
+
+      <View style={styles.buttonContainer}>
+        {/* <Button
+          style={styles.feedBackButton}
+          onPress={() => Linking.openURL('mailto:support@example.com')}
+          title="Uygulamayı değerlendir" /> */}
+        <Button
+          style={styles.feedBackButton}
+          onPress={() => Linking.openURL('mailto:support@example.com')}
+          title="Geri bildirim gönder" />
+      </View>
+
     </SafeAreaView>
   );
 };
@@ -42,7 +57,13 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+    // alignItems: "center",
+  },
+  aboutTextContainer: {
+    flex: 1,
+    height: '60%',
+    justifyContent: "center",
+    // alignItems: "center",
   },
   iconContainer: {
     width: "100%",
@@ -55,6 +76,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: "70%",
+  },
+  buttonContainer: {
+    height: '40%',
+    alignItems: 'center',
+  },
+  feedBackButton: {
+    alignSelf: 'center',
+    alignItems: 'center'
   },
 });
 

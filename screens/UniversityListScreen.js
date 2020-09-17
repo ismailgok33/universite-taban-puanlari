@@ -126,6 +126,7 @@ UniversityListScreen.navigationOptions = (navData) => {
     //   <HeaderButtons HeaderButtonComponent={HeaderButton}>
     //     <Item
     //       title="Filtre"
+    //       iconName="ios-menu"
     //       // iconName="filter"
     //       onPress={() => {
     //         navData.navigation.navigate("Filter");

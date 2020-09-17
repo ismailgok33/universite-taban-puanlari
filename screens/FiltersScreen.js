@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   Button,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useDispatch } from "react-redux";
@@ -64,6 +65,8 @@ const FiltersScreen = (props) => {
     console.log(savedDepartmentList);
 
     dispatch(setFilters(appliedFilters));
+    // props.navigation.navigate('UniversityList');
+    props.navigation.navigate('UniversityFavs');
   }, [
     noStateFilter,
     noPrivateFilter,
@@ -138,6 +141,18 @@ const FiltersScreen = (props) => {
     savedDepartmentList = [];
   };
 
+  const deleteCityFilterAlertHandler = () =>
+    Alert.alert('Emin misiniz?', 'Seçtiğiniz şehirleri kaldırmak istediğinize emin misiniz?', [
+      { text: 'Hayır', style: 'default' },
+      { text: 'Evet', style: 'destructive', onPress: deleteCityFilterHandler }
+    ]);
+
+  const deleteDepartmetnFilterAlertHandler = () =>
+    Alert.alert('Emin misiniz?', 'Seçtiğiniz bölümleri kaldırmak istediğinize emin misiniz?', [
+      { text: 'Hayır', style: 'default' },
+      { text: 'Evet', style: 'destructive', onPress: deleteDepartmentFilterHandler }
+    ]);
+
   return (
     <SafeAreaView style={styles.screen}>
 
@@ -154,7 +169,7 @@ const FiltersScreen = (props) => {
           <DefaultText style={styles.textDetail}>{'"' + showCityTags() + '" '}</DefaultText>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={deleteCityFilterHandler}
+          onPress={deleteCityFilterAlertHandler}
           style={styles.deleteFilterButton}
         >
           <DefaultText style={styles.deleteText}> Temizle </DefaultText>
@@ -176,7 +191,7 @@ const FiltersScreen = (props) => {
           <DefaultText style={styles.textDetail}>{'"' + showDepartmentTags() + '" '}</DefaultText>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={deleteDepartmentFilterHandler}
+          onPress={deleteDepartmetnFilterAlertHandler}
           style={styles.deleteFilterButton}
         >
           <DefaultText style={styles.deleteText}> Temizle </DefaultText>
@@ -185,7 +200,7 @@ const FiltersScreen = (props) => {
 
       {/* <View style={styles.seperatorLine}></View> */}
 
-      <DefaultText style={styles.filterCoupleHeader}> Ücret Ayarları </DefaultText>
+      <DefaultText style={styles.filterCoupleHeader}> Burs Filtresi </DefaultText>
 
       <View style={styles.filterCouple}>
         <View style={styles.filterContainer}>
@@ -256,7 +271,7 @@ const FiltersScreen = (props) => {
 
       {/* <View style={styles.seperatorLine}></View> */}
 
-      <DefaultText style={styles.filterCoupleHeader}> Öğretim Yılı Ayarları </DefaultText>
+      <DefaultText style={styles.filterCoupleHeader}> Öğretim Yılı Filtresi </DefaultText>
 
       <View style={styles.filterCouple}>
 
@@ -283,7 +298,7 @@ const FiltersScreen = (props) => {
 
       {/* <View style={styles.seperatorLine}></View> */}
 
-      <DefaultText style={styles.filterCoupleHeader}> Öğretim Dili Ayarları </DefaultText>
+      <DefaultText style={styles.filterCoupleHeader}> Öğretim Dili Filtresi </DefaultText>
 
       <View style={styles.filterCouple}>
 
@@ -315,7 +330,7 @@ const FiltersScreen = (props) => {
 FiltersScreen.navigationOptions = (navData) => {
   const saveAndListUniversities = () => {
     navData.navigation.getParam("save");
-    navData.navigation.navigate("UniversityFavs");
+    navData.navigation.navigate("UniversityList");
   };
 
   return {
@@ -336,6 +351,7 @@ FiltersScreen.navigationOptions = (navData) => {
         <Item
           title="UYGULA"
           // iconName="ios-save"
+          // onPress={saveAndListUniversities()}
           onPress={navData.navigation.getParam("save")}
         />
       </HeaderButtons>
