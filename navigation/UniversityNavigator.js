@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, Text } from "react-native";
+import { Platform, Text, Image, StyleSheet } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
@@ -16,6 +16,7 @@ import AboutScreen from "../screens/AboutScreen";
 import CitiesFilterScreen from "../screens/CitiesFilterScreen";
 import DepartmentFilterScreen from "../screens/DepartmentFilterScreen";
 import CountDownScreen from "../screens/CountDownScreen";
+import CustomDrawerMenu from '../components/CustomDrawerMenu';
 
 const screenStackConfig = {
   defaultNavigationOptions: {
@@ -135,36 +136,68 @@ const DrawerNavigator = createDrawerNavigator(
       screen: UniversityFavTabNavigator,
       navigationOptions: {
         drawerLabel: "Üniversiteler",
+        drawerIcon: ({ tintColor }) => (
+          <Image
+            source={require('../assets/a-z.png')}
+            style={[styles.icon, { tintColor: tintColor }]}
+          />
+        ),
       },
     },
     Filters: {
       screen: FiltersStackNavigator,
       navigationOptions: {
         drawerLabel: "Filtrele",
+        drawerIcon: ({ tintColor }) => (
+          <Image
+            source={require('../assets/a-z.png')}
+            style={[styles.icon, { tintColor: tintColor }]}
+          />
+        ),
       },
     },
     About: {
       screen: AboutStackNavigator,
       navigationOptions: {
         drawerLabel: "Hakkında",
+        drawerIcon: ({ tintColor }) => (
+          <Image
+            source={require('../assets/a-z.png')}
+            style={[styles.icon, { tintColor: tintColor }]}
+          />
+        ),
       },
     },
     CountDown: {
       screen: CountDownStackNavigator,
       navigationOptions: {
         drawerLabel: "Geri Sayım",
+        drawerIcon: ({ tintColor }) => (
+          <Image
+            source={require('../assets/a-z.png')}
+            style={[styles.icon, { tintColor: tintColor }]}
+          />
+        ),
       },
     },
   },
   {
+    initialRouteName: 'UniversityFavs',
+    contentComponent: CustomDrawerMenu,
     contentOptions: {
       activeTintColor: Colors.accentColor,
       labelStyle: {
         fontFamily: "open-sans-bold",
       },
-      backgroundColor: 'red'
     },
   }
 );
+
+const styles = StyleSheet.create({
+  icon: {
+    width: 24,
+    height: 24,
+  }
+});
 
 export default createAppContainer(DrawerNavigator);
