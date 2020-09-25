@@ -55,6 +55,7 @@ const UniversityList = (props) => {
         data={props.data}
         renderItem={renderGridItem}
         keyExtractor={(item) => item.id}
+        ref={(ref) => props.ref(ref)}
       />
     </View>
   );

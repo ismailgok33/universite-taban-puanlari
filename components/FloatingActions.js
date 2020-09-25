@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import { FloatingAction } from "react-native-floating-action";
 
 import Colors from '../constants/Colors';
@@ -40,8 +40,6 @@ const styles = StyleSheet.create({
   floatingButton: {
     height: "100%",
     width: "100%",
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
   },
 });
 

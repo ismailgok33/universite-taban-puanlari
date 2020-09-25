@@ -10,10 +10,12 @@ import HeaderButton from "../components/HeaderButton";
 import DefaultText from "../components/DefaultText";
 import { setOrder, search } from "../store/actions/universities";
 import FloatingActions from "../components/FloatingActions";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 
 const UniversityListScreen = (props) => {
   const [orderState, setOrderState] = useState("name");
   const [searchValue, setSearchValue] = useState("");
+  const [flatlistRef, setFlatlistRef] = useState();
 
   const dispatch = useDispatch();
 
@@ -95,10 +97,16 @@ const UniversityListScreen = (props) => {
         navigation={props.navigation}
         searchFilter={(text) => searchFilterHandler(text)}
         searchValue={searchValue}
+        ref={(ref) => setFlatlistRef(ref)}
       />
       <FloatingActions
         style={styles.floatingButton}
         press={(name) => orderHandler(name)}
+      />
+      <ScrollToTopButton
+        position='left'
+        showBackground={false}
+        onPressMain={() => flatlistRef.scrollToIndex({ animated: true, index: 0 })}
       />
     </View>
   );
