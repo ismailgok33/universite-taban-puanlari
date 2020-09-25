@@ -138,7 +138,7 @@ const DrawerNavigator = createDrawerNavigator(
         drawerLabel: "Üniversiteler",
         drawerIcon: ({ tintColor }) => (
           <Image
-            source={require('../assets/a-z.png')}
+            source={require('../assets/university-icon-2.png')}
             style={[styles.icon, { tintColor: tintColor }]}
           />
         ),
@@ -150,7 +150,7 @@ const DrawerNavigator = createDrawerNavigator(
         drawerLabel: "Filtrele",
         drawerIcon: ({ tintColor }) => (
           <Image
-            source={require('../assets/a-z.png')}
+            source={require('../assets/filter-icon-2.png')}
             style={[styles.icon, { tintColor: tintColor }]}
           />
         ),
@@ -162,7 +162,7 @@ const DrawerNavigator = createDrawerNavigator(
         drawerLabel: "Hakkında",
         drawerIcon: ({ tintColor }) => (
           <Image
-            source={require('../assets/a-z.png')}
+            source={require('../assets/about-icon.jpg')}
             style={[styles.icon, { tintColor: tintColor }]}
           />
         ),
@@ -174,7 +174,7 @@ const DrawerNavigator = createDrawerNavigator(
         drawerLabel: "Geri Sayım",
         drawerIcon: ({ tintColor }) => (
           <Image
-            source={require('../assets/a-z.png')}
+            source={require('../assets/countdown-icon-4.png')}
             style={[styles.icon, { tintColor: tintColor }]}
           />
         ),

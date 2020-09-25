@@ -113,6 +113,9 @@ const FiltersScreen = (props) => {
     ) {
       return "Tümü";
     } else {
+      if (savedCityList.length > 6) {
+        return mapCityIdtoName(savedCityList).slice(0, 5) + "...";
+      }
       return mapCityIdtoName(savedCityList);
     }
   };
@@ -125,6 +128,9 @@ const FiltersScreen = (props) => {
     ) {
       return "Tümü";
     } else {
+      if (savedDepartmentList.length > 4) {
+        return savedDepartmentList.slice(0, 3) + "...";
+      }
       return savedDepartmentList;
     }
   };
