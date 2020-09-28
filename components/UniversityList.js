@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { StyleSheet, FlatList, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -8,8 +8,10 @@ import { CITIES } from '../data/city-data';
 
 // const db = SQLite.openDatabase("favorites4.db");
 
-const UniversityList = (props) => {
+const UniversityList = React.forwardRef((props, ref) => {
   const dispatch = useDispatch();
+
+  // const ref = useRef();
 
   // dispatch(loadFavorites());
   useEffect(() => {
@@ -55,11 +57,12 @@ const UniversityList = (props) => {
         data={props.data}
         renderItem={renderGridItem}
         keyExtractor={(item) => item.id}
-        ref={(ref) => props.ref(ref)}
+        ref={ref}
+      // ref={(ref) => props.ref(ref)}
       />
     </View>
   );
-};
+})
 
 const styles = StyleSheet.create({
   list: {

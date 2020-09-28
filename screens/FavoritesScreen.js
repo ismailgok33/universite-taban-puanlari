@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Share } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
 import * as StoreReview from 'expo-store-review';
@@ -18,9 +18,36 @@ const FavoritesScreen = (props) => {
   const dispatch = useDispatch();
   StoreReview.requestReview(); // store review'i detaylı incele
 
+  const listFavoriteUniversities = () => {
+    return avaibleUniversities.map(uni => { return "-" + uni.name + " / " + uni.department + "\n" }).toString().replace(',', '')
+  }
+
+  // Share function
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message: listFavoriteUniversities(),
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   useEffect(() => {
     dispatch(loadFavorites());
+    props.navigation.setParams({ onShareParam: onShare })
   }, [dispatch]);
+
+
 
   if (avaibleUniversities.length === 0 || !avaibleUniversities) {
     return (
@@ -49,7 +76,17 @@ FavoritesScreen.navigationOptions = (navData) => {
         />
       </HeaderButtons>
     ),
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Paylaş"
+          iconName="ios-share"
+          onPress={navData.navigation.getParam('onShareParam')}
+        />
+      </HeaderButtons>
+    ),
   };
+
 };
 
 const styles = StyleSheet.create({

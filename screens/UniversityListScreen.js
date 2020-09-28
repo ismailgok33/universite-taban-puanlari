@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { StyleSheet, View, Platform } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,8 +15,10 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 const UniversityListScreen = (props) => {
   const [orderState, setOrderState] = useState("name");
   const [searchValue, setSearchValue] = useState("");
-  const [flatlistRef, setFlatlistRef] = useState();
+  // const [flatlistRef, setFlatlistRef] = useState();
 
+  // const flatListRef = useRef();
+  const ref = React.createRef();
   const dispatch = useDispatch();
 
   const orderFilter = useCallback(() => {
@@ -97,7 +99,8 @@ const UniversityListScreen = (props) => {
         navigation={props.navigation}
         searchFilter={(text) => searchFilterHandler(text)}
         searchValue={searchValue}
-        ref={(ref) => setFlatlistRef(ref)}
+        ref={ref}
+      // ref={(ref) => setFlatlistRef(ref)}
       />
       <FloatingActions
         style={styles.floatingButton}
@@ -106,7 +109,8 @@ const UniversityListScreen = (props) => {
       <ScrollToTopButton
         position='left'
         showBackground={false}
-        onPressMain={() => flatlistRef.scrollToIndex({ animated: true, index: 0 })}
+        onPressMain={console.log(ref)}
+      // onPressMain={() => ref.scrollToIndex({ animated: true, index: 0 })}
       />
     </View>
   );
