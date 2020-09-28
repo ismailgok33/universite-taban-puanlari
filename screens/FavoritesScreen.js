@@ -1,26 +1,35 @@
-import React, { useEffect } from "react";
-import { StyleSheet, View, Share } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View, Share, Dimensions } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
-import * as StoreReview from 'expo-store-review';
+import * as StoreReview from "expo-store-review";
 
 // import { UNIVERSITIES } from "../data/university-data";
 import UniversityList from "../components/UniversityList";
 import HeaderButton from "../components/HeaderButton";
 import DefaultText from "../components/DefaultText";
 import { loadFavorites } from "../store/actions/universities";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 
 const FavoritesScreen = (props) => {
+  const [flatListRef, setFlatListRef] = useState();
+  const [scrollOffset, setScrollOffset] = useState();
+
   const avaibleUniversities = useSelector(
     (state) => state.universitiesReducer.favoriteUniversities
   );
 
   const dispatch = useDispatch();
-  StoreReview.requestReview(); // store review'i detaylı incele
+  // StoreReview.requestReview(); // store review'i detaylı incele
 
   const listFavoriteUniversities = () => {
-    return avaibleUniversities.map(uni => { return "-" + uni.name + " / " + uni.department + "\n" }).toString().replace(',', '')
-  }
+    return avaibleUniversities
+      .map((uni) => {
+        return "-" + uni.name + " / " + uni.department + "\n";
+      })
+      .toString()
+      .replaceAll(",", "");
+  };
 
   // Share function
   const onShare = async () => {
@@ -44,10 +53,8 @@ const FavoritesScreen = (props) => {
 
   useEffect(() => {
     dispatch(loadFavorites());
-    props.navigation.setParams({ onShareParam: onShare })
+    props.navigation.setParams({ onShareParam: onShare });
   }, [dispatch]);
-
-
 
   if (avaibleUniversities.length === 0 || !avaibleUniversities) {
     return (
@@ -58,7 +65,24 @@ const FavoritesScreen = (props) => {
   }
 
   return (
-    <UniversityList data={avaibleUniversities} navigation={props.navigation} />
+    <View style={styles.container}>
+      <UniversityList
+        data={avaibleUniversities}
+        navigation={props.navigation}
+        scrollToTop={(ref) => setFlatListRef(ref)}
+        getScrollOffset={(offset) => setScrollOffset(offset)}
+      />
+      <ScrollToTopButton
+        position="left"
+        showBackground={false}
+        onPressMain={() =>
+          flatListRef.scrollToIndex({ animated: true, index: 0 })
+        }
+        visible={
+          scrollOffset > Dimensions.get("window").height / 20 ? true : false
+        }
+      />
+    </View>
   );
 };
 
@@ -81,12 +105,12 @@ FavoritesScreen.navigationOptions = (navData) => {
         <Item
           title="Paylaş"
           iconName="ios-share"
-          onPress={navData.navigation.getParam('onShareParam')}
+          iconSize={40}
+          onPress={navData.navigation.getParam("onShareParam")}
         />
       </HeaderButtons>
     ),
   };
-
 };
 
 const styles = StyleSheet.create({
@@ -99,6 +123,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  container: {
+    flex: 1,
   },
 });
 

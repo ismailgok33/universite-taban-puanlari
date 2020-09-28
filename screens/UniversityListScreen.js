@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useEffect, useRef } from "react";
-import { StyleSheet, View, Platform } from "react-native";
+import React, { useState, useCallback, useEffect } from "react";
+import { StyleSheet, View, Platform, Dimensions } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
 import { searchBar, SearchBar } from "react-native-elements";
@@ -15,10 +15,9 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 const UniversityListScreen = (props) => {
   const [orderState, setOrderState] = useState("name");
   const [searchValue, setSearchValue] = useState("");
-  // const [flatlistRef, setFlatlistRef] = useState();
+  const [flatListRef, setFlatListRef] = useState();
+  const [scrollOffset, setScrollOffset] = useState();
 
-  // const flatListRef = useRef();
-  const ref = React.createRef();
   const dispatch = useDispatch();
 
   const orderFilter = useCallback(() => {
@@ -99,18 +98,22 @@ const UniversityListScreen = (props) => {
         navigation={props.navigation}
         searchFilter={(text) => searchFilterHandler(text)}
         searchValue={searchValue}
-        ref={ref}
-      // ref={(ref) => setFlatlistRef(ref)}
+        scrollToTop={(ref) => setFlatListRef(ref)}
+        getScrollOffset={(offset) => setScrollOffset(offset)}
       />
       <FloatingActions
         style={styles.floatingButton}
         press={(name) => orderHandler(name)}
       />
       <ScrollToTopButton
-        position='left'
+        position="left"
         showBackground={false}
-        onPressMain={console.log(ref)}
-      // onPressMain={() => ref.scrollToIndex({ animated: true, index: 0 })}
+        onPressMain={() =>
+          flatListRef.scrollToIndex({ animated: true, index: 0 })
+        }
+        visible={
+          scrollOffset > Dimensions.get("window").height / 20 ? true : false
+        }
       />
     </View>
   );

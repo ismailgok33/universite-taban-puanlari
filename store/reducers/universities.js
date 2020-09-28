@@ -68,7 +68,10 @@ const universitiesReducer = (state = initialState, action) => {
         if (appliedFilters.noPrivate && !uni.isState) {
           return false;
         }
-        if (appliedFilters.noFullScholarship && uni.department.includes("Burslu")) {
+        if (
+          appliedFilters.noFullScholarship &&
+          uni.department.includes("Burslu")
+        ) {
           return false;
         }
         if (appliedFilters.no75Scholarship && uni.department.includes("%75")) {
@@ -80,7 +83,11 @@ const universitiesReducer = (state = initialState, action) => {
         if (appliedFilters.no25Scholarship && uni.department.includes("%25")) {
           return false;
         }
-        if (appliedFilters.noFullyPaid && !uni.isState && !uni.department.includes("İndirimli")) {
+        if (
+          appliedFilters.noFullyPaid &&
+          !uni.isState &&
+          !uni.department.includes("İndirimli")
+        ) {
           return false;
         }
         if (no4Years && !no2Years) {
@@ -136,6 +143,7 @@ const universitiesReducer = (state = initialState, action) => {
         (item) => {
           const itemData = `${item.name.toLocaleUpperCase()} ${item.department.toLocaleUpperCase()}`;
           const textData = action.searchText.toLocaleUpperCase();
+          const textDataList = textData.split(" ");
           if (
             textData == undefined ||
             textData == "" ||
@@ -146,7 +154,8 @@ const universitiesReducer = (state = initialState, action) => {
               filteredUniversities: state.filteredUniversitiesNoSearch,
             };
           }
-          return itemData.indexOf(textData) > -1;
+          return textDataList.every((token) => itemData.indexOf(token) > -1);
+          // return itemData.indexOf(textData) > -1;
         }
       );
       return { ...state, filteredUniversities: searchedUniversities };

@@ -28,26 +28,27 @@ const UniversityGridTile = (props) => {
     )
   );
 
-  const tagBackgroundColorHandler = tag => {
+  const tagBackgroundColorHandler = (tag) => {
     switch (tag) {
-      case 'SAY':
+      case "SAY":
         return styles.sayTagBC;
-      case 'SÖZ':
+      case "SÖZ":
         return styles.sozTagBC;
-      case 'EA':
+      case "EA":
         return styles.eaTagBC;
-      case 'DİL':
+      case "DİL":
         return styles.dilTagBC;
-      case 'TYT':
+      case "TYT":
         return styles.tytTagBC;
       default:
         return styles.sayTagBC;
     }
-  }
+  };
 
   return (
     <View style={styles.gridItem}>
-      <TouchableComponent style={styles.touchable} onPress={props.onSelect}>
+      {/* <View style={styles.touchable} onPress={props.onSelect}> */}
+      <View style={styles.touchable}>
         <View style={styles.container}>
           <View style={styles.leftContainer}>
             <View style={styles.upperContainer}>
@@ -85,7 +86,12 @@ const UniversityGridTile = (props) => {
               </HeaderButtons>
             </View>
             <View style={styles.scoreTagContainer}>
-              <DefaultText style={[styles.scoreTypeTag, tagBackgroundColorHandler(props.scoreType)]}>
+              <DefaultText
+                style={[
+                  styles.scoreTypeTag,
+                  tagBackgroundColorHandler(props.scoreType),
+                ]}
+              >
                 {""}
                 {props.scoreType}
                 {""}
@@ -93,7 +99,7 @@ const UniversityGridTile = (props) => {
             </View>
           </View>
         </View>
-      </TouchableComponent>
+      </View>
     </View>
   );
 };
@@ -130,7 +136,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#f4f6ff",
     flexDirection: "row",
-    backgroundColor: 'white',
+    backgroundColor: "white",
     // backgroundColor: Colors.accentColor,
   },
   leftContainer: {
@@ -182,16 +188,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#18c47f",
   },
   sozTagBC: {
-    backgroundColor: "red",
+    backgroundColor: "#264653",
   },
   eaTagBC: {
-    backgroundColor: "blue",
+    backgroundColor: "#e9c46a",
   },
   dilTagBC: {
-    backgroundColor: "gray",
+    backgroundColor: "#457b9d",
   },
   tytTagBC: {
-    backgroundColor: "yellow",
+    backgroundColor: "#e76f51",
   },
   text: {
     fontFamily: "open-sans",

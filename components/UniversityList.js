@@ -1,17 +1,18 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, FlatList, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import UniversityGridTile from "../components/UniversityGridTile";
 import { toggleFavorites, loadFavorites } from "../store/actions/universities";
-import { CITIES } from '../data/city-data';
+import { CITIES } from "../data/city-data";
 
 // const db = SQLite.openDatabase("favorites4.db");
 
-const UniversityList = React.forwardRef((props, ref) => {
+const UniversityList = (props) => {
   const dispatch = useDispatch();
 
-  // const ref = useRef();
+  const [flatListRef, setFlatListRef] = useState();
+  const [scrollOffset, setScrollOffset] = useState();
 
   // dispatch(loadFavorites());
   useEffect(() => {
@@ -22,8 +23,8 @@ const UniversityList = React.forwardRef((props, ref) => {
     dispatch(toggleFavorites(id));
   };
 
-  const mapCityIdToName = id => {
-    return CITIES.find(city => city.id === id).name;
+  const mapCityIdToName = (id) => {
+    return CITIES.find((city) => city.id === id).name;
   };
 
   const renderGridItem = (itemData) => {
@@ -41,12 +42,12 @@ const UniversityList = React.forwardRef((props, ref) => {
           toggleFavoriteHandler(itemData.item.id);
         }}
         uniId={itemData.item.id}
-        onSelect={() => {
-          props.navigation.navigate("UniversityDetail", {
-            universityId: itemData.item.id,
-            universityName: itemData.item.name,
-          });
-        }}
+        // onSelect={() => {
+        //   props.navigation.navigate("UniversityDetail", {
+        //     universityId: itemData.item.id,
+        //     universityName: itemData.item.name,
+        //   });
+        // }}
       />
     );
   };
@@ -57,12 +58,17 @@ const UniversityList = React.forwardRef((props, ref) => {
         data={props.data}
         renderItem={renderGridItem}
         keyExtractor={(item) => item.id}
-        ref={ref}
-      // ref={(ref) => props.ref(ref)}
+        ref={(ref) => setFlatListRef(ref)}
+        scrollToTop={props.scrollToTop(flatListRef)}
+        onScroll={(e) => {
+          setScrollOffset(e.nativeEvent.contentOffset.y);
+        }}
+        scrollEventThrottle={150}
+        scrollOffset={props.getScrollOffset(scrollOffset)}
       />
     </View>
   );
-})
+};
 
 const styles = StyleSheet.create({
   list: {
