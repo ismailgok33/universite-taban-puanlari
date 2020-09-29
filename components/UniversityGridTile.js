@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Platform,
   TouchableNativeFeedback,
+  TouchableWithoutFeedback
 } from "react-native";
 import { Directions } from "react-native-gesture-handler";
 import { Colors } from "react-native/Libraries/NewAppScreen";
@@ -16,6 +17,8 @@ import DefaultText from "../components/DefaultText";
 import FavoriteButton from "../components/FavoriteButton";
 
 const UniversityGridTile = (props) => {
+  const [lastTap, setLastTap] = useState(null);
+
   let TouchableComponent = TouchableOpacity;
 
   if (Platform.OS === "android" && Platform.Version >= 21) {
@@ -27,6 +30,17 @@ const UniversityGridTile = (props) => {
       (uni) => uni.id === props.uniId
     )
   );
+
+
+  const doubleTabHandler = () => {
+    const now = Date.now();
+    const DOUBLE_PRESS_DELAY = 300;
+    if (lastTap && (now - lastTap) < DOUBLE_PRESS_DELAY) {
+      props.press();
+    } else {
+      setLastTap(now)
+    }
+  };
 
   const tagBackgroundColorHandler = (tag) => {
     switch (tag) {
@@ -48,7 +62,7 @@ const UniversityGridTile = (props) => {
   return (
     <View style={styles.gridItem}>
       {/* <View style={styles.touchable} onPress={props.onSelect}> */}
-      <View style={styles.touchable}>
+      <TouchableWithoutFeedback style={styles.touchable} onPress={doubleTabHandler}>
         <View style={styles.container}>
           <View style={styles.leftContainer}>
             <View style={styles.upperContainer}>
@@ -99,7 +113,7 @@ const UniversityGridTile = (props) => {
             </View>
           </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };

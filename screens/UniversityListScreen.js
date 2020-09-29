@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import { StyleSheet, View, Platform, Dimensions } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
-import { searchBar, SearchBar } from "react-native-elements";
+import { SearchBar } from "react-native-elements";
 
 import UniversityList from "../components/UniversityList";
 // import { UNIVERSITIES } from "../data/university-data";

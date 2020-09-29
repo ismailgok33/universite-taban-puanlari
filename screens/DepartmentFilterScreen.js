@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, FlatList, SafeAreaView } from "react-native";
+import { View, StyleSheet, FlatList, SafeAreaView, Platform } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { SearchBar } from "react-native-elements";
 
 import DepartmentGridTile from "../components/DepartmentGridTile";
 import { DEPARTMENTS } from "../data/department-data";
 import HeaderButton from "../components/HeaderButton";
+import DefaultText from '../components/DefaultText';
 
 const DepartmentFilterScreen = (props) => {
   let selectedDepartmentList = props.navigation.getParam("selectedDepartments")
@@ -14,6 +16,8 @@ const DepartmentFilterScreen = (props) => {
   const [filteredDepartmentList, setfilteredDepartmentList] = useState(
     selectedDepartmentList == undefined ? DEPARTMENTS : selectedDepartmentList
   );
+  const [searchValue, setSearchValue] = useState("");
+  const [searchedDepartments, setSearchedDepartments] = useState(DEPARTMENTS);
 
   useEffect(() => {
     props.navigation.setParams({ savedDepartments: filteredDepartmentList });
@@ -24,6 +28,11 @@ const DepartmentFilterScreen = (props) => {
       return selectedDepartmentList.indexOf(name) == -1 ? false : true;
     }
     return false;
+  };
+
+  const searchFilterHandler = (text) => {
+    setSearchValue(text);
+    setSearchedDepartments(DEPARTMENTS.filter(department => department.name.toLocaleUpperCase().includes(text.toLocaleUpperCase())));
   };
 
   const renderGridDepartmentItem = (itemData) => {
@@ -46,10 +55,39 @@ const DepartmentFilterScreen = (props) => {
     );
   };
 
+  if (searchedDepartments.length === 0) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.list}>
+          <SearchBar
+            style={styles.searchBar}
+            placeholder="Bölüm ara..."
+            onChangeText={(text) => searchFilterHandler(text)}
+            value={searchValue}
+            platform={Platform.OS}
+          />
+          <View style={styles.buttomContainer}>
+            <DefaultText style={styles.content}>
+              Aramanıza uygun bölüm bulunamadı...
+          </DefaultText>
+          </View>
+
+        </View>
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.list}>
-        <FlatList data={DEPARTMENTS} renderItem={renderGridDepartmentItem} />
+        <SearchBar
+          style={styles.searchBar}
+          placeholder="Bölüm ara..."
+          onChangeText={(text) => searchFilterHandler(text)}
+          value={searchValue}
+          platform={Platform.OS}
+        />
+        <FlatList data={searchedDepartments} renderItem={renderGridDepartmentItem} />
       </View>
     </SafeAreaView>
   );
@@ -81,6 +119,16 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
   },
+  buttomContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  content: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 16,
+  }
 });
 
 export default DepartmentFilterScreen;

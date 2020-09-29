@@ -6,6 +6,8 @@ import { Divider } from 'react-native-elements';
 import DefaultText from './DefaultText';
 
 const CustomDrawerMenu = props => {
+    const ripple = TouchableNativeFeedback.Ripple('#adacac', false);
+
     return (
         <SafeAreaView
             style={styles.container}
@@ -25,17 +27,32 @@ const CustomDrawerMenu = props => {
                 <Divider style={{ backgroundColor: '#777f7c90' }} />
             </View>
 
-            <DrawerItems {...props} />
-            <TouchableNativeFeedback style={styles.lowerView}
-                onPress={() => props.navigation.navigate("About")}>
-                <View style={styles.aboutInfoContainer}>
-                    <Image
-                        source={require('../assets/about-icon.jpg')}
-                        style={{ height: 24, width: 24 }}
-                    />
-                    <DefaultText style={styles.text}> Hakkında </DefaultText>
-                </View>
-            </TouchableNativeFeedback>
+            <View style={styles.drawerItems}>
+                <DrawerItems
+                    {...props}
+                    style={styles.labelStyle}
+                // items={items.filter((item) => item.routeName !== 'About')}
+                />
+            </View>
+
+            <View style={{ marginTop: '5%' }}>
+                <Divider style={{ backgroundColor: '#777f7c90' }} />
+            </View>
+
+            <View elevation={6} style={styles.lowerView}>
+                <TouchableNativeFeedback
+                    background={ripple}
+                    onPress={() => props.navigation.navigate("About")}>
+                    <View style={styles.aboutInfoContainer}>
+                        <Image
+                            source={require('../assets/about-icon.jpg')}
+                            style={{ height: 24, width: 24, marginHorizontal: '5%' }}
+                        />
+                        <DefaultText style={styles.text}> Hakkında </DefaultText>
+                    </View>
+                </TouchableNativeFeedback>
+            </View>
+
         </SafeAreaView >
     );
 };
@@ -48,19 +65,30 @@ const styles = StyleSheet.create({
     iconContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '10%'
+        marginTop: '10%',
+        height: '30%'
+    },
+    drawerItems: {
+        height: '50%',
+    },
+    labelStyle: {
+        fontSize: 26,
+        color: 'red'
     },
     lowerView: {
-        alignItems: "flex-end",
-        alignSelf: 'flex-end',
+        alignItems: "flex-start",
         justifyContent: 'flex-end',
-        height: '20%'
+        // paddingLeft: '10%',
+        height: '10%',
+        width: '100%',
+        backgroundColor: '#ffffff'
     },
     aboutInfoContainer: {
         flex: 1,
+        height: '100%',
+        width: '100%',
         flexDirection: 'row',
-        // justifyContent: 'center',
-        alignItems: 'flex-end'
+        alignItems: 'center',
     },
     text: {
         fontFamily: 'open-sans-bold',

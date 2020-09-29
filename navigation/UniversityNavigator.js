@@ -18,6 +18,7 @@ import DepartmentFilterScreen from "../screens/DepartmentFilterScreen";
 import CountDownScreen from "../screens/CountDownScreen";
 import CustomDrawerMenu from '../components/CustomDrawerMenu';
 
+
 const screenStackConfig = {
   defaultNavigationOptions: {
     headerStyle: {
@@ -155,17 +156,23 @@ const DrawerNavigator = createDrawerNavigator(
           />
         ),
       },
+      contentOptions: {
+        labelStyle: {
+          color: 'red'
+        }
+      },
     },
     About: {
       screen: AboutStackNavigator,
       navigationOptions: {
-        drawerLabel: "Hakkında",
-        drawerIcon: ({ tintColor }) => (
-          <Image
-            source={require('../assets/about-icon.jpg')}
-            style={[styles.icon, { tintColor: tintColor }]}
-          />
-        ),
+        drawerLabel: () => null,
+        // drawerLabel: "Hakkında",
+        // drawerIcon: ({ tintColor }) => (
+        //   <Image
+        //     source={require('../assets/about-icon.jpg')}
+        //     style={[styles.icon, { tintColor: tintColor }]}
+        //   />
+        // ),
       },
     },
     CountDown: {
@@ -197,6 +204,9 @@ const styles = StyleSheet.create({
   icon: {
     width: 24,
     height: 24,
+  },
+  labelStyle: {
+    fontSize: 16
   }
 });
 
