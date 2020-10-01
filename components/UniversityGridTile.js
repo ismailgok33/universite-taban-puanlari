@@ -8,8 +8,6 @@ import {
   TouchableNativeFeedback,
   TouchableWithoutFeedback
 } from "react-native";
-import { Directions } from "react-native-gesture-handler";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector } from "react-redux";
 
@@ -61,7 +59,6 @@ const UniversityGridTile = (props) => {
 
   return (
     <View style={styles.gridItem}>
-      {/* <View style={styles.touchable} onPress={props.onSelect}> */}
       <TouchableWithoutFeedback style={styles.touchable} onPress={doubleTabHandler}>
         <View style={styles.container}>
           <View style={styles.leftContainer}>

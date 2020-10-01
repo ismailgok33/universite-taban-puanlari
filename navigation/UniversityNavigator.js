@@ -8,7 +8,7 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 import { createDrawerNavigator } from "react-navigation-drawer";
 
 import UniversityListScreen from "../screens/UniversityListScreen";
-import UniversityDetailScreen from "../screens/UniversityDetailScreen";
+// import UniversityDetailScreen from "../screens/UniversityDetailScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import FiltersScreen from "../screens/FiltersScreen";
 import Colors from "../constants/Colors";
@@ -38,7 +38,7 @@ const screenStackConfig = {
 const UniversityNavigator = createStackNavigator(
   {
     UniversityList: UniversityListScreen,
-    UniversityDetail: UniversityDetailScreen,
+    // UniversityDetail: UniversityDetailScreen,
     // Filter: FiltersScreen,
   },
   screenStackConfig
@@ -47,7 +47,7 @@ const UniversityNavigator = createStackNavigator(
 const FavoritesNavigator = createStackNavigator(
   {
     Favorites: FavoritesScreen,
-    UniversityDetail: UniversityDetailScreen,
+    // UniversityDetail: UniversityDetailScreen,
   },
   screenStackConfig
 );
@@ -180,10 +180,11 @@ const DrawerNavigator = createDrawerNavigator(
       navigationOptions: {
         drawerLabel: "Geri Sayım",
         drawerIcon: ({ tintColor }) => (
-          <Image
-            source={require('../assets/countdown-icon-4.png')}
-            style={[styles.icon, { tintColor: tintColor }]}
-          />
+          // <Image
+          //   source={require('../assets/countdown-icon-4.png')}
+          //   style={[styles.icon, { tintColor: tintColor }]}
+          // />
+          <Ionicons name="ios-information-circle-outline" size={24} color={'black'} />
         ),
       },
     },
