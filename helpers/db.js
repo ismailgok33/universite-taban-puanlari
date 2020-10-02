@@ -1,5 +1,4 @@
 import * as SQLite from "expo-sqlite";
-import universitiesReducer from "../store/reducers/universities";
 
 const db = SQLite.openDatabase("favorites4.db");
 

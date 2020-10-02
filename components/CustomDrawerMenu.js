@@ -21,11 +21,11 @@ const CustomDrawerMenu = props => {
                     </DefaultText> */}
                 <Image
                     source={require('../assets/app-icon.png')}
-                    style={{ height: 128, width: 128 }}
+                    style={{ height: '100%', width: '100%' }}
                 />
             </View>
 
-            <View style={{ marginTop: '5%' }}>
+            <View style={{ marginTop: '2%' }}>
                 <Divider style={{ backgroundColor: '#777f7c90' }} />
             </View>
 
@@ -71,7 +71,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: '10%',
         height: '30%',
-        backgroundColor: 'lightgray'
+        backgroundColor: '#D2F1EB',
+        borderRadius: 20,
+        overflow: 'hidden'
     },
     drawerItems: {
         height: '50%',

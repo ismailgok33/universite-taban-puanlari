@@ -42,12 +42,12 @@ const UniversityList = (props) => {
           toggleFavoriteHandler(itemData.item.id);
         }}
         uniId={itemData.item.id}
-        // onSelect={() => {
-        //   props.navigation.navigate("UniversityDetail", {
-        //     universityId: itemData.item.id,
-        //     universityName: itemData.item.name,
-        //   });
-        // }}
+      // onSelect={() => {
+      //   props.navigation.navigate("UniversityDetail", {
+      //     universityId: itemData.item.id,
+      //     universityName: itemData.item.name,
+      //   });
+      // }}
       />
     );
   };

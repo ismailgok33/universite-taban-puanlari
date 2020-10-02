@@ -1,17 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, SafeAreaView, Dimensions } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { ProgressChart } from "expo-chart-kit";
 import { Divider } from "react-native-elements";
+import CountDown from 'react-native-countdown-component';
+import moment from 'moment';
 
 import DefaultText from "../components/DefaultText";
 import HeaderButton from "../components/HeaderButton";
 import Colors from "../constants/Colors";
 
 const CountDownScreen = (props) => {
+  // const [tytDate, setTytDate] = useState();
+
   const dataTyt = [0.9];
   const dataAyt = [0.8];
   const dataYdt = [1];
+
+  const now = moment();
+  const tytDate = moment("2020 10 03 10:00", "YYYY MM DD HH:SS");
+
+  const difference = (tytDate - now) / 100;
+  console.log('now: ' + now);
+  console.log('tytDate: ' + tytDate);
+  console.log('difference: ' + difference);
+
+  // var expirydate = '2020-10-2 17:00:45';//You can set your own date-time
+  // //Let suppose we have to show the countdown for above date-time 
+
+  // var diffr = moment.duration(moment(expirydate).diff(moment(date)));
+  // //difference of the expiry date-time given and current date-time
+
+  // var hours = parseInt(diffr.asHours());
+  // var minutes = parseInt(diffr.minutes());
+  // var seconds = parseInt(diffr.seconds());
+
+  // var d = hours * 60 * 60 + minutes * 60 + seconds;
+  // setTytDate(d);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -19,7 +44,7 @@ const CountDownScreen = (props) => {
         <DefaultText style={styles.text}>
           X sınavına kalan süre: '99:99:99'
         </DefaultText>
-        <ProgressChart
+        {/* <ProgressChart
           data={dataTyt}
           width={Dimensions.get("window").width - 50}
           height={Dimensions.get("window").height / 5}
@@ -37,6 +62,18 @@ const CountDownScreen = (props) => {
             borderRadius: 3,
             alignSelf: "center",
           }}
+        /> */}
+        <CountDown
+          // until={tytDate}
+          until={difference}
+          //duration of countdown in seconds
+          timetoShow={('D', 'H')}
+          //formate to show
+          onFinish={() => alert('finished')}
+          //on Finish call
+          onPress={() => alert('hello')}
+          //on Press call
+          size={20}
         />
       </View>
 
