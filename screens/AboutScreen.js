@@ -12,7 +12,7 @@ const AboutScreen = (props) => {
       <View style={styles.iconContainer}>
         <Image
           source={require("../assets/app-icon.png")}
-          style={{ height: 256, width: 256 }}
+          style={styles.image}
         />
       </View>
       <View style={styles.aboutTextContainer}>
@@ -74,6 +74,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: "10%",
+  },
+  image: {
+    height: 256,
+    width: 256,
+    borderRadius: 256 / 2,
+    overflow: "hidden",
   },
   content: {
     fontSize: 16,
