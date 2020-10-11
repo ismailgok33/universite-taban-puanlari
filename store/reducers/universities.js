@@ -55,10 +55,6 @@ const universitiesReducer = (state = initialState, action) => {
       return { ...state, favoriteUniversities: uploadedFavories };
     case SET_FILTERS:
       const appliedFilters = action.filters;
-      console.log("appliedFilters.filteredCities:");
-      console.log(appliedFilters.filteredCities);
-      console.log("appliedFilters.filteredDepartments:");
-      console.log(appliedFilters.filteredDepartments);
       const no4Years = appliedFilters.no4Years;
       const no2Years = appliedFilters.no2Years;
       const updatedFilteredUniversities = state.universities.filter((uni) => {
@@ -160,31 +156,23 @@ const universitiesReducer = (state = initialState, action) => {
       );
       return { ...state, filteredUniversities: searchedUniversities };
     case SET_ORDER:
-      // console.log("set_order girdi action.order:");
-      // console.log(action.order);
       if (action.order === "score") {
-        // console.log("score'a girdi.");
         const updatedFilteredUniversities = state.filteredUniversities.sort(
           (a, b) => {
             return a.score < b.score ? 1 : b.score < a.score ? -1 : 0;
           }
         );
-        // console.log("updatedFilteredUniversities:");
-        // console.log(updatedFilteredUniversities);
         return {
           ...state,
           filteredUniversities: updatedFilteredUniversities,
         };
       } else {
         // order by name
-        // console.log("name'e girdi.");
         const updatedFilteredUniversities2 = state.filteredUniversities.sort(
           (a, b) => {
             return a.name > b.name ? 1 : b.name > a.name ? -1 : 0;
           }
         );
-        // console.log("updatedFilteredUniversities2:");
-        // console.log(updatedFilteredUniversities2);
         return {
           ...state,
           filteredUniversities: updatedFilteredUniversities2,

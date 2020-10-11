@@ -9,7 +9,7 @@ import {
   SafeAreaView,
   Button,
   TouchableOpacity,
-  Alert
+  Alert,
 } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useDispatch } from "react-redux";
@@ -58,15 +58,9 @@ const FiltersScreen = (props) => {
       filteredDepartments: savedDepartmentList,
     };
 
-    console.log("savedCities:");
-    console.log(savedCityList);
-
-    console.log("savedDepartments:");
-    console.log(savedDepartmentList);
-
     dispatch(setFilters(appliedFilters));
     // props.navigation.navigate('UniversityList');
-    props.navigation.navigate('UniversityFavs');
+    props.navigation.navigate("UniversityFavs");
   }, [
     noStateFilter,
     noPrivateFilter,
@@ -85,9 +79,6 @@ const FiltersScreen = (props) => {
     savedDepartmentList,
     dispatch,
   ]);
-
-  console.log("savedDepartmentList:");
-  console.log(savedDepartmentList);
 
   useEffect(() => {
     props.navigation.setParams({ save: saveFilters });
@@ -148,20 +139,35 @@ const FiltersScreen = (props) => {
   };
 
   const deleteCityFilterAlertHandler = () =>
-    Alert.alert('Emin misiniz?', 'Seçtiğiniz şehirleri kaldırmak istediğinize emin misiniz?', [
-      { text: 'Hayır', style: 'default' },
-      { text: 'Evet', style: 'destructive', onPress: deleteCityFilterHandler }
-    ]);
+    Alert.alert(
+      "Emin misiniz?",
+      "Seçtiğiniz şehirleri kaldırmak istediğinize emin misiniz?",
+      [
+        { text: "Hayır", style: "default" },
+        {
+          text: "Evet",
+          style: "destructive",
+          onPress: deleteCityFilterHandler,
+        },
+      ]
+    );
 
   const deleteDepartmetnFilterAlertHandler = () =>
-    Alert.alert('Emin misiniz?', 'Seçtiğiniz bölümleri kaldırmak istediğinize emin misiniz?', [
-      { text: 'Hayır', style: 'default' },
-      { text: 'Evet', style: 'destructive', onPress: deleteDepartmentFilterHandler }
-    ]);
+    Alert.alert(
+      "Emin misiniz?",
+      "Seçtiğiniz bölümleri kaldırmak istediğinize emin misiniz?",
+      [
+        { text: "Hayır", style: "default" },
+        {
+          text: "Evet",
+          style: "destructive",
+          onPress: deleteDepartmentFilterHandler,
+        },
+      ]
+    );
 
   return (
     <SafeAreaView style={styles.screen}>
-
       <View style={styles.filterButtonContainer}>
         <TouchableOpacity
           onPress={() =>
@@ -172,7 +178,9 @@ const FiltersScreen = (props) => {
           style={styles.filterButton}
         >
           <DefaultText style={styles.textHeader}>Şehir seçiniz.</DefaultText>
-          <DefaultText style={styles.textDetail}>{'"' + showCityTags() + '" '}</DefaultText>
+          <DefaultText style={styles.textDetail}>
+            {'"' + showCityTags() + '" '}
+          </DefaultText>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={deleteCityFilterAlertHandler}
@@ -194,7 +202,9 @@ const FiltersScreen = (props) => {
           style={styles.filterButton}
         >
           <DefaultText style={styles.textHeader}>Bölüm seçiniz.</DefaultText>
-          <DefaultText style={styles.textDetail}>{'"' + showDepartmentTags() + '" '}</DefaultText>
+          <DefaultText style={styles.textDetail}>
+            {'"' + showDepartmentTags() + '" '}
+          </DefaultText>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={deleteDepartmetnFilterAlertHandler}
@@ -206,7 +216,10 @@ const FiltersScreen = (props) => {
 
       {/* <View style={styles.seperatorLine}></View> */}
 
-      <DefaultText style={styles.filterCoupleHeader}> Burs Filtresi </DefaultText>
+      <DefaultText style={styles.filterCoupleHeader}>
+        {" "}
+        Burs Filtresi{" "}
+      </DefaultText>
 
       <View style={styles.filterCouple}>
         <View style={styles.filterContainer}>
@@ -274,13 +287,14 @@ const FiltersScreen = (props) => {
         </View>
       </View>
 
-
       {/* <View style={styles.seperatorLine}></View> */}
 
-      <DefaultText style={styles.filterCoupleHeader}> Öğretim Yılı Filtresi </DefaultText>
+      <DefaultText style={styles.filterCoupleHeader}>
+        {" "}
+        Öğretim Yılı Filtresi{" "}
+      </DefaultText>
 
       <View style={styles.filterCouple}>
-
         <View style={styles.filterContainer}>
           <Text>Lisans bölümlerini gösterme</Text>
           <Switch
@@ -304,10 +318,12 @@ const FiltersScreen = (props) => {
 
       {/* <View style={styles.seperatorLine}></View> */}
 
-      <DefaultText style={styles.filterCoupleHeader}> Öğretim Dili Filtresi </DefaultText>
+      <DefaultText style={styles.filterCoupleHeader}>
+        {" "}
+        Öğretim Dili Filtresi{" "}
+      </DefaultText>
 
       <View style={styles.filterCouple}>
-
         <View style={styles.filterContainer}>
           <Text>İngilizce bölümlerini gösterme</Text>
           <Switch
@@ -328,7 +344,6 @@ const FiltersScreen = (props) => {
           />
         </View>
       </View>
-
     </SafeAreaView>
   );
 };
@@ -370,8 +385,8 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: "center",
     alignItems: "center",
-    justifyContent: 'space-between',
-    paddingVertical: 10
+    justifyContent: "space-between",
+    paddingVertical: 10,
   },
   title: {
     fontFamily: "open-sans-bold",
@@ -380,50 +395,50 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   filterCoupleHeader: {
-    fontFamily: 'open-sans-bold',
+    fontFamily: "open-sans-bold",
     fontSize: 14,
-    textDecorationLine: 'underline'
+    textDecorationLine: "underline",
   },
   filterCouple: {
-    width: '100%',
+    width: "100%",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 1,
     },
-    shadowOpacity: 0.20,
+    shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 2,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     padding: 5,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   filterContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    margin: 2
+    margin: 2,
   },
   text: {
     paddingTop: 20,
   },
   filterButtonContainer: {
     flexDirection: "row",
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '10%',
-    borderColor: 'gray',
+    justifyContent: "center",
+    alignItems: "center",
+    height: "10%",
+    borderColor: "gray",
     borderWidth: 1,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 1,
     },
-    shadowOpacity: 0.20,
+    shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 2,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   filterButton: {
     // flex: 1,
@@ -436,35 +451,34 @@ const styles = StyleSheet.create({
     // flex: 1,
     width: "20%",
     // backgroundColor: "red",
-    paddingVertical: 10
+    paddingVertical: 10,
   },
   textHeader: {
-    fontFamily: 'open-sans',
+    fontFamily: "open-sans",
     fontSize: 16,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   textDetail: {
     paddingTop: 5,
     paddingHorizontal: 10,
-    fontFamily: 'open-sans',
+    fontFamily: "open-sans",
     fontSize: 12,
-    fontStyle: 'italic'
+    fontStyle: "italic",
   },
   deleteText: {
-    fontFamily: 'open-sans-bold',
+    fontFamily: "open-sans-bold",
     // color: Colors.accentColor,
-    color: 'darkblue',
+    color: "darkblue",
     fontSize: 14,
-    textAlign: 'center',
+    textAlign: "center",
     // textDecorationLine: 'underline'
   },
   seperatorLine: {
-    borderBottomColor: 'black',
+    borderBottomColor: "black",
     borderBottomWidth: 1,
     margin: 10,
-    width: '100%'
-
-  }
+    width: "100%",
+  },
 });
 
 export default FiltersScreen;

@@ -37,11 +37,9 @@ export const insertFavorite = (uniId) => {
                 "INSERT INTO favorites4 (uniId) VALUES (?);",
                 [uniId],
                 (_, result) => {
-                  // console.log("eklendi1:");
                   resolve(result);
                 },
                 (_, err) => {
-                  // console.log("eklenemedi1:");
                   reject(err);
                 }
               );
@@ -53,11 +51,9 @@ export const insertFavorite = (uniId) => {
                 `DELETE FROM favorites4 WHERE uniId = "${uniId}"`,
                 [],
                 (_, result) => {
-                  // console.log("silindi2:");
                   resolve(result);
                 },
                 (_, err) => {
-                  // console.log("silinemedi2:");
                   reject(err);
                 }
               );
@@ -65,7 +61,6 @@ export const insertFavorite = (uniId) => {
           }
         },
         (_, err) => {
-          // console.log("hata1:");
           reject(err);
         }
       );

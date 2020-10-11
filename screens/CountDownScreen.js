@@ -15,8 +15,8 @@ const CountDownScreen = (props) => {
 
   const now = moment();
   const tytDate = moment("2020-10-05 10:00");
-  const aytDate = moment("2020-10-06 10:00");
-  const ydtDate = moment("2020-10-12 10:00");
+  const aytDate = moment("2020-10-05 10:00");
+  const ydtDate = moment("2020-10-05 10:00");
 
   const tytDifference = (tytDate - now) / 1000;
   const aytDifference = (aytDate - now) / 1000;

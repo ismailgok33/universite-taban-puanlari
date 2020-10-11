@@ -38,9 +38,6 @@ const UniversityListScreen = (props) => {
     (state) => state.universitiesReducer.filteredUniversities
   );
 
-  // console.log("avaibleUniversities:");
-  // console.log(avaibleUniversities);
-
   useEffect(() => {
     props.navigation.setParams({ orderInfo: "Alfabetik Sıralı" });
   }, []);

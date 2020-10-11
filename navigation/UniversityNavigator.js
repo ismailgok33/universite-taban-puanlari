@@ -16,8 +16,7 @@ import AboutScreen from "../screens/AboutScreen";
 import CitiesFilterScreen from "../screens/CitiesFilterScreen";
 import DepartmentFilterScreen from "../screens/DepartmentFilterScreen";
 import CountDownScreen from "../screens/CountDownScreen";
-import CustomDrawerMenu from '../components/CustomDrawerMenu';
-
+import CustomDrawerMenu from "../components/CustomDrawerMenu";
 
 const screenStackConfig = {
   defaultNavigationOptions: {
@@ -67,8 +66,8 @@ const screenTabConfig = {
         Platform.OS === "android" ? (
           <Text style={{ fontFamily: "open-sans-bold" }}> Üniversiteler </Text>
         ) : (
-            "Üniversiteler"
-          ),
+          "Üniversiteler"
+        ),
     },
   },
   Favorites: {
@@ -76,15 +75,17 @@ const screenTabConfig = {
     navigationOptions: {
       tabBarLabel: "Favoriler",
       tabBarIcon: (tabInfo) => {
-        return <Ionicons name="ios-heart" size={25} color={tabInfo.tintColor} />;
+        return (
+          <Ionicons name="ios-heart" size={25} color={tabInfo.tintColor} />
+        );
       },
       tabBarColor: Colors.accentColor,
       tabBarLabel:
         Platform.OS === "android" ? (
           <Text style={{ fontFamily: "open-sans-bold" }}> Favoriler </Text>
         ) : (
-            "Favoriler"
-          ),
+          "Favoriler"
+        ),
     },
   },
 };
@@ -92,21 +93,21 @@ const screenTabConfig = {
 const UniversityFavTabNavigator =
   Platform.OS === "android"
     ? createMaterialBottomTabNavigator(screenTabConfig, {
-      activeColor: "white",
-      shifting: true,
-      barStyle: {
-        backgroundColor: Colors.primaryColor,
-      },
-    })
-    : createBottomTabNavigator(screenTabConfig, {
-      tabBarOptions: {
-        labelStyle: {
-          fontFamily: "open-sans-bold",
+        activeColor: "white",
+        shifting: true,
+        barStyle: {
+          backgroundColor: Colors.primaryColor,
         },
-        activeTintColor: Colors.accentColor,
-        //   inactiveTintColor: "",
-      },
-    });
+      })
+    : createBottomTabNavigator(screenTabConfig, {
+        tabBarOptions: {
+          labelStyle: {
+            fontFamily: "open-sans-bold",
+          },
+          activeTintColor: Colors.accentColor,
+          //   inactiveTintColor: "",
+        },
+      });
 
 const FiltersStackNavigator = createStackNavigator(
   {
@@ -138,10 +139,11 @@ const DrawerNavigator = createDrawerNavigator(
       navigationOptions: {
         drawerLabel: "Üniversiteler",
         drawerIcon: ({ tintColor }) => (
-          <Image
-            source={require('../assets/university-icon-2.png')}
-            style={[styles.icon, { tintColor: tintColor }]}
-          />
+          // <Image
+          //   source={require("../assets/university-icon-2.png")}
+          //   style={[styles.icon, { tintColor: tintColor }]}
+          // />
+          <Ionicons name="ios-school" size={24} color={"black"} />
         ),
       },
     },
@@ -151,15 +153,15 @@ const DrawerNavigator = createDrawerNavigator(
         drawerLabel: "Filtrele",
         drawerIcon: ({ tintColor }) => (
           <Image
-            source={require('../assets/filter-icon-2.png')}
+            source={require("../assets/filter-icon-2.png")}
             style={[styles.icon, { tintColor: tintColor }]}
           />
         ),
       },
       contentOptions: {
         labelStyle: {
-          color: 'red'
-        }
+          color: "red",
+        },
       },
     },
     About: {
@@ -184,13 +186,13 @@ const DrawerNavigator = createDrawerNavigator(
           //   source={require('../assets/countdown-icon-4.png')}
           //   style={[styles.icon, { tintColor: tintColor }]}
           // />
-          <Ionicons name="ios-information-circle-outline" size={24} color={'black'} />
+          <Ionicons name="ios-timer" size={24} color={"black"} />
         ),
       },
     },
   },
   {
-    initialRouteName: 'UniversityFavs',
+    initialRouteName: "UniversityFavs",
     contentComponent: CustomDrawerMenu,
     contentOptions: {
       activeTintColor: Colors.accentColor,
@@ -207,8 +209,8 @@ const styles = StyleSheet.create({
     height: 24,
   },
   labelStyle: {
-    fontSize: 16
-  }
+    fontSize: 16,
+  },
 });
 
 export default createAppContainer(DrawerNavigator);

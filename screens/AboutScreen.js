@@ -17,8 +17,8 @@ const AboutScreen = (props) => {
       </View>
       <View style={styles.aboutTextContainer}>
         <DefaultText style={styles.content}>
-          XXXXX 2021, 2020 yılı YKS-TYT puan ve sıralamaları içeren üniversite
-          ve bölüm seçmenizde size yardımcı olacak resmi olmayan bir
+          Tercih Kılavuzu 2021, 2020 yılı YKS-TYT puan ve sıralamaları içeren
+          üniversite ve bölüm seçmenizde size yardımcı olacak resmi olmayan bir
           uygulamadır. Üniversite taban puanları ÖSYM'nin güncel yayınladığı
           verilerden alınmıştır. Hedefinize ulaşmanız dileğiyle... Başarılar.
         </DefaultText>

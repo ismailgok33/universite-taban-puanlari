@@ -12,7 +12,6 @@ export const toggleFavorites = (id) => {
       const dbResult = await insertFavorite(id);
       dispatch({ type: TOGGLE_FAVORITE, universityId: id });
     } catch (err) {
-      console.log(err);
       throw err;
     }
   };
@@ -24,7 +23,6 @@ export const loadFavorites = () => {
       const dbResult = await fetchFavorite();
       dispatch({ type: LOAD_FAVORITES, favUniversities: dbResult.rows._array });
     } catch (err) {
-      console.log(err);
       throw err;
     }
   };
