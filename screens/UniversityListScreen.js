@@ -3,6 +3,14 @@ import { StyleSheet, View, Platform, Dimensions } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
 import { SearchBar } from "react-native-elements";
+import Constants from 'expo-constants';
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+  setTestDeviceIDAsync,
+} from 'expo-ads-admob';
 
 import UniversityList from "../components/UniversityList";
 // import { UNIVERSITIES } from "../data/university-data";
@@ -11,6 +19,7 @@ import DefaultText from "../components/DefaultText";
 import { setOrder, search } from "../store/actions/universities";
 import FloatingActions from "../components/FloatingActions";
 import ScrollToTopButton from "../components/ScrollToTopButton";
+
 
 const UniversityListScreen = (props) => {
   const [orderState, setOrderState] = useState("name");
@@ -33,6 +42,11 @@ const UniversityListScreen = (props) => {
   // }, [orderFilter]);
 
   orderFilter();
+
+  const testID = 'ca-app-pub-3940256099942544/6300978111';
+  const productionID = 'my-id';
+
+  const adUnitID = Constants.isDevice && !__DEV__ ? productionId : testID;
 
   let avaibleUniversities = useSelector(
     (state) => state.universitiesReducer.filteredUniversities
@@ -71,11 +85,14 @@ const UniversityListScreen = (props) => {
           <DefaultText style={styles.content}>
             Üniversite bulunamadı. Filtreleri kontrol ediniz.
           </DefaultText>
-          <FloatingActions
-            style={styles.floatingButton}
-            press={(name) => orderHandler(name)}
-          />
         </View>
+        <AdMobBanner
+          bannerSize="smartBannerPortrait"
+          adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
+          servePersonalizedAds={true}
+          // style={{ alignSelf: "center" }}
+          onDidFailToReceiveAdWithError={console.log("Boş Üniversite listesinde reklam gösterirken hatayla karşılaşıldı.")}
+        />
       </View>
     );
   }
@@ -111,6 +128,14 @@ const UniversityListScreen = (props) => {
         visible={
           scrollOffset > Dimensions.get("window").height / 20 ? true : false
         }
+      />
+
+      <AdMobBanner
+        bannerSize="smartBannerPortrait"
+        adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
+        servePersonalizedAds={true}
+        // style={{ alignSelf: "center" }}
+        onDidFailToReceiveAdWithError={console.log("Dolu Üniversite listesinde reklam gösterirken hatayla karşılaşıldı.")}
       />
     </View>
   );

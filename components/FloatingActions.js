@@ -29,6 +29,7 @@ const FloatingButton = (props) => {
       floatingIcon={require('../assets/sort-icon-1.png')}
       iconWidth={30}
       iconHeight={30}
+      distanceToEdge={{ vertical: 50, horizontal: 30 }}
       {...props}
       actions={actions}
       onPressItem={(name) => props.press(name)}

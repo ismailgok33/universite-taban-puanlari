@@ -12,9 +12,10 @@ const ScrollToTopButton = (props) => {
       floatingIcon={require("../assets/scroll-to-top-arrow.png")}
       iconWidth={30}
       iconHeight={30}
+      distanceToEdge={{ vertical: 50, horizontal: 30 }}
       {...props}
-      // actions={actions}
-      // onPressItem={(name) => props.press(name)}
+    // actions={actions}
+    // onPressItem={(name) => props.press(name)}
     />
   );
 };

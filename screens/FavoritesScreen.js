@@ -3,6 +3,14 @@ import { StyleSheet, View, Share, Dimensions } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
 import * as StoreReview from "expo-store-review";
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+  setTestDeviceIDAsync,
+} from 'expo-ads-admob';
+import Constants from 'expo-constants';
 
 // import { UNIVERSITIES } from "../data/university-data";
 import UniversityList from "../components/UniversityList";
@@ -21,6 +29,11 @@ const FavoritesScreen = (props) => {
 
   const dispatch = useDispatch();
   // StoreReview.requestReview(); // store review'i detaylı incele
+
+  const testID = 'ca-app-pub-3940256099942544/6300978111';
+  const productionID = 'my-id';
+
+  const adUnitID = Constants.isDevice && !__DEV__ ? productionId : testID;
 
   const listFavoriteUniversities = () => {
     return avaibleUniversities
@@ -60,6 +73,13 @@ const FavoritesScreen = (props) => {
     return (
       <View style={styles.content}>
         <DefaultText>Favori üniversite bulunamadı.</DefaultText>
+        <AdMobBanner
+          bannerSize="smartBannerPortrait"
+          adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
+          servePersonalizedAds={true}
+          style={{ alignSelf: "center" }}
+          onDidFailToReceiveAdWithError={console.log("Boş favorilerde reklam gösterirken hatayla karşılaşıldı.")}
+        />
       </View>
     );
   }
@@ -81,6 +101,13 @@ const FavoritesScreen = (props) => {
         visible={
           scrollOffset > Dimensions.get("window").height / 20 ? true : false
         }
+      />
+      <AdMobBanner
+        bannerSize="smartBannerPortrait"
+        adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
+        servePersonalizedAds={true}
+        // style={{ alignSelf: "center" }}
+        onDidFailToReceiveAdWithError={console.log("Dolu favorilerde reklam gösterirken hatayla karşılaşıldı.")}
       />
     </View>
   );
