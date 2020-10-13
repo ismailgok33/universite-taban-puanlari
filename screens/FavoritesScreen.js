@@ -9,8 +9,8 @@ import {
   PublisherBanner,
   AdMobRewarded,
   setTestDeviceIDAsync,
-} from 'expo-ads-admob';
-import Constants from 'expo-constants';
+} from "expo-ads-admob";
+import Constants from "expo-constants";
 
 // import { UNIVERSITIES } from "../data/university-data";
 import UniversityList from "../components/UniversityList";
@@ -30,8 +30,8 @@ const FavoritesScreen = (props) => {
   const dispatch = useDispatch();
   // StoreReview.requestReview(); // store review'i detaylı incele
 
-  const testID = 'ca-app-pub-3940256099942544/6300978111';
-  const productionID = 'my-id';
+  const testID = "ca-app-pub-3940256099942544/6300978111";
+  const productionID = "my-id";
 
   const adUnitID = Constants.isDevice && !__DEV__ ? productionId : testID;
 
@@ -72,14 +72,20 @@ const FavoritesScreen = (props) => {
   if (avaibleUniversities.length === 0 || !avaibleUniversities) {
     return (
       <View style={styles.content}>
-        <DefaultText>Favori üniversite bulunamadı.</DefaultText>
-        <AdMobBanner
-          bannerSize="smartBannerPortrait"
-          adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
-          servePersonalizedAds={true}
-          style={{ alignSelf: "center" }}
-          onDidFailToReceiveAdWithError={console.log("Boş favorilerde reklam gösterirken hatayla karşılaşıldı.")}
-        />
+        <View stlye={styles.text}>
+          <DefaultText>Favori üniversite bulunamadı.</DefaultText>
+        </View>
+        <View style={styles.admobStlye}>
+          <AdMobBanner
+            bannerSize="smartBannerPortrait"
+            adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
+            servePersonalizedAds={true}
+            style={{ alignSelf: "center" }}
+            onDidFailToReceiveAdWithError={console.log(
+              "Boş favorilerde reklam gösterirken hatayla karşılaşıldı."
+            )}
+          />
+        </View>
       </View>
     );
   }
@@ -106,8 +112,9 @@ const FavoritesScreen = (props) => {
         bannerSize="smartBannerPortrait"
         adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
         servePersonalizedAds={true}
-        // style={{ alignSelf: "center" }}
-        onDidFailToReceiveAdWithError={console.log("Dolu favorilerde reklam gösterirken hatayla karşılaşıldı.")}
+        onDidFailToReceiveAdWithError={console.log(
+          "Dolu favorilerde reklam gösterirken hatayla karşılaşıldı."
+        )}
       />
     </View>
   );
@@ -153,6 +160,17 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+  },
+  text: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+  },
+  admobStlye: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
   },
 });
 

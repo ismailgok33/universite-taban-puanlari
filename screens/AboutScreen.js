@@ -2,11 +2,23 @@ import React from "react";
 import { View, StyleSheet, SafeAreaView, Button, Image } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import * as Linking from "expo-linking";
+import Constants from "expo-constants";
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+  setTestDeviceIDAsync,
+} from "expo-ads-admob";
 
 import DefaultText from "../components/DefaultText";
 import HeaderButton from "../components/HeaderButton";
 
 const AboutScreen = (props) => {
+  const testID = "ca-app-pub-3940256099942544/6300978111";
+  const productionID = "my-id";
+
+  const adUnitID = Constants.isDevice && !__DEV__ ? productionId : testID;
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.iconContainer}>
@@ -36,11 +48,11 @@ const AboutScreen = (props) => {
         />
       </View>
       <AdMobBanner
-        bannerSize="banner"
-        adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
+        bannerSize="smartBannerPortrait"
+        adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
         servePersonalizedAds={true}
         style={{ alignSelf: "center" }}
-      // onDidFailToReceiveAdWithError={this.bannerError} 
+        // onDidFailToReceiveAdWithError={this.bannerError}
       />
     </SafeAreaView>
   );

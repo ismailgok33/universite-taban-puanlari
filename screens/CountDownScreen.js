@@ -5,6 +5,14 @@ import { ProgressChart } from "expo-chart-kit";
 import { Divider } from "react-native-elements";
 import CountDown from "react-native-countdown-component";
 import moment from "moment";
+import Constants from "expo-constants";
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+  setTestDeviceIDAsync,
+} from "expo-ads-admob";
 
 import DefaultText from "../components/DefaultText";
 import HeaderButton from "../components/HeaderButton";
@@ -12,6 +20,10 @@ import Colors from "../constants/Colors";
 
 const CountDownScreen = (props) => {
   // const [tytDate, setTytDate] = useState();
+  const testID = "ca-app-pub-3940256099942544/6300978111";
+  const productionID = "my-id";
+
+  const adUnitID = Constants.isDevice && !__DEV__ ? productionId : testID;
 
   const now = moment();
   const tytDate = moment("2020-10-05 10:00");
@@ -90,11 +102,11 @@ const CountDownScreen = (props) => {
         />
       </View>
       <AdMobBanner
-        bannerSize="banner"
-        adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
+        bannerSize="smartBannerPortrait"
+        adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
         servePersonalizedAds={true}
         style={{ alignSelf: "center" }}
-      // onDidFailToReceiveAdWithError={this.bannerError} 
+        // onDidFailToReceiveAdWithError={this.bannerError}
       />
     </SafeAreaView>
   );
