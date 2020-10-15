@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Share, Dimensions } from "react-native";
+import { StyleSheet, View, Share, Dimensions, Image } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
 import * as StoreReview from "expo-store-review";
@@ -73,7 +73,10 @@ const FavoritesScreen = (props) => {
     return (
       <View style={styles.content}>
         <View stlye={styles.text}>
-          <DefaultText>Favori üniversite bulunamadı.</DefaultText>
+          <Image
+            source={require("../assets/no-favorites.png")}
+            style={styles.noFavoriteImage}
+          />
         </View>
         <View style={styles.admobStlye}>
           <AdMobBanner
@@ -160,6 +163,14 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+  },
+  noFavoriteImage: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 400,
+    height: 400,
+    resizeMode: 'contain'
   },
   text: {
     flex: 1,

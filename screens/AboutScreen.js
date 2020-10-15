@@ -37,13 +37,9 @@ const AboutScreen = (props) => {
       </View>
 
       <View style={styles.buttonContainer}>
-        {/* <Button
-          style={styles.feedBackButton}
-          onPress={() => Linking.openURL('mailto:support@example.com')}
-          title="Uygulamayı değerlendir" /> */}
         <Button
           style={styles.feedBackButton}
-          onPress={() => Linking.openURL("mailto:support@example.com")}
+          onPress={() => Linking.openURL("mailto:tercihkilavuzuapp@gmail.com")}
           title="Geri bildirim gönder"
         />
       </View>
@@ -52,7 +48,7 @@ const AboutScreen = (props) => {
         adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
         servePersonalizedAds={true}
         style={{ alignSelf: "center" }}
-        // onDidFailToReceiveAdWithError={this.bannerError}
+      // onDidFailToReceiveAdWithError={this.bannerError}
       />
     </SafeAreaView>
   );

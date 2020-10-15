@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { StyleSheet, View, Platform, Dimensions } from "react-native";
+import { StyleSheet, View, Platform, Dimensions, Button, Image } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
 import { SearchBar } from "react-native-elements";
@@ -29,10 +29,19 @@ const UniversityListScreen = (props) => {
 
   const dispatch = useDispatch();
 
+  const showInterstitialBanner = async () => {
+    try {
+      await AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); // Test ID, Replace with your-admob-unit-id
+      await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
+      await AdMobInterstitial.showAdAsync();
+    }
+    catch (e) {
+      console.log("showInterstitialBanner hatası");
+    }
+
+  }
+
   const orderFilter = useCallback(() => {
-    // const appliedOrder = {
-    //   order: orderState,
-    // };
 
     dispatch(setOrder(orderState));
   }, [orderState, dispatch]);
@@ -55,6 +64,8 @@ const UniversityListScreen = (props) => {
   useEffect(() => {
     props.navigation.setParams({ orderInfo: "Alfabetik Sıralı" });
   }, []);
+
+
 
   const searchFilterHandler = (text) => {
     setSearchValue(text);
@@ -82,9 +93,10 @@ const UniversityListScreen = (props) => {
           platform={Platform.OS}
         />
         <View style={styles.bottomContainer}>
-          <DefaultText style={styles.content}>
-            Üniversite bulunamadı. Filtreleri kontrol ediniz.
-          </DefaultText>
+          <Image
+            source={require("../assets/no-university.png")}
+            style={styles.noUniversityImage}
+          />
         </View>
         <AdMobBanner
           bannerSize="smartBannerPortrait"
@@ -106,6 +118,7 @@ const UniversityListScreen = (props) => {
         value={searchValue}
         platform={Platform.OS}
       />
+      <Button onPress={showInterstitialBanner} style={{ flex: 1 }} title="InterstitialAd" />
       <UniversityList
         style={styles.universityList}
         data={avaibleUniversities}
@@ -195,6 +208,14 @@ const styles = StyleSheet.create({
   noUniversity: {
     width: "100%",
     height: "20%",
+  },
+  noUniversityImage: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 400,
+    height: 400,
+    resizeMode: 'contain'
   },
   floatingButton: {
     justifyContent: "flex-end",
