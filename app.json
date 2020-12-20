@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "tercih-kilavuzu",
+    "name": "Tercih Kilavuzu",
     "slug": "tercih-kilavuzu",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,7 +15,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "tk.tercih_kilavuzu",
+      "bundleIdentifier": "tk.tercihkilavuzu.tercihkilavuzu",
       "buildNumber": "1.0.0",
       "supportsTablet": true,
       "config": {
@@ -23,7 +23,7 @@
       }
     },
     "android": {
-      "package": "tk.tercih_kilavuzu",
+      "package": "tk.tercih_kilavuzu.tercihkilavuzu",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/app-icon.png",
