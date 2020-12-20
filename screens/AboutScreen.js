@@ -16,9 +16,9 @@ import HeaderButton from "../components/HeaderButton";
 
 const AboutScreen = (props) => {
   const testID = "ca-app-pub-3940256099942544/6300978111";
-  const productionID = "my-id";
+  const productionID = "ca-app-pub-6180320592686930/5442555870";
 
-  const adUnitID = Constants.isDevice && !__DEV__ ? productionId : testID;
+  const adUnitID = Constants.isDevice && !__DEV__ ? productionID : testID;
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.iconContainer}>
@@ -48,7 +48,7 @@ const AboutScreen = (props) => {
         adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
         servePersonalizedAds={true}
         style={{ alignSelf: "center" }}
-      // onDidFailToReceiveAdWithError={this.bannerError}
+        // onDidFailToReceiveAdWithError={this.bannerError}
       />
     </SafeAreaView>
   );

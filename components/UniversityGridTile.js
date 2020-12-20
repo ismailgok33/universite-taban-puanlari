@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Platform,
   TouchableNativeFeedback,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
 } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector } from "react-redux";
@@ -29,14 +29,13 @@ const UniversityGridTile = (props) => {
     )
   );
 
-
   const doubleTabHandler = () => {
     const now = Date.now();
     const DOUBLE_PRESS_DELAY = 300;
-    if (lastTap && (now - lastTap) < DOUBLE_PRESS_DELAY) {
+    if (lastTap && now - lastTap < DOUBLE_PRESS_DELAY) {
       props.press();
     } else {
-      setLastTap(now)
+      setLastTap(now);
     }
   };
 
@@ -59,7 +58,10 @@ const UniversityGridTile = (props) => {
 
   return (
     <View style={styles.gridItem}>
-      <TouchableWithoutFeedback style={styles.touchable} onPress={doubleTabHandler}>
+      <TouchableWithoutFeedback
+        style={styles.touchable}
+        onPress={doubleTabHandler}
+      >
         <View style={styles.container}>
           <View style={styles.leftContainer}>
             <View style={styles.upperContainer}>
@@ -129,11 +131,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderRadius: 3,
-    // shadowColor: "black",
     shadowOpacity: 0.26,
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowRadius: 10,
-    // elevation: 3,
     shadowColor: "black",
     shadowOffset: {
       width: 0,
@@ -148,36 +146,26 @@ const styles = StyleSheet.create({
     backgroundColor: "#f4f6ff",
     flexDirection: "row",
     backgroundColor: "white",
-    // backgroundColor: Colors.accentColor,
   },
   leftContainer: {
-    // paddingTop: 10,
     flexDirection: "column",
     width: "80%",
-    // justifyContent: "center",
-    // alignItems: "flex-end",
   },
   rigthContainer: {
-    // width: "20%",
     flexDirection: "column",
   },
   favoriteStarContainer: {
     height: "50%",
     justifyContent: "center",
-    // alignItems: 'center'
   },
   scoreTagContainer: {
     height: "50%",
     justifyContent: "center",
-    // alignItems: 'center'
   },
   upperContainer: {
-    // height: "10%",
-    // width: "100%",
     justifyContent: "flex-start",
     alignItems: "flex-start",
     textAlign: "left",
-    // paddingBottom: 10,
   },
   lowerContainer: {
     flexDirection: "row",
@@ -190,8 +178,6 @@ const styles = StyleSheet.create({
     fontFamily: "open-sans",
     fontSize: 14,
     color: "white",
-    // borderRadius: 15,
-    // marginTop: 30,
     marginHorizontal: 5,
     textAlign: "center",
   },
@@ -220,7 +206,6 @@ const styles = StyleSheet.create({
     fontFamily: "open-sans",
     fontSize: 16,
     paddingBottom: 2,
-    // textAlign: "left",
   },
   textDepartment: {
     fontFamily: "open-sans-bold",

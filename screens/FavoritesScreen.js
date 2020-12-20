@@ -31,11 +31,11 @@ const FavoritesScreen = (props) => {
   // StoreReview.requestReview(); // store review'i detaylı incele
 
   const testID = "ca-app-pub-3940256099942544/6300978111";
-  const productionID = "my-id";
+  const productionID = "ca-app-pub-6180320592686930/5442555870";
 
-  const adUnitID = Constants.isDevice && !__DEV__ ? productionId : testID;
+  const adUnitID = Constants.isDevice && !__DEV__ ? productionID : testID;
 
-  const listFavoriteUniversities = () => {
+  const listFavoriteUniversities = async () => {
     return avaibleUniversities
       .map((uni) => {
         return "-" + uni.name + " / " + uni.department + "\n";
@@ -83,10 +83,9 @@ const FavoritesScreen = (props) => {
             bannerSize="smartBannerPortrait"
             adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
             servePersonalizedAds={true}
-            style={{ alignSelf: "center" }}
-            onDidFailToReceiveAdWithError={console.log(
-              "Boş favorilerde reklam gösterirken hatayla karşılaşıldı."
-            )}
+            // onDidFailToReceiveAdWithError={console.log(
+            //   "Boş favorilerde reklam gösterirken hatayla karşılaşıldı."
+            // )}
           />
         </View>
       </View>
@@ -115,9 +114,9 @@ const FavoritesScreen = (props) => {
         bannerSize="smartBannerPortrait"
         adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
         servePersonalizedAds={true}
-        onDidFailToReceiveAdWithError={console.log(
-          "Dolu favorilerde reklam gösterirken hatayla karşılaşıldı."
-        )}
+        // onDidFailToReceiveAdWithError={console.log(
+        //   "Dolu favorilerde reklam gösterirken hatayla karşılaşıldı."
+        // )}
       />
     </View>
   );
@@ -158,19 +157,20 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: "row",
+    // justifyContent: "center",
+    // alignItems: "center",
   },
   container: {
     flex: 1,
   },
   noFavoriteImage: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     width: 400,
     height: 400,
-    resizeMode: 'contain'
+    resizeMode: "contain",
   },
   text: {
     flex: 1,

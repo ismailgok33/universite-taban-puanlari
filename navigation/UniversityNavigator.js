@@ -37,8 +37,6 @@ const screenStackConfig = {
 const UniversityNavigator = createStackNavigator(
   {
     UniversityList: UniversityListScreen,
-    // UniversityDetail: UniversityDetailScreen,
-    // Filter: FiltersScreen,
   },
   screenStackConfig
 );
@@ -46,7 +44,6 @@ const UniversityNavigator = createStackNavigator(
 const FavoritesNavigator = createStackNavigator(
   {
     Favorites: FavoritesScreen,
-    // UniversityDetail: UniversityDetailScreen,
   },
   screenStackConfig
 );
@@ -139,10 +136,6 @@ const DrawerNavigator = createDrawerNavigator(
       navigationOptions: {
         drawerLabel: "Üniversiteler",
         drawerIcon: ({ tintColor }) => (
-          // <Image
-          //   source={require("../assets/university-icon-2.png")}
-          //   style={[styles.icon, { tintColor: tintColor }]}
-          // />
           <Ionicons name="ios-school" size={24} color={"black"} />
         ),
       },
@@ -182,10 +175,6 @@ const DrawerNavigator = createDrawerNavigator(
       navigationOptions: {
         drawerLabel: "Geri Sayım",
         drawerIcon: ({ tintColor }) => (
-          // <Image
-          //   source={require('../assets/countdown-icon-4.png')}
-          //   style={[styles.icon, { tintColor: tintColor }]}
-          // />
           <Ionicons name="ios-timer" size={24} color={"black"} />
         ),
       },

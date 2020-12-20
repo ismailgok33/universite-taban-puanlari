@@ -19,11 +19,10 @@ import HeaderButton from "../components/HeaderButton";
 import Colors from "../constants/Colors";
 
 const CountDownScreen = (props) => {
-  // const [tytDate, setTytDate] = useState();
   const testID = "ca-app-pub-3940256099942544/6300978111";
-  const productionID = "my-id";
+  const productionID = "ca-app-pub-6180320592686930/5442555870";
 
-  const adUnitID = Constants.isDevice && !__DEV__ ? productionId : testID;
+  const adUnitID = Constants.isDevice && !__DEV__ ? productionID : testID;
 
   const now = moment();
   const tytDate = moment("2020-10-05 10:00");
@@ -38,34 +37,10 @@ const CountDownScreen = (props) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.tytContainer}>
         <DefaultText style={styles.text}>TYT sınavına kalan süre:</DefaultText>
-        {/* <ProgressChart
-          data={dataTyt}
-          width={Dimensions.get("window").width - 50}
-          height={Dimensions.get("window").height / 5}
-          chartConfig={{
-            backgroundColor: Colors.accentColor,
-            backgroundGradientFrom: Colors.accentColor,
-            backgroundGradientTo: Colors.accentColor,
-            decimalPlaces: 2, // optional, defaults to 2dp
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
-              borderRadius: 16,
-            },
-          }}
-          style={{
-            borderRadius: 3,
-            alignSelf: "center",
-          }}
-        /> */}
         <CountDown
-          // until={tytDate}
           until={tytDifference}
           timetoShow={("D", "H")}
           digitStyle={{ backgroundColor: Colors.accentColor }}
-          // timeLabelStyle={{ color: Colors.primaryColor }}
-          // digitTxtStyle={{ color: Colors.primaryColor }}
-          // onFinish={() => alert("finished")}
-          // onPress={() => alert("hello")}
           size={40}
         />
       </View>
@@ -80,8 +55,6 @@ const CountDownScreen = (props) => {
           until={aytDifference}
           timetoShow={("D", "H")}
           digitStyle={{ backgroundColor: Colors.accentColor }}
-          // onFinish={() => alert("finished")}
-          // onPress={() => alert("hello")}
           size={40}
         />
       </View>
@@ -96,8 +69,6 @@ const CountDownScreen = (props) => {
           until={ydtDifference}
           timetoShow={("D", "H")}
           digitStyle={{ backgroundColor: Colors.accentColor }}
-          // onFinish={() => alert("finished")}
-          // onPress={() => alert("hello")}
           size={40}
         />
       </View>

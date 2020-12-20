@@ -14,8 +14,6 @@ const ScrollToTopButton = (props) => {
       iconHeight={30}
       distanceToEdge={{ vertical: 50, horizontal: 30 }}
       {...props}
-    // actions={actions}
-    // onPressItem={(name) => props.press(name)}
     />
   );
 };

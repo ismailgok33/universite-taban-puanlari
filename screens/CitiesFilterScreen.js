@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, FlatList, SafeAreaView, Platform } from "react-native";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  SafeAreaView,
+  Platform,
+} from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { SearchBar } from "react-native-elements";
 
 import CityGridTile from "../components/CityGridTile";
 import { CITIES } from "../data/city-data";
 import HeaderButton from "../components/HeaderButton";
-import DefaultText from '../components/DefaultText';
+import DefaultText from "../components/DefaultText";
 
 const CitiesFilterScreen = (props) => {
   let selectedCityList = props.navigation.getParam("selectedCities")
@@ -32,7 +38,11 @@ const CitiesFilterScreen = (props) => {
 
   const searchFilterHandler = (text) => {
     setSearchValue(text);
-    setSearchedCities(CITIES.filter(city => city.name.toLocaleUpperCase().includes(text.toLocaleUpperCase())));
+    setSearchedCities(
+      CITIES.filter((city) =>
+        city.name.toLocaleUpperCase().includes(text.toLocaleUpperCase())
+      )
+    );
   };
 
   const renderGridCityItem = (itemData) => {
@@ -41,11 +51,9 @@ const CitiesFilterScreen = (props) => {
       let index = filteredCityList.indexOf(id);
       if (index == -1) {
         setFilteredCityList([...filteredCityList, id]);
-        // isChecked = true;
       } else {
         filteredCityList.splice(index, 1);
         setFilteredCityList(filteredCityList);
-        // isChecked = false;
       }
     };
     return (
@@ -72,9 +80,8 @@ const CitiesFilterScreen = (props) => {
           <View style={styles.buttomContainer}>
             <DefaultText style={styles.content}>
               Aramanıza uygun şehir bulunamadı...
-          </DefaultText>
+            </DefaultText>
           </View>
-
         </View>
       </SafeAreaView>
     );
@@ -124,14 +131,14 @@ const styles = StyleSheet.create({
   },
   buttomContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   content: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     fontSize: 16,
-  }
+  },
 });
 
 export default CitiesFilterScreen;

@@ -73,9 +73,7 @@ const FiltersScreen = (props) => {
     noTwoYearUniversity,
     noEnglishDepartments,
     noTurkishDepartments,
-    // filteredCityList,
     savedCityList,
-    // filteredDepartmentList,
     savedDepartmentList,
     dispatch,
   ]);
@@ -214,8 +212,6 @@ const FiltersScreen = (props) => {
         </TouchableOpacity>
       </View>
 
-      {/* <View style={styles.seperatorLine}></View> */}
-
       <DefaultText style={styles.filterCoupleHeader}>
         {" "}
         Burs Filtresi{" "}
@@ -287,8 +283,6 @@ const FiltersScreen = (props) => {
         </View>
       </View>
 
-      {/* <View style={styles.seperatorLine}></View> */}
-
       <DefaultText style={styles.filterCoupleHeader}>
         {" "}
         Öğretim Yılı Filtresi{" "}
@@ -315,8 +309,6 @@ const FiltersScreen = (props) => {
           />
         </View>
       </View>
-
-      {/* <View style={styles.seperatorLine}></View> */}
 
       <DefaultText style={styles.filterCoupleHeader}>
         {" "}
@@ -369,12 +361,7 @@ FiltersScreen.navigationOptions = (navData) => {
     ),
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item
-          title="UYGULA"
-          // iconName="ios-save"
-          // onPress={saveAndListUniversities()}
-          onPress={navData.navigation.getParam("save")}
-        />
+        <Item title="UYGULA" onPress={navData.navigation.getParam("save")} />
       </HeaderButtons>
     ),
   };
@@ -441,10 +428,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   filterButton: {
-    // flex: 1,
     width: "80%",
-    // borderColor: 'gray',
-    // borderWidth: 1,
     paddingVertical: 10,
   },
   deleteFilterButton: {

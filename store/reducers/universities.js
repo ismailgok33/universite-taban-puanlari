@@ -151,7 +151,6 @@ const universitiesReducer = (state = initialState, action) => {
             };
           }
           return textDataList.every((token) => itemData.indexOf(token) > -1);
-          // return itemData.indexOf(textData) > -1;
         }
       );
       return { ...state, filteredUniversities: searchedUniversities };

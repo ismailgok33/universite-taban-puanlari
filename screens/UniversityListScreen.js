@@ -1,16 +1,23 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { StyleSheet, View, Platform, Dimensions, Button, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Platform,
+  Dimensions,
+  Button,
+  Image,
+} from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
 import { SearchBar } from "react-native-elements";
-import Constants from 'expo-constants';
+import Constants from "expo-constants";
 import {
   AdMobBanner,
   AdMobInterstitial,
   PublisherBanner,
   AdMobRewarded,
   setTestDeviceIDAsync,
-} from 'expo-ads-admob';
+} from "expo-ads-admob";
 
 import UniversityList from "../components/UniversityList";
 // import { UNIVERSITIES } from "../data/university-data";
@@ -20,7 +27,6 @@ import { setOrder, search } from "../store/actions/universities";
 import FloatingActions from "../components/FloatingActions";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 
-
 const UniversityListScreen = (props) => {
   const [orderState, setOrderState] = useState("name");
   const [searchValue, setSearchValue] = useState("");
@@ -29,33 +35,16 @@ const UniversityListScreen = (props) => {
 
   const dispatch = useDispatch();
 
-  const showInterstitialBanner = async () => {
-    try {
-      await AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); // Test ID, Replace with your-admob-unit-id
-      await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
-      await AdMobInterstitial.showAdAsync();
-    }
-    catch (e) {
-      console.log("showInterstitialBanner hatası");
-    }
-
-  }
-
   const orderFilter = useCallback(() => {
-
     dispatch(setOrder(orderState));
   }, [orderState, dispatch]);
 
-  // useEffect(() => {
-  //   orderFilter();
-  // }, [orderFilter]);
-
   orderFilter();
 
-  const testID = 'ca-app-pub-3940256099942544/6300978111';
-  const productionID = 'my-id';
+  const testID = "ca-app-pub-3940256099942544/6300978111";
+  const productionID = "ca-app-pub-6180320592686930/5442555870";
 
-  const adUnitID = Constants.isDevice && !__DEV__ ? productionId : testID;
+  const adUnitID = Constants.isDevice && !__DEV__ ? productionID : testID;
 
   let avaibleUniversities = useSelector(
     (state) => state.universitiesReducer.filteredUniversities
@@ -64,8 +53,6 @@ const UniversityListScreen = (props) => {
   useEffect(() => {
     props.navigation.setParams({ orderInfo: "Alfabetik Sıralı" });
   }, []);
-
-
 
   const searchFilterHandler = (text) => {
     setSearchValue(text);
@@ -102,8 +89,9 @@ const UniversityListScreen = (props) => {
           bannerSize="smartBannerPortrait"
           adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
           servePersonalizedAds={true}
-          // style={{ alignSelf: "center" }}
-          onDidFailToReceiveAdWithError={console.log("Boş Üniversite listesinde reklam gösterirken hatayla karşılaşıldı.")}
+          // onDidFailToReceiveAdWithError={console.log(
+          //   "Boş Üniversite listesinde reklam gösterirken hatayla karşılaşıldı."
+          // )}
         />
       </View>
     );
@@ -118,7 +106,6 @@ const UniversityListScreen = (props) => {
         value={searchValue}
         platform={Platform.OS}
       />
-      <Button onPress={showInterstitialBanner} style={{ flex: 1 }} title="InterstitialAd" />
       <UniversityList
         style={styles.universityList}
         data={avaibleUniversities}
@@ -147,8 +134,9 @@ const UniversityListScreen = (props) => {
         bannerSize="smartBannerPortrait"
         adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
         servePersonalizedAds={true}
-        // style={{ alignSelf: "center" }}
-        onDidFailToReceiveAdWithError={console.log("Dolu Üniversite listesinde reklam gösterirken hatayla karşılaşıldı.")}
+        // onDidFailToReceiveAdWithError={console.log(
+        //   "Dolu Üniversite listesinde reklam gösterirken hatayla karşılaşıldı."
+        // )}
       />
     </View>
   );
@@ -172,26 +160,12 @@ UniversityListScreen.navigationOptions = (navData) => {
         />
       </HeaderButtons>
     ),
-    // headerRight: (
-    //   <HeaderButtons HeaderButtonComponent={HeaderButton}>
-    //     <Item
-    //       title="Filtre"
-    //       iconName="ios-menu"
-    //       // iconName="filter"
-    //       onPress={() => {
-    //         navData.navigation.navigate("Filter");
-    //       }}
-    //     />
-    //   </HeaderButtons>
-    // ),
   };
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
   },
   bottomContainer: {
     flex: 1,
@@ -211,11 +185,11 @@ const styles = StyleSheet.create({
   },
   noUniversityImage: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     width: 400,
     height: 400,
-    resizeMode: 'contain'
+    resizeMode: "contain",
   },
   floatingButton: {
     justifyContent: "flex-end",

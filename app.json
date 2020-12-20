@@ -13,15 +13,13 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "tk.tercih_kilavuzu",
       "buildNumber": "1.0.0",
       "supportsTablet": true,
       "config": {
-        "googleMobileAdsAppId": "ca-app-pub-3940256099942544~1458002511"
+        "googleMobileAdsAppId": "ca-app-pub-6180320592686930~9567113699"
       }
     },
     "android": {
@@ -33,7 +31,7 @@
       },
       "permissions": [],
       "config": {
-        "googleMobileAdsAppId": "ca-app-pub-3940256099942544~3347511713"
+        "googleMobileAdsAppId": "ca-app-pub-6180320592686930~8629630067"
       }
     }
   }

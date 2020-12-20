@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, FlatList, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+  setTestDeviceIDAsync,
+} from "expo-ads-admob";
+import Constants from "expo-constants";
 
 import UniversityGridTile from "../components/UniversityGridTile";
 import { toggleFavorites, loadFavorites } from "../store/actions/universities";
 import { CITIES } from "../data/city-data";
-
-// const db = SQLite.openDatabase("favorites4.db");
 
 const UniversityList = (props) => {
   const dispatch = useDispatch();
@@ -14,13 +20,24 @@ const UniversityList = (props) => {
   const [flatListRef, setFlatListRef] = useState();
   const [scrollOffset, setScrollOffset] = useState();
 
-  // dispatch(loadFavorites());
   useEffect(() => {
     dispatch(loadFavorites());
   }, [dispatch]);
 
-  const toggleFavoriteHandler = (id) => {
-    dispatch(toggleFavorites(id));
+  const testID = "ca-app-pub-3940256099942544/1033173712";
+  const productionID = "ca-app-pub-6180320592686930/3823364201";
+
+  const adUnitID = Constants.isDevice && !__DEV__ ? productionID : testID;
+
+  const toggleFavoriteHandler = async (id) => {
+    try {
+      await AdMobInterstitial.setAdUnitID(adUnitID); // Test ID, Replace with your-admob-unit-id
+      await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
+      await AdMobInterstitial.showAdAsync();
+    } catch (e) {
+      console.log("showInterstitialBanner hatası");
+    }
+    await dispatch(toggleFavorites(id));
   };
 
   const mapCityIdToName = (id) => {
@@ -42,12 +59,6 @@ const UniversityList = (props) => {
           toggleFavoriteHandler(itemData.item.id);
         }}
         uniId={itemData.item.id}
-      // onSelect={() => {
-      //   props.navigation.navigate("UniversityDetail", {
-      //     universityId: itemData.item.id,
-      //     universityName: itemData.item.name,
-      //   });
-      // }}
       />
     );
   };
