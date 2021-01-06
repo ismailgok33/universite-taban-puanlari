@@ -82,8 +82,10 @@ const universitiesReducer = (state = initialState, action) => {
         if (
           appliedFilters.noFullyPaid &&
           !uni.isState &&
-          !uni.department.includes("İndirimli")
+          !uni.department.includes("İndirimli") &&
+          !uni.department.includes("Burslu")
         ) {
+          // console.log("Burssuz girdi.");
           return false;
         }
         if (no4Years && !no2Years) {

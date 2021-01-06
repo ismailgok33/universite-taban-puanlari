@@ -35,13 +35,13 @@ const FavoritesScreen = (props) => {
 
   const adUnitID = Constants.isDevice && !__DEV__ ? productionID : testID;
 
-  const listFavoriteUniversities = async () => {
+  const listFavoriteUniversities = () => {
     return avaibleUniversities
       .map((uni) => {
         return "-" + uni.name + " / " + uni.department + "\n";
       })
       .toString()
-      .replaceAll(",", "");
+      .replace(',', '');
   };
 
   // Share function
@@ -83,9 +83,9 @@ const FavoritesScreen = (props) => {
             bannerSize="smartBannerPortrait"
             adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
             servePersonalizedAds={true}
-            // onDidFailToReceiveAdWithError={console.log(
-            //   "Boş favorilerde reklam gösterirken hatayla karşılaşıldı."
-            // )}
+          // onDidFailToReceiveAdWithError={console.log(
+          //   "Boş favorilerde reklam gösterirken hatayla karşılaşıldı."
+          // )}
           />
         </View>
       </View>
@@ -114,9 +114,9 @@ const FavoritesScreen = (props) => {
         bannerSize="smartBannerPortrait"
         adUnitID={adUnitID} // Test ID, Replace with your-admob-unit-id
         servePersonalizedAds={true}
-        // onDidFailToReceiveAdWithError={console.log(
-        //   "Dolu favorilerde reklam gösterirken hatayla karşılaşıldı."
-        // )}
+      // onDidFailToReceiveAdWithError={console.log(
+      //   "Dolu favorilerde reklam gösterirken hatayla karşılaşıldı."
+      // )}
       />
     </View>
   );

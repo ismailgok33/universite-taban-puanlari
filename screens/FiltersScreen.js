@@ -361,7 +361,7 @@ FiltersScreen.navigationOptions = (navData) => {
     ),
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item title="UYGULA" onPress={navData.navigation.getParam("save")} />
+        <Item title="KAYDET" onPress={navData.navigation.getParam("save")} />
       </HeaderButtons>
     ),
   };
