@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import { FloatingAction } from "react-native-floating-action";
 
 import Colors from "../constants/Colors";
@@ -12,7 +12,10 @@ const ScrollToTopButton = (props) => {
       floatingIcon={require("../assets/scroll-to-top-arrow.png")}
       iconWidth={30}
       iconHeight={30}
-      distanceToEdge={{ vertical: 50, horizontal: 30 }}
+      distanceToEdge={{
+        vertical: Dimensions.get("window").height / 10,
+        horizontal: 30,
+      }}
       {...props}
     />
   );
