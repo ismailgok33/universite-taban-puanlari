@@ -25,9 +25,9 @@ const CountDownScreen = (props) => {
   const adUnitID = Constants.isDevice && !__DEV__ ? productionID : testID;
 
   const now = moment();
-  const tytDate = moment("2020-10-05 10:00");
-  const aytDate = moment("2020-10-05 10:00");
-  const ydtDate = moment("2020-10-05 10:00");
+  const tytDate = moment("2021-06-26 10:15");
+  const aytDate = moment("2021-06-27 10:15");
+  const ydtDate = moment("2021-06-27 15:45");
 
   const tytDifference = (tytDate - now) / 1000;
   const aytDifference = (aytDate - now) / 1000;
